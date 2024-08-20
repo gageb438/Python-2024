@@ -20,8 +20,16 @@ def comment_example():
     
 def program2_1():
     # program2_1 recieves no arguments
+    # apostrophe output
     # it outputs 3 comments in one function.
     print ('Kate Austen')
     print ('123 Full Circle Drive')
     print ('Asheville, NC 28899')
     
+def program2_2():
+    # program2_2 recieves no arguments.
+    # double apostrophe output.
+    # it outputs 3 comments in one function.
+    print ("Kate Austen")
+    print ("123 Full Circle Drive")
+    print ("Asheville, NC 28899")
