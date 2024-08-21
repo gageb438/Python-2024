@@ -70,10 +70,18 @@ def program2_8():
     Distance = 300
     
     # outputs the message to the user
-    print ("The top speed is")
+    print ("The top speed is:")
     print (TopSpeed)
     
     # outputs the message to the user
-    print ("The distance traveled is")
+    print ("The distance traveled is:")
     print (Distance)
-
+    
+def program2_9():
+    #program2_9 recieves no arguments
+    
+    # assigns a number to the variable
+    RoomNumber = 503
+    
+    print("I am staying in room number", RoomNumber)
+    
