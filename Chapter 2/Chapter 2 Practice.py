@@ -65,7 +65,7 @@ def program2_7():
 def program2_8():
     # program2_8 accepts no arguments
     
-    # assigns a number to the variable
+    # assigns a number to the variables
     TopSpeed = 160
     Distance = 300
     
@@ -92,10 +92,11 @@ def program2_10():
     # assigns numbers to the variable
     AmountOfMoney = 2.75
     
+    # outputs the message to the user
     print("I have", AmountOfMoney,"in my account")
     
+    # re-assigns the variable
     AmountOfMoney = 99.95
     
+    # outputs the message to the user
     print ("But now I have", AmountOfMoney,"in my account")
-    
-    
