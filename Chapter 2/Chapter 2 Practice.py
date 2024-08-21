@@ -100,3 +100,9 @@ def program2_10():
     
     # outputs the message to the user
     print ("But now I have", AmountOfMoney,"in my account")
+    
+def program2_11():
+    # program2_11 recieves no arguments
+    
+    # assigns variables
+    FirstName =
