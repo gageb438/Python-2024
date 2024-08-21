@@ -65,7 +65,7 @@ def program2_7():
 def program2_8():
     # program2_8 accepts no arguments
     
-    # assigns numbers to the variables
+    # assigns a number to the variable
     TopSpeed = 160
     Distance = 300
     
@@ -83,5 +83,19 @@ def program2_9():
     # assigns a number to the variable
     RoomNumber = 503
     
+    # outputs the message to the user
     print("I am staying in room number", RoomNumber)
+    
+def program2_10():
+    # program2_10 recieves no arguments
+    
+    # assigns numbers to the variable
+    AmountOfMoney = 2.75
+    
+    print("I have", AmountOfMoney,"in my account")
+    
+    AmountOfMoney = 99.95
+    
+    print ("But now I have", AmountOfMoney,"in my account")
+    
     
