@@ -30,6 +30,7 @@ def program2_1():
     print ('123 Full Circle Drive')
     print ('Asheville, NC 28899')
     
+    
 def program2_2():
     
     # program2_2 accepts no arguments.
@@ -39,6 +40,7 @@ def program2_2():
     print ("123 Full Circle Drive")
     print ("Asheville, NC 28899")
     
+    
 def program2_3():
     
     # program 2_3 accepts no arguments.
@@ -46,11 +48,13 @@ def program2_3():
     print ("Don't fear!")
     print ("I'm here!")
 
+
 def program2_4():
     
     # program 2_4 accepts no arguments
     # use backslash before the start and before the end quotation to ignore characters.
     print ("I read \"Hamlet\" this summer.")
+    
     
 def program2_7():
     
@@ -120,12 +124,29 @@ def program2_12():
     # it takes input for two strings
     # and outputs a message
     
-    
     # asks for their first and last name
     FirstName = input("Enter your first name: ")
     LastName = input("Enter your last name: ")
     
-    
     # outputs their first and last name
     print ("Hello", FirstName, LastName,)
+    
+
+def program2_13():
+    # program 2_13 recieves no arguments
+    # it takes input for 3 strings, converts 1 to float
+    # and outputs the inputs
+    
+    # asks for name, age, and income
+    # converts income to a float
+    Name = input("What is your name? ")
+    Age = int(input("What is your age? "))
+    Income = float(input("What is your income? "))
+    
+    print ("Here is the data you have entered: ")
+    print ("Name:",Name)
+    print ("Age:",Age)
+    print ("Income:",Income)
+    
+    
     
