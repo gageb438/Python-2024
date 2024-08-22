@@ -114,9 +114,14 @@ def program2_10():
      
   
 def program2_12():
+    # program 2_12 recieves no arguments
+    
+    # asks for their first and last name
     FirstName = input("Enter your first name: ")
     LastName = input("Enter your last name: ")
     
+    
+    # outputs their first and last name
     print ("Hello", FirstName, LastName,)
     
     
