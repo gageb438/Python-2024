@@ -1,9 +1,11 @@
 # Chapter 2 Practice
 
+
 def practice1():
     # practice 1 accepts no arguments
     # it outputs a message to the user
     print("This is practice 1.")
+    
     
 def practice2():
     # practice 2 accepts no arguments
@@ -12,6 +14,7 @@ def practice2():
 
 # hit run to use the command bar
 
+
 def comment_example():
     # comment_example accepts no arguments
     # it explains how to create a function header
@@ -19,6 +22,7 @@ def comment_example():
     print("Hello World!")
     
 def program2_1():
+    
     # program2_1 accepts no arguments
     # apostrophe output
     # it outputs 3 comments in one function.
@@ -27,6 +31,7 @@ def program2_1():
     print ('Asheville, NC 28899')
     
 def program2_2():
+    
     # program2_2 accepts no arguments.
     # double apostrophe output.
     # it outputs 3 comments in one function.
@@ -35,17 +40,20 @@ def program2_2():
     print ("Asheville, NC 28899")
     
 def program2_3():
+    
     # program 2_3 accepts no arguments.
     # outputs 2 comments in one function.
     print ("Don't fear!")
     print ("I'm here!")
 
 def program2_4():
+    
     # program 2_4 accepts no arguments
     # use backslash before the start and before the end quotation to ignore characters.
     print ("I read \"Hamlet\" this summer.")
     
 def program2_7():
+    
     # program 2_7 accepts no arguments
     # it uses the variable room to store the value 503
     # and prints the message to the user
@@ -62,6 +70,7 @@ def program2_7():
     # outputs the message to the user using a second way
     print ("I am staying in room number", RoomNumber)
 
+
 def program2_8():
     # program2_8 accepts no arguments
     
@@ -77,6 +86,7 @@ def program2_8():
     print ("The distance traveled is:")
     print (Distance)
     
+    
 def program2_9():
     #program2_9 recieves no arguments
     
@@ -85,6 +95,7 @@ def program2_9():
     
     # outputs the message to the user
     print("I am staying in room number", RoomNumber)
+    
     
 def program2_10():
     # program2_10 recieves no arguments
@@ -100,9 +111,12 @@ def program2_10():
     
     # outputs the message to the user
     print ("But now I have", AmountOfMoney,"in my account")
+     
+  
+def program2_12():
+    FirstName = input("Enter your first name: ")
+    LastName = input("Enter your last name: ")
     
-def program2_11():
-    # program2_11 recieves no arguments
+    print ("Hello", FirstName, LastName,)
     
-    # assigns variables
-    FirstName =
+    
