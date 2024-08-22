@@ -146,7 +146,7 @@ def program2_13():
     print ("Here is the data you have entered: ")
     print ("Name:",Name)
     print ("Age:",Age)
-    print ("Income:",Income)
+    print ("Income: $",Income)
     
     
     
