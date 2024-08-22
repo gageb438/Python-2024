@@ -99,6 +99,8 @@ def program2_9():
     
 def program2_10():
     # program2_10 recieves no arguments
+    # it prints the amount of money and then modifies it
+    # it outputs the total money at the end
     
     # assigns numbers to the variable
     AmountOfMoney = 2.75
@@ -115,6 +117,9 @@ def program2_10():
   
 def program2_12():
     # program 2_12 recieves no arguments
+    # it takes input for two strings
+    # and outputs a message
+    
     
     # asks for their first and last name
     FirstName = input("Enter your first name: ")
@@ -123,5 +128,4 @@ def program2_12():
     
     # outputs their first and last name
     print ("Hello", FirstName, LastName,)
-    
     
