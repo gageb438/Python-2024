@@ -177,3 +177,16 @@ def program2_15():
     
     # prints the total price
     print("The sale price is $",TotalPrice)
+    
+
+def GetAverage():
+    # GetAverage recieves no arguments
+    
+    FirstScore = float(input("Enter the first test score: "))
+    SecondScore = float(input("Enter the second test score: "))
+    ThirdScore = float(input("Enter the third test score: "))
+    
+    AverageScore = ((FirstScore + SecondScore + ThirdScore) // 3)
+    
+    print("The average score is: ",AverageScore)
+    
