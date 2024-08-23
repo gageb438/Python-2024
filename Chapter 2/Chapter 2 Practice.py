@@ -152,12 +152,24 @@ def program2_13():
 def program2_14():
     # program2_14 recieves no arguments
     
-    # variables for money
+    # Variables for money
     MoneyFromPaycheck = 3600
     MoneyFromTip = 100
+    
+    # Calculates total pay
     TotalSalary = float(MoneyFromTip + MoneyFromPaycheck)
     
+    # Outputs total salary
     print("Your pay is: $",TotalSalary)
     
-
     
+def program2_15():
+    # program2_15 recieves no arguments
+    
+    OriginalPrice = int(input("What is the price of the item? "))
+    
+    DiscountPrice = OriginalPrice * .20
+
+    TotalPrice = float(OriginalPrice - DiscountPrice)
+    
+    print("The sale price is $",TotalPrice)
