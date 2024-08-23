@@ -147,6 +147,17 @@ def program2_13():
     print ("Name:",Name)
     print ("Age:",Age)
     print ("Income: $",Income)
+   
+   
+def program2_14():
+    # program2_14 recieves no arguments
     
+    # variables for money
+    MoneyFromPaycheck = 3600
+    MoneyFromTip = 100
+    TotalSalary = float(MoneyFromTip + MoneyFromPaycheck)
     
+    print("Your pay is: $",TotalSalary)
+    
+
     
