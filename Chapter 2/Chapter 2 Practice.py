@@ -190,3 +190,22 @@ def GetAverage():
     
     print("The average score is: ",AverageScore)
     
+    
+def program2_17():
+    # program2_17 recieves no arguments
+    
+    # assigns variables and does equations
+    total_hours = float( total_seconds // 3600)
+    minutes = float((total_seconds // 60) % 60)
+    seconds = float((total_seconds % 60))
+    
+    # requests the user for the total seconds
+    total_seconds = int(input("Enter the number of seconds: "))
+    
+    # returns the converted time
+    print("Here is the time in hours, minutes, and seconds:")
+    print("Hours: ",total_hours)
+    print("Minutes: ",minutes)
+    print("Seconds: ",seconds)
+    
+    
