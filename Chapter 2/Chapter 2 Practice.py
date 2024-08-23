@@ -166,10 +166,14 @@ def program2_14():
 def program2_15():
     # program2_15 recieves no arguments
     
+    # requests the user to input the price of an item
     OriginalPrice = int(input("What is the price of the item? "))
     
+    # finds the amount to discount from the price
     DiscountPrice = OriginalPrice * .20
-
+    
+    # finds the total price
     TotalPrice = float(OriginalPrice - DiscountPrice)
     
+    # prints the total price
     print("The sale price is $",TotalPrice)
