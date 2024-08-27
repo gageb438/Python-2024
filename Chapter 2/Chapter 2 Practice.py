@@ -225,7 +225,7 @@ def program2_18():
     number_of_years = int(input("Enter the number of years the money will grow: "))
     
     # calculate the amount needed to deposit
-    amount_to_deposit = future_value / (1 + annual_intrest) ** number_of_years
+    amount_to_deposit = future_value / (1.0 + annual_intrest) ** number_of_years
     
     # output the result
     print ("You will need to deposit $", format(amount_to_deposit, '.2f'), sep = '')
@@ -236,10 +236,13 @@ def program2_19():
     
     # assigns variables
     amount_due = 5000.0
+    
+    # calculates the monthly payment
     monthly_payment = amount_due / 12.0
     
+    print("The total amount due is: $", format(amount_due, ',.2f'),sep ='')
     # prints monthly payment
-    print("The monthly payment is", monthly_payment)
+    print("The monthly payment is:\t $", format(monthly_payment, '8,.2f'),sep = '')
     
 
 def program2_20():
