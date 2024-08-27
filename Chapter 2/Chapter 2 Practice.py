@@ -228,7 +228,42 @@ def program2_18():
     amount_to_deposit = future_value / (1 + annual_intrest) ** number_of_years
     
     # output the result
-    print ("You will need to deposit ",amount_to_deposit)
+    print ("You will need to deposit $", format(amount_to_deposit, '.2f'), sep = '')
+    
+    
+def program2_19():
+    # program2_19 recieves no arguments
+    
+    # assigns variables
+    amount_due = 5000.0
+    monthly_payment = amount_due / 12.0
+    
+    # prints monthly payment
+    print("The monthly payment is", monthly_payment)
     
 
+def program2_20():
+    # program2_20 recieves no arguments
     
+    # assigns variables
+    amount_due = 5000.0
+    monthly_payment = amount_due / 12.0
+    
+    # prints monthly payment after formatting it to have 2 decimals and be a float
+    print("The monthly payment is",
+          format(monthly_payment, '.2f'))
+
+def program2_21():
+    # proggram2_21 receives no arguments
+    
+    # assigns variables
+    monthly_pay = 5000
+    
+    # calculates annual pay
+    annual_pay = monthly_pay * 12
+    
+    # prints the pay as the annual pay with 2 decimals as a float with the seperator as space
+    # the seperator is the space after the print function and this sets it to nothing which is ''
+    print("Your annual pay is $",
+          format(annual_pay, ",.2f"),
+          sep = '')
