@@ -207,5 +207,28 @@ def program2_17():
     print("Hours: ",total_hours)
     print("Minutes: ",minutes)
     print("Seconds: ",total_seconds)
+    
+
+def program2_18():
+    # program2_18 accepts no arguments
+    # get the desired value
+    # calculate the amount that will have to be deposited
+    # output the result
+    
+    # get the desired future value
+    future_value = float(input("Enter the desired future value: "))
+    
+    # get the annual interest rate
+    annual_intrest = float(input("Enter the annual interest rate: "))
+    
+    # get the number of years that the money will grow
+    number_of_years = int(input("Enter the number of years the money will grow: "))
+    
+    # calculate the amount needed to deposit
+    amount_to_deposit = future_value / (1 + annual_intrest) ** number_of_years
+    
+    # output the result
+    print ("You will need to deposit ",amount_to_deposit)
+    
 
     
