@@ -253,6 +253,7 @@ def program2_20():
     print("The monthly payment is",
           format(monthly_payment, '.2f'))
 
+
 def program2_21():
     # proggram2_21 receives no arguments
     
@@ -267,3 +268,23 @@ def program2_21():
     print("Your annual pay is $",
           format(annual_pay, ",.2f"),
           sep = '')
+    
+def program2_22():
+    # program2_22 recieves no arguments
+    
+    # assigns numbers to the variables
+    num1 = 127.900
+    num2 = 3465.155
+    num3 = 3.788
+    num4 = 264.822
+    num5 = 88.088
+    num6 = 800.000
+    
+    # prints the variables with 7 spaces formated with 2 decimals as a float
+    print(format(num1, '7.2f'))
+    print(format(num2, '7.2f'))
+    print(format(num3, '7.2f'))
+    print(format(num4, '7.2f'))
+    print(format(num5, '7.2f'))
+    print(format(num6, '7.2f'))
+    
