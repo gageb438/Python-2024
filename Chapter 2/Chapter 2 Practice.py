@@ -290,4 +290,3 @@ def program2_22():
     print(format(num4, '7.2f'))
     print(format(num5, '7.2f'))
     print(format(num6, '7.2f'))
-    
