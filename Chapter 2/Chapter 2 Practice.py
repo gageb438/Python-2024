@@ -1,6 +1,6 @@
 # Chapter 2 Practice
 
-
+import turtle
 def practice1():
     # practice 1 accepts no arguments
     # it outputs a message to the user
@@ -290,3 +290,75 @@ def program2_22():
     print(format(num4, '7.2f'))
     print(format(num5, '7.2f'))
     print(format(num6, '7.2f'))
+    
+
+def Orion():
+    #The function orion uses Named Constants to establish
+    # Each star location, it's name, and to draw the
+    # constellation using the turtle to draw
+    
+    #Setup turtle
+    turtle.setup(500,600)
+    turtle.penup()
+    turtle.hideturtle()
+    
+    # Use named constants for each star
+    LEFT_SHOULDER_X = -70
+    LEFT_SHOULDER_Y = 200
+    
+    RIGHT_SHOULDER_X = 80
+    RIGHT_SHOULDER_Y = 180
+    
+    LEFT_BELTSTAR_X = -40
+    LEFT_BELTSTAR_Y = -20
+    
+    MIDDLE_BELTSTAR_X = 0
+    MIDDLE_BELTSTAR_Y = 0
+    
+    RIGHT_BELTSTAR_X = 40
+    RIGHT_BELTSTAR_Y = 20
+    
+    LEFT_KNEE_X = -90
+    LEFT_KNEE_Y = -180
+    
+    RIGHT_KNEE_X = 120
+    RIGHT_KNEE_Y = -140
+    
+    turtle.write("Alnilam")
+    turtle.dot(5)
+    
+    turtle.pendown()
+    turtle.goto(LEFT_BELTSTAR_X, LEFT_BELTSTAR_Y)
+    turtle.dot(5)
+    turtle.write("Alnitak")
+   
+    turtle.goto(LEFT_SHOULDER_X, LEFT_SHOULDER_Y)
+    turtle.dot(5)
+    turtle.write("Betelgeuse")
+
+    turtle.penup()
+    turtle.goto(LEFT_BELTSTAR_X, LEFT_BELTSTAR_Y)
+    turtle.pendown()     
+    turtle.goto(LEFT_KNEE_X, LEFT_KNEE_Y)
+    turtle.dot(5)
+    turtle.write("Saiph")
+
+    turtle.penup()
+    turtle.goto(MIDDLE_BELTSTAR_X, MIDDLE_BELTSTAR_Y)
+    turtle.pendown()
+    turtle.goto(RIGHT_BELTSTAR_X, RIGHT_BELTSTAR_X)
+    turtle.dot(5)
+    turtle.write("Mintaka") #here
+    
+    turtle.goto(RIGHT_SHOULDER_X, RIGHT_SHOULDER_Y)
+    turtle.dot(5)
+    turtle.write("Meissa")
+    turtle.penup()
+    
+    turtle.goto(RIGHT_BELTSTAR_X, RIGHT_BELTSTAR_Y)
+    turtle.pendown()
+    turtle.goto(RIGHT_KNEE_X, RIGHT_KNEE_Y)
+    turtle.write("Rigel")
+    turtle.dot(5)
+    
+    
