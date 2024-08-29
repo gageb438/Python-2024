@@ -348,7 +348,7 @@ def Orion():
     turtle.pendown()
     turtle.goto(RIGHT_BELTSTAR_X, RIGHT_BELTSTAR_Y)
     turtle.dot(5)
-    turtle.write("Mintaka") #here
+    turtle.write("Mintaka")
     
     turtle.goto(RIGHT_SHOULDER_X, RIGHT_SHOULDER_Y)
     turtle.dot(5)
