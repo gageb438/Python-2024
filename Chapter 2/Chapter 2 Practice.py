@@ -361,4 +361,5 @@ def Orion():
     turtle.write("Rigel")
     turtle.dot(5)
     
+    turtle.done()
     
