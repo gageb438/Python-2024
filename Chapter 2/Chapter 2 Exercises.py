@@ -32,5 +32,17 @@ def total_purchase():
     subTotal = firstItem + secondItem + thirdItem + fourthItem + fifthItem
     
     salesTax = subTotal * .07
+
+
+def distance_traveled():
+    drivingSpeed = input("How fast are you driving? ")
+    
+    sixHours = (6 * drivingSpeed)
+    tenHours = (10 * drivingSpeed)
+    fifteenHours = (15 * drivingSpeed)
+    
+    print("At 60 miles per hour you will travel ", sixHours,"in 6 hours.", sep = '')
+    print("At 60 miles per hour you will travel ", tenHours,"in 10 hours.", sep = '')
+    print("At 60 miles per hour you will travel ", fifteenHours,"in 15 hours", sep = '')
     
     
