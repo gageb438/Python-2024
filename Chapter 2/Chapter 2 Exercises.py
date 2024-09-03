@@ -86,24 +86,42 @@ def tip_tax_total():
     # asks user for their sale amount and calculates the tip and tax then total
     # outputs the sale amount, tip amount, and tax amount
     
+    # asks for sale amount
+    gross_total = float(input("Please enter the sale amount: $"))
+    tip = gross_total * .18
+    tax = gross_total * .07
+    net_total = tip + tax + gross_total
+    
+    print("The sale was: \t\t\t$",format(gross_total, '7.2f'), sep = '')
+    print("The tip amount is: \t\t$",format(tip, '7.2f'), sep = '')
+    print("The sales tax amount is: \t$",format(tax, '7.2f'), sep = '')
+    print("The total bill is: \t\t$",format(net_total, '7.2f'), sep = '')
+    
     
     
 def temp_converter():
+    # temp_converter recieves no arguments
+    # asks the user for the degrees in celsius then converts it to farenheit
+    # outputs the amount in farenheit
     degreesCelsius = float(input("Please enter the degrees Celsius: "))
     
+    # converts it to farenheit
     fahrenheit = float(((9/5) * degreesCelsius) + 32)
     
+    # outputs the degrees celsius
     print(int(degreesCelsius)," degrees celsius is ", format(fahrenheit, '.1f'), " degrees fahrenheit", sep = '')
     
     
 def cookie_monster():
     amountOfCookies = float(input("How many cookies do you want to make? "))
+    sugarCups = int((.5 * amountOfCookies) // 8)
+    sugarOunces = int((.5 * amountOfCookies) % 8)
+    flourCups = int((.9166 * amountOfCookies) // 8)
+    flourOunces = int((.9166* amountOfCookies) % 8 )
+    butterCups = int((.3333 * amountOfCookies) // 8)
+    butterOunces = int((.3333 * amountOfCookies) % 8)
+    print("For ", amountOfCookies," cookies you will need:", sep = '')
+    print(sugarCups," cup(s) ", sugarOunces, " Ounce(s) of sugar.", sep = '')
+    print(butterCups," cup(s) ", butterOunces, "ounce(s) of sugar.", sep = '')
     
-    sugarCups = .5 // amountOfCookies
-    sugarOunces = .5 % amountOfCookies
-    butterCups = amountOfCookies //.3333
-    butterOunces = amountOfCookies % .3333
-    flourCups = amountOfCookies // .9166
-    flourOunces = amountOfCookies % .9166
     
-    print(sugarCups, " cup(s) ", sugarOunces, " ounces of sugar.",sep = '')
