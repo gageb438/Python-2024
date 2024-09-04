@@ -1,3 +1,5 @@
+import turtle as t
+
 def personal_info():
     # personal_info accepts no arguments
     # This program asks user for and displays personal information
@@ -98,7 +100,6 @@ def tip_tax_total():
     print("The total bill is: \t\t$",format(net_total, '7.2f'), sep = '')
     
     
-    
 def temp_converter():
     # temp_converter recieves no arguments
     # asks the user for the degrees in celsius then converts it to farenheit
@@ -121,33 +122,75 @@ def cookie_monster():
     amountOfCookies = float(input("How many cookies do you want to make? "))
 
     # calculates the recipe
-    sugarCups = int((.5 * amountOfCookies) // 8)
-    sugarOunces = int((.5 * amountOfCookies) % 8)
-    flourCups = int((.9166 * amountOfCookies) // 8)
-    flourOunces = int((.9166* amountOfCookies) % 8 )
-    butterCups = int((.3333 * amountOfCookies) // 8)
-    butterOunces = int((.3333 * amountOfCookies) % 8)
+    sugarCups = float((.5 * amountOfCookies) // 8)
+    sugarOunces = float((.5 * amountOfCookies) % 8)
+    flourCups = float((.9166 * amountOfCookies) // 8)
+    flourOunces = float((.9166* amountOfCookies) % 8 )
+    butterCups = float((.3333 * amountOfCookies) // 8)
+    butterOunces = float((.3333 * amountOfCookies) % 8)
 
     # outputs the recipe
     print("For ", amountOfCookies," cookies you will need:", sep = '')
-    print(sugarCups," cup(s) ", sugarOunces, " Ounce(s) of sugar.", sep = '')
-    print(butterCups," cup(s) ", butterOunces, "ounce(s) of sugar.", sep = '')
-    print(flourCups," cup(s) ", flourOunces, "ounce(s) of sugar.", sep = '')
+    print(format(sugarCups, '.0f'), " cup(s) ", format(sugarOunces, '.0f'), " ounce(s) of sugar.", sep = '')
+    print(format(butterCups, '.0f'), " cup(s) ", format(butterOunces, '.0f'), " ounce(s) of sugar.", sep = '')
+    print(format(flourCups,'.0f')," cup(s) ", format(flourOunces, '.0f'), " ounce(s) of sugar.", sep = '')
+
 
 def class_demographics():
     # class demographics recieves no arguments
     # asks the user for the amount of males and females in a class
     # outputs the percent of males and females
 
-    females = int(input("Enter the number of females: "))
-    males = int(input("Enter the number of males: "))
-    
+    females = float(input("Enter the number of females: "))
+    males = float(input("Enter the number of males: "))
+
     # adds to find the total of males and females.
     total = females + males
 
     # calculates the percent of males and females
-    femalePercent = int((females / total) * 100)
-    malePercent = int((males / total) * 100)
+    femalePercent = float((females / total) * 100)
+
+    malePercent = float((males / total) * 100)
 
     # outputs the amount of males and females
-    print("The class consists of ", femalePercent,"% females and ", malePercent, "% males.", sep = '')
+    print("The class consists of ", format(femalePercent, '.0f'),"% females and ", format(malePercent, '.0f'), "% males.", sep = '')
+    
+    
+def tortuga_1():
+    
+    north_x = (0)
+    north_y = (200)
+    
+    south_x = (0)
+    south_y = (-200)
+    
+    east_x = (200)
+    east_y = (0)
+    
+    west_x = (-200)
+    west_y = (0)
+    
+    northeast_x = (100)
+    northeast_y = (100)
+    
+    northwest_x = (-100)
+    norhtwest_y = (100)
+    
+    southeast_x = (100)
+    southeast_y = (-100)
+    
+    southwest_x = (-100)
+    southwest_y = (-100)
+    
+    goto(0,0)
+    
+    goto(north_x, north_y)
+    
+    goto(0,0)
+    
+    goto(south_x, south_y)
+    
+    goto(0,0)
+    
+    goto(
+    
