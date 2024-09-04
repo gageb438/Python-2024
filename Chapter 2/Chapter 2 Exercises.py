@@ -150,4 +150,4 @@ def class_demographics():
     malePercent = int((males / total) * 100)
 
     # outputs the amount of males and females
-    print("The class consists of ", femalePercent," females and ", malePercent, " males.", sep = '')
+    print("The class consists of ", femalePercent,"% females and ", malePercent, "% males.", sep = '')
