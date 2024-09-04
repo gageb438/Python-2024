@@ -113,15 +113,41 @@ def temp_converter():
     
     
 def cookie_monster():
+    # cookie monster recieves no arguments
+    # asks user for how many cookies they want to make
+    # outputs the amoutn of sugar, butter, and flour needed to make the
+    
+    # asks for the amount they want to make
     amountOfCookies = float(input("How many cookies do you want to make? "))
+
+    # calculates the recipe
     sugarCups = int((.5 * amountOfCookies) // 8)
     sugarOunces = int((.5 * amountOfCookies) % 8)
     flourCups = int((.9166 * amountOfCookies) // 8)
     flourOunces = int((.9166* amountOfCookies) % 8 )
     butterCups = int((.3333 * amountOfCookies) // 8)
     butterOunces = int((.3333 * amountOfCookies) % 8)
+
+    # outputs the recipe
     print("For ", amountOfCookies," cookies you will need:", sep = '')
     print(sugarCups," cup(s) ", sugarOunces, " Ounce(s) of sugar.", sep = '')
     print(butterCups," cup(s) ", butterOunces, "ounce(s) of sugar.", sep = '')
+    print(flourCups," cup(s) ", flourOunces, "ounce(s) of sugar.", sep = '')
+
+def class_demographics():
+    # class demographics recieves no arguments
+    # asks the user for the amount of males and females in a class
+    # outputs the percent of males and females
+
+    females = int(input("Enter the number of females: "))
+    males = int(input("Enter the number of males: "))
     
-    
+    # adds to find the total of males and females.
+    total = females + males
+
+    # calculates the percent of males and females
+    femalePercent = int((females / total) * 100)
+    malePercent = int((males / total) * 100)
+
+    # outputs the amount of males and females
+    print("The class consists of ", femalePercent," females and ", malePercent, " males.", sep = '')
