@@ -157,40 +157,118 @@ def class_demographics():
     
     
 def tortuga_1():
+    # tortuga_1 recieves no arguments
+    # draws and labels the compass rose
+    # draws a compass rose and labels it
     
+    # assigns all the variables
     north_x = (0)
     north_y = (200)
-    
     south_x = (0)
     south_y = (-200)
-    
     east_x = (200)
     east_y = (0)
-    
     west_x = (-200)
     west_y = (0)
-    
     northeast_x = (100)
     northeast_y = (100)
-    
     northwest_x = (-100)
-    norhtwest_y = (100)
-    
+    northwest_y = (100)
     southeast_x = (100)
     southeast_y = (-100)
-    
     southwest_x = (-100)
     southwest_y = (-100)
+   
+    # set the turtle up
+    t.goto(0,0)
+    t.pensize(5)
     
-    goto(0,0)
+    # draws the north-south line and labels
+    t.goto(north_x, north_y)
+    t.write("N", font = ("Arial", 16))
+    t.goto(south_x, south_y)
+    t.penup()
+    t.goto(south_x - 20, south_y - 20)
+    t.write("S", font = ("Arial", 16))
+    t.pendown()
     
-    goto(north_x, north_y)
+    # returns to 0,0
+    t.penup()
+    t.goto(0,0)
     
-    goto(0,0)
+    # draws east-west line and labels
+    t.pendown()
+    t.goto(west_x, west_y)
+    t.write("W", font = ("Arial", 16))
+    t.goto(east_x, east_y)
+    t.write("E", font = ("Arial", 16))
     
-    goto(south_x, south_y)
+    # returns to 0,0 and changes pensize
+    t.penup()
+    t.goto(0,0)
+    t.pensize(2.5)
     
-    goto(0,0)
+    # draws northeast-southwest line
+    t.pendown()
+    t.goto(northeast_x, northeast_y)
+    t.goto(southwest_x, southwest_y)
     
-    goto(
+    # returns to 0,0
+    t.goto(0,0)
+    
+    # draws northwest-southeast line
+    t.goto(northwest_x, northwest_y)
+    t.goto(southeast_x, southeast_y)
+    
+    t.hideturtle()
+    t.done()
+
+
+def tortuga_2():
+    # tortuga_2 recieves no arguments
+    # it draws the olympic rings
+    # outputs the olympic rings
+    
+    # assigns variables and there locations
+    bluering_x = -200
+    bluering_y = 0
+    yellowring_x = -100
+    yellowring_y = -100
+    blackring_x = 0
+    blackring_y = 0
+    greenring_x = 100
+    greenring_y = -100
+    redring_x = 200
+    redring_y = 0
+    
+    t.penup()
+    t.goto(bluering_x, bluering_y)
+    t.pensize(15)
+    t.pencolor("blue")
+    t.pendown()
+    t.circle(90)
+    
+    t.penup()
+    t.goto(yellowring_x, yellowring_y)
+    t.pencolor("yellow")
+    t.pendown()
+    t.circle(90)
+    
+    t.penup()
+    t.goto(blackring_x, blackring_y)
+    t.pencolor("black")
+    t.pendown()
+    t.circle(90)
+    
+    t.penup()
+    t.goto(greenring_x, greenring_y)
+    t.pencolor("green")
+    t.pendown()
+    t.circle(90)
+    
+    t.penup()
+    t.goto(redring_x, redring_y)
+    t.pencolor("red")
+    t.pendown()
+    t.circle(90)
     
