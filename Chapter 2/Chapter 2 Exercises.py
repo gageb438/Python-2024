@@ -241,6 +241,9 @@ def tortuga_2():
     redring_x = 200
     redring_y = 0
     
+    t.speed(100)
+    
+    # draws the rings
     t.penup()
     t.goto(bluering_x, bluering_y)
     t.pensize(15)
@@ -271,4 +274,8 @@ def tortuga_2():
     t.pencolor("red")
     t.pendown()
     t.circle(90)
+    
+    # stops the turtle
+    t.done()
+
     
