@@ -12,6 +12,11 @@ def example1():
         print("Continuing...")
         # and this
         print("and... continuing...")
+    # if they entered anything anything other than 1 the code below will run
+    else:
+        print("You did not enter 1")
+        print("Terminating the program")
+    
     # this will run no matter what happens
     print("The program has completed")
     
