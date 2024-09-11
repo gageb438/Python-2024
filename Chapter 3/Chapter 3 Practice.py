@@ -65,6 +65,7 @@ def auto_repair_payroll():
     # prints your gross pay
     print(f"Your gross pay is: ${grossPay:,.2f}")
 
+
 def password_verifier():
     # password_verifier accepts no arguments
     # asks the user for a password
@@ -82,6 +83,7 @@ def password_verifier():
     else:
         print("Password is invalid.")
         
+        
 def sort_names():
     # sort_names recieves no arguments
     # asks the user for two names
@@ -96,6 +98,83 @@ def sort_names():
         print(secondNames)
     else:
         print(secondNames)
-        print(firstNames)
     
+
+def loan_qualifier():
+    # loan_qualifier recieves no arguments
+    # asks the user for their salary and how long they have been at their job
+    # outputs whether they qualify for a loan or not.
     
+    # asks for the salary and the years
+    salary = float(input("Enter your annual salary: "))
+    years = float(input("Enter the number of year at your current job: "))
+    qualifiedSalary = 30000
+    
+    # if their salary is 30000 checks for if they worked for 2 years
+    if salary >= qualifiedSalary:
+        if years >= 2:
+            print("You qualify for the loan.")
+        else:
+            print("You must have been at your current job for a minimum of 2 years")
+    else:
+        print("Your salary must be atleast $", format(qualifiedSalary, '.2f'), sep = '')
+        
+        
+def grader():
+    # grader receives no arguments
+    # asks the user for the grade
+    # prints whether they got a grade a - f
+    # asks the user for there test score
+    gradeA = 90
+    gradeB = 80
+    gradeC = 70
+    gradeD = 60
+
+    testScore = float(input("Enter your test score: "))
+    
+    # checks if it is less than 0 and outputs an error message if true
+    if testScore < 0:
+        print("Error! Your score can not be lower than 0...")
+    else:
+        # finds their test grade and prints it.
+        if testScore >= gradeA:
+            print("Your grade is an A.")
+        else:
+            if testScore >= gradeB:
+                print("Your grade is B.")
+            else:
+                if testScore >= gradeC:
+                    print("Your grade is C.")
+                else:
+                    if testScore >= gradeD:
+                        print("Your grade is D")
+                    else:
+                        print("Your grade is F")
+                        
+def grader2():
+    # grader receives no arguments
+    # asks the user for the grade
+    # prints whether they got a grade a - f
+    # asks the user for there test score
+    gradeA = 90
+    gradeB = 80
+    gradeC = 70
+    gradeD = 60
+
+    testScore = float(input("Enter your test score: "))
+    
+    if testScore < 0:
+        print("Error! Your score can not be lower than 0...")
+    elif testScore >= gradeA:
+        print("Your grade is A")
+    elif testScore >= gradeB:
+        print("Your grade is B")
+    elif testScore >= gradeC:
+        print("Your grade is C")
+    elif testScore >= gradeD:
+        print("Your grade is D")
+    else:
+        print("Your grade is F")
+        
+        
+        
