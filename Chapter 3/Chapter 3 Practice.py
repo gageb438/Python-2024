@@ -177,4 +177,104 @@ def grader2():
         print("Your grade is F")
         
         
+def loan_qualifier_v2():
+    # loan_qualifier recieves no arguments
+    # asks the user for their salary and how long they have been at their job
+    # outputs whether they qualify for a loan or not.
+    
+    # asks for the salary and the years
+    salary = float(input("Enter your annual salary: "))
+    years = float(input("Enter the number of year at your current job: "))
+    qualifiedSalary = 30000
+    minimum_years = 2
+    
+    # if their salary is 30000 checks for if they worked for 2 years
+    if salary >= qualifiedSalary and minimum_years >= 2:
+        print("You qualify for the loan.")
+    else:
+        print("You do not qualify for the loan")
+        
+
+def loan_qualifier_v3():
+    # loan_qualifier recieves no arguments
+    # asks the user for their salary and how long they have been at their job
+    # outputs whether they qualify for a loan or not.
+    
+    # asks for the salary and the years
+    salary = float(input("Enter your annual salary: "))
+    years = float(input("Enter the number of year at your current job: "))
+    qualifiedSalary = 30000
+    minimum_years = 2
+    
+    # if their salary is 30000 checks for if they worked for 2 years
+    if salary >= qualifiedSalary or minimum_years >= 2:
+        print("You qualify for the loan.")
+    else:
+        print("You do not qualify for the loan")
+        
+        
+def is_valid():
+    # is valid checks to see if a value is within a certain range
+    # and it outputs "Within range" if it is and "outside range" if it
+    # it isn't
+    
+    # declare flag variable
+    valid = False
+    
+    # get input from the user
+    value = int(input("Enter a value between 10 and 20: "))
+    
+    # process and output response
+    if value >= 10 and value <= 20:
+        valid = True
+        
+    if valid:
+        print("Within range.")
+    else:
+        print("Outside range.")
+        
+        
+def hit_the_target():
+    # hit the target recieves no arguments
+    # hit the target asks people for the power and angle
+    # shows whether it hit the target or didn't hit the target
+    
+    
+    # initializes variables
+    screenWidth = 600
+    screenHeight = 600
+    targetLLeftX = 100
+    targetLLeftY = 250
+    targetWidth = 25
+    forceFactor = 30
+    projectileSpeed = 1
+    north = 90
+    south = 270
+    east = 0
+    west = 180
+    
+    import turtle as t
+    
+    t.setup(screenHeight,screenWidth)
+    
+    t.penup()
+    t.goto(targetLLeftX, targetLLeftY)
+    t.pendown()
+    t.setheading(east)
+    t.forward(targetWidth)
+    t.setheading(north)
+    t.forward(targetWidth)
+    t.setheading(west)
+    t.forward(targetWidth)
+    t.setheading(south)
+    t.forward(targetWidth)
+    
+    t.penup()
+    t.goto(0,0)
+    
+    targetAngle = float(input("Enter the projectile's angle: "))
+    launchForce = float(input("Enter the launch force: "))
+    if launchForce >= 1 and launchForce <= 10:
+        t.setheading(targetAngle)
+        t.setforce(launchForce)
         
