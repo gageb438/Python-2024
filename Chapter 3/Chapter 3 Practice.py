@@ -1,6 +1,3 @@
-import turtle as t
-
-
 def example1():
     # exmaple1 accepts no arguments
     # it takes input from the user
@@ -242,6 +239,7 @@ def hit_the_target():
     # hit the target asks people for the power and angle
     # shows whether it hit the target or didn't hit the target
     
+    import turtle as t
     
     # initializes variables
     screenWidth = 600
@@ -277,10 +275,9 @@ def hit_the_target():
     launchForce = float(input("Enter the launch force: "))
     if launchForce >= 1 and launchForce <= 10:
         t.setheading(targetAngle)
-        t.setforce(launchForce)
+        t.forward(launchForce)
     else:
         print("Error! The launch force has to be between 1-10")
         
         
-        
-t.done()
+    t.done()
