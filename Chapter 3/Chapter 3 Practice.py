@@ -1,3 +1,6 @@
+import turtle as t
+
+
 def example1():
     # exmaple1 accepts no arguments
     # it takes input from the user
@@ -253,8 +256,6 @@ def hit_the_target():
     east = 0
     west = 180
     
-    import turtle as t
-    
     t.setup(screenHeight,screenWidth)
     
     t.penup()
@@ -277,4 +278,9 @@ def hit_the_target():
     if launchForce >= 1 and launchForce <= 10:
         t.setheading(targetAngle)
         t.setforce(launchForce)
+    else:
+        print("Error! The launch force has to be between 1-10")
         
+        
+        
+t.done()
