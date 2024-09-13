@@ -253,13 +253,11 @@ def hit_the_target():
     south = 270
     east = 0
     west = 180
-    
-<<<<<<< HEAD
 
-=======
+    # sets up the turtle
     t.setup(screenHeight,screenWidth)
-    
->>>>>>> 736969a10713cd2a389c76bb6c99bc0cd3b3f83b
+
+    # sets up the target
     t.penup()
     t.goto(targetLLeftX, targetLLeftY)
     t.pendown()
@@ -286,7 +284,6 @@ def hit_the_target():
     if launchForce >= 1 and launchForce <= 10:
         # sets heading and launch force
         t.setheading(targetAngle)
-<<<<<<< HEAD
         t.forward(launchForce * forceFactor)
         
         if t.xcor() >= targetLLeftX and t.xcor() <= (targetLLeftX + 25) and t.ycor() >= targetLLeftY and t.ycor() <= (targetLLeftY + 25):
@@ -298,11 +295,3 @@ def hit_the_target():
         print("Your launch force must be between 1 and 10")
         
     t.done()
-=======
-        t.forward(launchForce)
-    else:
-        print("Error! The launch force has to be between 1-10")
-        
-        
-    t.done()
->>>>>>> 736969a10713cd2a389c76bb6c99bc0cd3b3f83b
