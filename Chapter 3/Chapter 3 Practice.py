@@ -189,7 +189,7 @@ def loan_qualifier_v2():
     minimum_years = 2
     
     # if their salary is 30000 checks for if they worked for 2 years
-    if salary >= qualifiedSalary and minimum_years >= 2:
+    if salary >= qualifiedSalary and years >= minimum_years:
         print("You qualify for the loan.")
     else:
         print("You do not qualify for the loan")
@@ -207,7 +207,7 @@ def loan_qualifier_v3():
     minimum_years = 2
     
     # if their salary is 30000 checks for if they worked for 2 years
-    if salary >= qualifiedSalary or minimum_years >= 2:
+    if salary >= qualifiedSalary or years >= minimum_years:
         print("You qualify for the loan.")
     else:
         print("You do not qualify for the loan")
@@ -254,9 +254,11 @@ def hit_the_target():
     west = 180
     
     import turtle as t
+    # setup turtle and target
+    t.setup(screenWidth,screenHeight)
     
-    t.setup(screenHeight,screenWidth)
-    
+    # setup target
+    t.speed(1)
     t.penup()
     t.goto(targetLLeftX, targetLLeftY)
     t.pendown()
@@ -269,12 +271,28 @@ def hit_the_target():
     t.setheading(south)
     t.forward(targetWidth)
     
+    # goes to 0,0 and puts pendown
     t.penup()
     t.goto(0,0)
+    t.pendown()
+    t.speed(projectileSpeed)
+    t.showturtle()
     
-    targetAngle = float(input("Enter the projectile's angle: "))
-    launchForce = float(input("Enter the launch force: "))
+    # asks the user for the angle and force
+    targetAngle = int(input("Enter the projectile's angle: "))
+    launchForce = int(input("Enter the launch force (1-10): "))
+    
     if launchForce >= 1 and launchForce <= 10:
+        # sets heading and launch force
         t.setheading(targetAngle)
-        t.setforce(launchForce)
+        t.forward(launchForce * forceFactor)
         
+        if t.xcor() >= targetLLeftX and t.xcor() <= (targetLLeftX + 25) and t.ycor() >= targetLLeftY and t.ycor() <= (targetLLeftY + 25):
+            print("You hit the target!")
+        else:
+            print("You missed the target.")
+    else:
+        # outputs error message
+        print("Your launch force must be between 1 and 10")
+        
+    t.done()
