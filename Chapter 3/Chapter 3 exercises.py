@@ -53,8 +53,6 @@ def roman_numerals():
     elif dayNumber == 10:
         print("The Roman Numeral is : X")
     else:
-        print("The number must be a number 1-10!")
-
 
 def color_mixer():
     # color_mixer recieves no arguments
