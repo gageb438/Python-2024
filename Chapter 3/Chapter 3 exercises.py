@@ -61,35 +61,29 @@ def color_mixer():
     # it asks the user for two colors to mix and mixes them
     # outputs what color they got from mixing the two.
 
-    primary1 = nil
-    primary2 = nil
+    primary1 = "nil"
+    primary2 = "nil"
     
     # asks for the first color
     primary1 = input("Please enter the first primary color to mix (lowercase): ")
     
-    # validates it is a primary color
-    if primary1 is not == red or yellow or blue:
-        print("The color must be a primary color. (lowercase) (red, yellow, or blue.)")
-
     # asks for a second color
     primary2 = input("Please enter the second primary color to mix: ")
 
     # validates it is a primary color
-    if primary1 is not == red or yellow or blue:
-        print("The color must be a primary color. (lowercase) (red, yellow, or blue.)")
     
-    if primary1 == red or yellow or blue and primary2 == red or yellow or blue:
-        if primary1 == red and primary2 == red:
+    if primary1 == "red" or "yellow" or "blue" and primary2 == "red" or "yellow" or "blue":
+        if primary1 == "red" and primary2 == "red":
             print("The new color is red.")
-        elif primary1 == red and primary2 == blue or primary1 == blue and primary2 == red:
+        elif primary1 == "red" and primary2 == "blue" or primary1 == "blue" and primary2 == "red":
             print("The new color is purple.")
-        elif primary1 == red and primary2 == yellow or primary1 == yellow and primary2 == yellow:
+        elif primary1 == "red" and primary2 == "yellow" or primary1 == "yellow" and primary2 == "yellow":
             print("The new color is orange.")
-        elif primary1 == blue and primary2 == blue:
+        elif primary1 == "blue" and primary2 == "blue":
             print("The new color is blue.")
-        elif primary1 == blue and primary2 == yellow or primary1 == yellow and primary2 == blue:
+        elif primary1 == "blue" and primary2 == "yellow" or primary1 == "yellow" and primary2 == "blue":
             print("The new color is green.")
-        elif primary1 == yellow and primary 2 == yellow
+        elif primary1 == "yellow" and primary2 == "yellow":
             print("The new color is yellow.")
         else:
-            print("Error, color combination not found")
+            print("Error, color combination not found or not two primary colors")
