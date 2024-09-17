@@ -1,3 +1,53 @@
+def main():
+    # main acepts no arguments
+    # it will prompt the user with a menu
+    # and ask the user to make a choice
+    # and will call the function depending on the user choice.
+    
+    # declare variable for the user choice
+    choice = 0
+    
+    # output the menu
+    print("Choose a program from the follopwing options:")
+    print("1: Exercise 1 - Days of the week")
+    print("2: Exercise 4 - Roman Numerals")
+    print("3: Exercise 7 - Color Mixer")
+    print("4: Exercise 8 - Hotdog Competition")
+    print("5: Exercise 15 - Time Calculator")
+    print("6: Exercise 16 - February Days")
+    print("7: Exercise 17 - WiFi Diagnostic Tree")
+    print("8: Exercise 18 - Resturant Selector")
+    print("9: Exercise 19 - Hit The Target Modification")
+    
+    # get input for the user choice
+    choice = int(input(":> "))
+    
+    # process the menu
+    if choice == 1:
+        print("Calling... Days of the week...")
+        day_converter()
+    elif choice == 2:
+        print("Calling... Roman Numerals...")
+        roman_numerals()
+    elif choice == 3:
+        print("Calling... Color Mixer...")
+        color_mixer()
+    elif choice == 4:
+        print("Calling... Hotdog Competition...")
+        hot_dog()
+    elif choice == 5:
+        print("Calling... Time Calculator...")
+    elif choice == 6:
+        print("Calling... February Days...")
+    elif choice == 7:
+        print("Calling... WiFi Diagnostic Tree")
+    elif choice == 8:
+        print("Calling... Resturant Selector...")
+    elif choice == 9:
+        print("Calling... Hit The Target modification...")
+    else:
+        print("Please only input a valid choice")
+
 def day_converter():
     # day converter recieves no arguments
     # asks the user for a number form 1-7 and converts it to spanish.
@@ -53,7 +103,9 @@ def roman_numerals():
     elif dayNumber == 10:
         print("The Roman Numeral is : X")
     else:
-
+        print("The number must be between 1-10!")
+        
+        
 def color_mixer():
     # color_mixer recieves no arguments
     # it asks the user for two colors to mix and mixes them
@@ -85,3 +137,13 @@ def color_mixer():
             print("The new color is yellow.")
         else:
             print("Error, color combination not found or not two primary colors")
+
+
+def hot_dog():
+    peopleGoing = int(input("Enter the amount of people going : "))
+    amountPeopleGet = int(input("Enter the amount of hotdogs each person can have : "))
+
+    hotdogsPossible = peopleGoing * amountPeopleGet
+    
+    
+main()
