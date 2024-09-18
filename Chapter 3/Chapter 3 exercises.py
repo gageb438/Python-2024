@@ -37,14 +37,19 @@ def main():
         hot_dog()
     elif choice == 5:
         print("Calling... Time Calculator...")
+        time_calculator()
     elif choice == 6:
         print("Calling... February Days...")
+        leap_year()
     elif choice == 7:
         print("Calling... WiFi Diagnostic Tree")
+        sir_fix_alot()
     elif choice == 8:
         print("Calling... Resturant Selector...")
+        can_we_just_eat()
     elif choice == 9:
         print("Calling... Hit The Target modification...")
+        hit_the_target_mod()
     else:
         print("Please only input a valid choice")
 
@@ -140,10 +145,39 @@ def color_mixer():
 
 
 def hot_dog():
+    # hot dog recieves no arguments
+    # it asks the user for a amount of people going and how many hotdogs each person can have for a cookout.
+    # outputs how much packages they need to buy and how much left over.
+
+    # initialize variables
+    hotdogPackage = 10
+    bunPackage = 8
+
+    # asks user for people going and amount each person gets
     peopleGoing = int(input("Enter the amount of people going : "))
     amountPeopleGet = int(input("Enter the amount of hotdogs each person can have : "))
 
+    # calculates the amount of hotdogs can be eaten total
     hotdogsPossible = peopleGoing * amountPeopleGet
-    
-    
+
+
+def time_calculator():
+    print("f")
+
+
+def leap_year():
+    print("f")
+
+
+def sir_fix_alot():
+    print("f")
+
+
+def can_we_just_eat():
+    print("f")
+
+
+def hit_the_target_mod():
+    print("f")
+
 main()
