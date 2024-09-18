@@ -49,7 +49,6 @@ def main():
         can_we_just_eat()
     elif choice == 9:
         print("Calling... Hit The Target modification...")
-        hit_the_target_mod()
     else:
         print("Please only input a valid choice")
 
@@ -159,10 +158,39 @@ def hot_dog():
 
     # calculates the amount of hotdogs can be eaten total
     hotdogsPossible = peopleGoing * amountPeopleGet
-
+    
+    # finds amount of hotdogs and hotdog buns needed
+    hotdogsNeededD = hotdogsPossible // hotdogPackage
+    hotdogsBunsD = hotdogsPossible // bunPackage
+    
+    leftoverHotdogs = hotdogsPossible % hotdogPackage
+    hotdogsBunsM = hotdogsPossible % bunPackage
+    
+    
+    
 
 def time_calculator():
-    print("f")
+    # time_calculator recieves no arguments
+    # asks user for time in seconds
+    # outputs it as days, hours, minutes, and seconds
+    daysSecond = 86400
+    hoursSeconds = 3600
+    minuteSeconds = 60
+    timeInSeconds = input("Please enter a number of seconds: ")
+    
+    if timeInSeconds > daysSecond:
+        days = timeInSeconds % daysSecond
+        timeInSeconds = timeInSeconds - (days * daysSecond)
+        print("Days : ", days, sep = '')
+    if timeInSeconds > hoursSeconds:
+        hours = timeInSeconds % hoursSeconds
+        timeInSeconds = timeInSeconds - (hours * hourSeconds)
+        print("Hours : ", hours, sep = '')
+    if timeInSeconds > minuteSeconds:
+        minutes = timeInSeconds % minuteSeconds
+        timeInSeconds = timeInSeconds - (minutes * minuteSeconds)
+        print("Minutes : ", minutes, sep = '')
+    if timeInSeconds
 
 
 def leap_year():
