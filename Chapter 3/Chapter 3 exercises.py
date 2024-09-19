@@ -160,41 +160,52 @@ def hot_dog():
     hotdogsPossible = peopleGoing * amountPeopleGet
     
     # finds amount of hotdogs and hotdog buns needed
-    hotdogsNeededD = hotdogsPossible // hotdogPackage
-    hotdogsBunsD = hotdogsPossible // bunPackage
+    hotdogsNeeded = hotdogsPossible // hotdogPackage
+    hotdogsBuns = hotdogsPossible // bunPackage
     
-    leftoverHotdogs = hotdogsPossible % hotdogPackage
+    hotdogsNeededM = hotdogsPossible % hotdogPackage
     hotdogsBunsM = hotdogsPossible % bunPackage
     
-    
-    
+    if hotdogsBunsM != 0:
+        hotdogsBuns = hotdogsBuns + 1
+    if hotdogsNeededM != 0:
+        hotdogsNeeded = hotdogsNeeded + 1
+    print("You need ",hotdogsBuns, " hotdog buns and ", hotdogsNeeded, " hotdogs.")
+    print("With ", hotdogsNeededM, " extra hotdogs and ", hotdogsBunsM, " leftover.", sep = '')
 
 def time_calculator():
     # time_calculator recieves no arguments
     # asks user for time in seconds
     # outputs it as days, hours, minutes, and seconds
+    
+    # assigns variables
     daysSecond = 86400
     hoursSeconds = 3600
     minuteSeconds = 60
-    timeInSeconds = input("Please enter a number of seconds: ")
+    timeInSeconds = int(input("Please enter a number of seconds: "))
     
-    if timeInSeconds > daysSecond:
-        days = timeInSeconds % daysSecond
-        timeInSeconds = timeInSeconds - (days * daysSecond)
-        print("Days : ", days, sep = '')
-    if timeInSeconds > hoursSeconds:
-        hours = timeInSeconds % hoursSeconds
-        timeInSeconds = timeInSeconds - (hours * hourSeconds)
-        print("Hours : ", hours, sep = '')
-    if timeInSeconds > minuteSeconds:
-        minutes = timeInSeconds % minuteSeconds
-        timeInSeconds = timeInSeconds - (minutes * minuteSeconds)
-        print("Minutes : ", minutes, sep = '')
-    if timeInSeconds
+    
+    if timeInSeconds > 0:
+        if timeInSeconds > daysSecond:
+            days = timeInSeconds // daysSecond
+            timeInSeconds = timeInSeconds - (days * daysSecond)
+            print("Days : ", days, sep = '')
+        if timeInSeconds > hoursSeconds:
+            hours = timeInSeconds // hoursSeconds
+            timeInSeconds = timeInSeconds - (hours * hoursSeconds)
+            print("Hours : ", hours, sep = '')
+        if timeInSeconds > minuteSeconds:
+            minutes = timeInSeconds // minuteSeconds
+            timeInSeconds = timeInSeconds - (minutes * minuteSeconds)
+            print("Minutes : ", minutes, sep = '')
+        print("Seconds : ", timeInSeconds, sep = '')
+    else:
+        print("Invalid time entered")
+    
 
 
 def leap_year():
-    print("f")
+    print("")
 
 
 def sir_fix_alot():
