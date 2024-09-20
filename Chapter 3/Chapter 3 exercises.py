@@ -205,18 +205,60 @@ def time_calculator():
 
 
 def leap_year():
-    print("")
-
-
+    # leap_year recieves no arguments
+    # asks user for the year
+    # outputs if it is a leap year or not
+    
+    # finds what year it is
+    year = int(input("Please enter the year : "))
+    
+    # assigns the variables
+    year400M = year % 400
+    year100M = year % 100
+    
+    # finds if its a leap year or not
+    if year400M == 0 and year100M == 0:
+        print(year, " is a leap year. There are 29 days in the month of February.", sep = '')
+    else:
+        print(year, " is not a leap year. There are 28 days in the month of February.", sep = '')
+    
 def sir_fix_alot():
-    print("f")
-
-
+    # sir_fix_alot recieves no arguments
+    # tries to troubleshoot 
+    # outputs ways to fix the wifi
+    firstQuestion = input("Is your wifi connection bad(Yes or No): ")
+    if firstQuestion == "Yes" or "yes":
+        print("Reboot computer and try to connect")
+        secondQuestion = input("Did that fix it(Yes or No): ")
+    else:
+        print("Netflix and Chill")
+    if secondQuestion == "No" or "no":
+        print("Reboot router and try to connect")
+        thirdQuestion = input("Did that fix it(Yes or No): ")
+    else:
+        print("Netflix and Chill")
+    if thirdQuestion == "No" or "no":
+        print("Verify cables are firmly attached")
+        fourthQuestion = input("Did that fix it(Yes or No): ")
+    else:
+        print("Netflix and Chill")
+    if fourthQuestion == "No" or "no":
+        print("Move router to a better location")
+        fifthQuestion = input("Did that fix it(Yes or No): ")
+    else:
+        print("Netflix and Chill")
+    if fifthQuestion == "No" or "no":
+        print("Get a new router")
+    else:
+        print("Netflix and Chill")
+            
+    
 def can_we_just_eat():
     print("f")
-
+    pass
 
 def hit_the_target_mod():
     print("f")
-
+    pass
+    
 main()
