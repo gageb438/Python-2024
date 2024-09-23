@@ -226,7 +226,33 @@ def sir_fix_alot():
     # sir_fix_alot recieves no arguments
     # tries to troubleshoot 
     # outputs ways to fix the wifi
-    firstQuestion = input("Is your wifi connection bad(Yes or No): ")
+    starterQuestion = input("Is your connection bad(Yes or No) : ")
+    if starterQuestion = "Yes" or "yes":
+        print("Reboot computer and try to connect.")
+        rebootQuestion = input("Did that fix it(Yes or No : ")
+        if rebootQuestion = "No" or "no":
+            print("Reboot router and try to connect.")
+            routerQuestion = input("Did that fix it(Yes or No : "):
+                if routerQuestion = "No" or "no":
+                    print("Verify your cables are firmly attached.")
+                    cableQuestion = input("Did that fix it(Yes or No : ")
+                    if cableQuestion = "No" or "no":
+                        print("Move your router to a better location.")
+                        moveRouterQuestion = input("Did that fix it(Yes or No : ")
+                        if moveRouterQuestion = "No" or "no":
+                            print("Get a new router")
+                        elif moveRouterQuestion = "Yes" or "yes":
+                            print("Netflix and Chill.")
+                    elif cableQuestion = "Yes" or "yes":
+                        print("Netflix and Chill.")
+                elif routerQuestion = "Yes" or "yes":
+                    print("Netflix and Chill.")
+            elif rebootQuestion = "Yes" or "yes":
+                print("Netflix and Chill.")
+    elif starterQuestion = "No" or "no"
+        print("Netflix and Chill.")
+                        
+    elif starterQuestion = 
     if firstQuestion == "Yes" or "yes":
         print("Reboot computer and try to connect")
         secondQuestion = input("Did that fix it(Yes or No): ")
