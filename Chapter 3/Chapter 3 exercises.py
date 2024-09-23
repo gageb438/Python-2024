@@ -226,62 +226,65 @@ def sir_fix_alot():
     # sir_fix_alot recieves no arguments
     # tries to troubleshoot 
     # outputs ways to fix the wifi
-    starterQuestion = input("Is your connection bad(Yes or No) : ")
-    if starterQuestion = "Yes" or "yes":
-        print("Reboot computer and try to connect.")
-        rebootQuestion = input("Did that fix it(Yes or No : ")
-        if rebootQuestion = "No" or "no":
-            print("Reboot router and try to connect.")
-            routerQuestion = input("Did that fix it(Yes or No : "):
-                if routerQuestion = "No" or "no":
-                    print("Verify your cables are firmly attached.")
-                    cableQuestion = input("Did that fix it(Yes or No : ")
-                    if cableQuestion = "No" or "no":
-                        print("Move your router to a better location.")
-                        moveRouterQuestion = input("Did that fix it(Yes or No : ")
-                        if moveRouterQuestion = "No" or "no":
-                            print("Get a new router")
-                        elif moveRouterQuestion = "Yes" or "yes":
-                            print("Netflix and Chill.")
-                    elif cableQuestion = "Yes" or "yes":
-                        print("Netflix and Chill.")
-                elif routerQuestion = "Yes" or "yes":
-                    print("Netflix and Chill.")
-            elif rebootQuestion = "Yes" or "yes":
-                print("Netflix and Chill.")
-    elif starterQuestion = "No" or "no"
-        print("Netflix and Chill.")
-                        
-    elif starterQuestion = 
-    if firstQuestion == "Yes" or "yes":
+    fix = "Did that fix the issue? (Yes/No)"
+    starter = input("Is your internet working? (Yes/No) : ")
+    
+    if starter == "no" or starter == "No":
         print("Reboot computer and try to connect")
-        secondQuestion = input("Did that fix it(Yes or No): ")
-    else:
+        fix1 = input(fix)
+        if fix1 == "no" or fix1 == "No":
+            print("Reboot router and try to connect")
+            fix2 = input(fix)
+            if fix2 == "no" or fix2 == "No":
+                print("Verify cables are firmly attached")
+                fix3 = input(fix)
+                if fix3 == "no" or fix3 == "No":
+                    print("Move router to a better location")
+                    fix4 = input(fix)
+                    if fix4 == "no" or fix4 == "No":
+                        print("Get a new router")
+                    elif fix4 =="Yes" or fix4 == "yes":
+                        print("Netflix and Chill")
+                elif fix3 == "Yes" or fix3 == "yes":
+                    print("Netflix and Chill")
+            elif fix2 == "Yes" or fix2 == "yes":
+                print("Netflix and Chill")
+        elif fix1 == "Yes" or fix1 == "yes":
+            print("Netflix and Chill")
+    elif starter == "Yes" or starter == "yes":
         print("Netflix and Chill")
-    if secondQuestion == "No" or "no":
-        print("Reboot router and try to connect")
-        thirdQuestion = input("Did that fix it(Yes or No): ")
     else:
-        print("Netflix and Chill")
-    if thirdQuestion == "No" or "no":
-        print("Verify cables are firmly attached")
-        fourthQuestion = input("Did that fix it(Yes or No): ")
-    else:
-        print("Netflix and Chill")
-    if fourthQuestion == "No" or "no":
-        print("Move router to a better location")
-        fifthQuestion = input("Did that fix it(Yes or No): ")
-    else:
-        print("Netflix and Chill")
-    if fifthQuestion == "No" or "no":
-        print("Get a new router")
-    else:
-        print("Netflix and Chill")
-            
+        print("Invalid input entered")
     
 def can_we_just_eat():
-    print("f")
-    pass
+    # can_we_just_eat recieves no arguments
+    # asks people for their party and if they are intolerant to something
+    # outputs a set of resturants you can go to
+    
+    # initializes variables
+    joes = "Joe's Gourmet Burgers"
+    mainStreet = "Main Street Pizza Company"
+    cafe = "Corner Cafe"
+    mama = "Mama's Fine Italian"
+    kitchen = "The Chef's Kitchen"
+    
+    # asks questions
+    vegetarian = input("Is anyone in your party a vegetarian? (yes/no) ")
+    vegan = input("Is anyone in your party a vegan? (yes/no) ")
+    gluten = input("Is anyone in your party gluten intolerant (yes/no) ")
+    
+    if vegetarian == "no" and vegan == "no" and gluten == "no":
+       print("You can go to:")
+       print(joes)
+       print(mainStreet)
+       print(cafe)
+       print(mama)
+       print(kitchen)
+    elif vegetarian == "yes" and vegan == "no" and gluten == "no":
+        print("You can go to:")
+        print(m
+       
+        
 
 def hit_the_target_mod():
     print("f")
