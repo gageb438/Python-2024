@@ -298,7 +298,71 @@ def can_we_just_eat():
         
 
 def hit_the_target_mod():
-    print("f")
-    pass
+    # hit the target recieves no arguments
+    # hit the target asks people for the power and angle
+    # shows whether it hit the target or didn't hit the target
+    
+    import turtle as t
+    
+    # initializes variables
+    screenWidth = 600
+    screenHeight = 600
+    targetLLeftX = 100
+    targetLLeftY = 250
+    targetWidth = 25
+    forceFactor = 30
+    projectileSpeed = 1
+    north = 90
+    south = 270
+    east = 0
+    west = 180
+
+    # sets up the turtle
+    t.setup(screenHeight,screenWidth)
+
+    # sets up the target
+    t.penup()
+    t.goto(targetLLeftX, targetLLeftY)
+    t.pendown()
+    t.setheading(east)
+    t.forward(targetWidth)
+    t.setheading(north)
+    t.forward(targetWidth)
+    t.setheading(west)
+    t.forward(targetWidth)
+    t.setheading(south)
+    t.forward(targetWidth)
+    
+    # goes to 0,0 and puts pendown
+    t.penup()
+    t.goto(0,0)
+    t.pendown()
+    t.speed(projectileSpeed)
+    t.showturtle()
+    
+    # asks the user for the angle and force
+    targetAngle = int(input("Enter the projectile's angle: "))
+    launchForce = int(input("Enter the launch force (1-10): "))
+    
+    if launchForce >= 1 and launchForce <= 10:
+        # sets heading and launch force
+        t.setheading(targetAngle)
+        t.forward(launchForce * forceFactor)
+        
+        if t.xcor() >= targetLLeftX and t.xcor() <= (targetLLeftX + 25) and t.ycor() >= targetLLeftY and t.ycor() <= (targetLLeftY + 25):
+            print("You hit the target!")
+        else:
+            print("You missed the target.")
+            if t.ycor() < targetLLeftY and launchForce < 10:
+                print("You need to use more power.")
+            if t.xcor() < targetLLeftX:
+                print("You need a greater angle.")
+            if t.xcor() > (targetLLeftX + 25):
+                print("You need a smaller angle")
+    else:
+        # outputs error message
+        print("Your launch force must be between 1 and 10")
+    # ends turtle so it doesn't crash
+    t.done()
     
 main()
