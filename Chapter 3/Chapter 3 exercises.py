@@ -322,6 +322,8 @@ def hit_the_target_mod():
     t.setup(screenHeight,screenWidth)
 
     # sets up the target
+    t.speed(1000000000000)
+    t.hideturtle()
     t.penup()
     t.goto(targetLLeftX, targetLLeftY)
     t.pendown()
