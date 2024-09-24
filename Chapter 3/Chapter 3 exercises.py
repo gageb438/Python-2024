@@ -49,6 +49,7 @@ def main():
         can_we_just_eat()
     elif choice == 9:
         print("Calling... Hit The Target modification...")
+        hit_the_target_mod()
     else:
         print("Please only input a valid choice")
 
@@ -274,26 +275,26 @@ def can_we_just_eat():
     gluten = input("Is anyone in your party gluten intolerant (yes/no) ")
     
     # If they are vegetarian, vegan, or gluten intolerant it will cancel out the resturants they cannot go to.
-    if vegetarian = "yes":
+    if vegetarian == "yes":
         joesVar = False
-    if vegan = "yes":
+    if vegan == "yes":
         joesVar = False
         mainVar = False
         mamaVar = False
-    if gluten = "yes":
+    if gluten == "yes":
         joesVar = False
         mamaVar = False
         
     print("Here are your resturant choices:")
-    if joesVar = True:
+    if joesVar == True:
         print("Joe's Gourmet Burgers")
-    if mainVar = True:
+    if mainVar == True:
         print("Main Street Pizza Company")
-    if cafeVar = True:
+    if cafeVar == True:
         print("Corner Café")
-    if mamaVar = True:
+    if mamaVar == True:
         print("Mama's Fine Italian")
-    if kitchenVar = True:
+    if kitchenVar == True:
         print("The Chef's Kitchen")
         
 
@@ -342,7 +343,7 @@ def hit_the_target_mod():
     
     # asks the user for the angle and force
     targetAngle = int(input("Enter the projectile's angle: "))
-    launchForce = int(input("Enter the launch force (1-10): "))
+    launchForce = float(input("Enter the launch force (1-10): "))
     
     if launchForce >= 1 and launchForce <= 10:
         # sets heading and launch force
