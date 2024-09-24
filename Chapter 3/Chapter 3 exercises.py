@@ -262,28 +262,39 @@ def can_we_just_eat():
     # outputs a set of resturants you can go to
     
     # initializes variables
-    joes = "Joe's Gourmet Burgers"
-    mainStreet = "Main Street Pizza Company"
-    cafe = "Corner Cafe"
-    mama = "Mama's Fine Italian"
-    kitchen = "The Chef's Kitchen"
+    joesVar = True
+    mainVar = True
+    cafeVar = True
+    mamaVar = True
+    kitchenVar = True
     
     # asks questions
     vegetarian = input("Is anyone in your party a vegetarian? (yes/no) ")
     vegan = input("Is anyone in your party a vegan? (yes/no) ")
     gluten = input("Is anyone in your party gluten intolerant (yes/no) ")
     
-    if vegetarian == "no" and vegan == "no" and gluten == "no":
-       print("You can go to:")
-       print(joes)
-       print(mainStreet)
-       print(cafe)
-       print(mama)
-       print(kitchen)
-    elif vegetarian == "yes" and vegan == "no" and gluten == "no":
-        print("You can go to:")
-        print(m
-       
+    # If they are vegetarian, vegan, or gluten intolerant it will cancel out the resturants they cannot go to.
+    if vegetarian = "yes":
+        joesVar = False
+    if vegan = "yes":
+        joesVar = False
+        mainVar = False
+        mamaVar = False
+    if gluten = "yes":
+        joesVar = False
+        mamaVar = False
+        
+    print("Here are your resturant choices:")
+    if joesVar = True:
+        print("Joe's Gourmet Burgers")
+    if mainVar = True:
+        print("Main Street Pizza Company")
+    if cafeVar = True:
+        print("Corner Café")
+    if mamaVar = True:
+        print("Mama's Fine Italian")
+    if kitchenVar = True:
+        print("The Chef's Kitchen")
         
 
 def hit_the_target_mod():
