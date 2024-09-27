@@ -22,6 +22,17 @@ def practice_1():
         print(f"Hello World")
         count += 1 # increment the accumulator
         
+
+def parsons():
+    count = 1
+    MAX_COUNT = 10
+    while count < MAX_COUNT:
+        # this block of code is in the loop
+        print(f"Counting iteration #{count}")
+        count += 1 # This is the same as count = count + 1
+    # this block of code is out of the loop
+    print(f"Your loop ran for {count} iterations.")
+    print("Goodbye")
     
 def program4_1():
     # program4_1 recieves no arguments
@@ -60,3 +71,92 @@ def program4_2():
     
     print("The temperature is acceptable.")
     print("Measure again in 15 minutes.")
+    
+    
+def program4_3():
+    # program4_1 recieves no arguments
+    # asks user for sales and commission rate and repeats if requested
+    # outputs total commission and whether the user wants to run it again
+    
+    # initializes variables
+    keep_going = "y"
+    
+    # while loop
+    while keep_going.lower() == "y":
+        sales = int(input("Enter the amount of sales: "))
+        comm_rate = float(input("Enter the commision rate: "))
+        commission = sales * comm_rate
+        # prints commission
+        print(f"The commission is ${commission:,.2f}")
+
+
+def program4_4():
+    # program4_4 recieves no arguments
+    # uses a for loop
+    # prints the numbers using 1-5
+    
+    # prints what it does
+    print("I will display the numbers 1 - 5")
+    
+    # prints the 5 numbers
+    for num in [1, 2, 3, 4, 5]:
+        print(num)
+        
+    # prints what it does
+    print("I will display the numbers 1 - 10")
+    
+    # prints the 10 numbers
+    for num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+        print(num)
+        
+
+def program4_5():
+    # program4_5 recieves no arguments
+    # uses a for loop
+    # prints the odd numbers 1 - 10
+    
+    # prints what it does
+    print("I will output all odd numbers from 1 - 10")
+    
+    for num in [1, 3, 5, 7, 9]:
+        print(num)
+        
+        
+def program4_6():
+    # program4_6 recieves no arguments
+    # uses a for loop
+    # outputs 4 names
+    
+    for name in ["Steve", "Tony", "Thor", "Wanda"]:
+        print(name)
+        
+
+def program4_4mod():
+    # program 4-4 mod recieves no arguments
+    # it uses the range function
+    
+    for num in range(1, 10 + 1):
+        print(num)
+        
+        
+def program4_7():
+    # program4_7 recieves no arguments
+    # it outputs the phrase hello world 5 times
+    
+    for count in range(5):
+        print("Hello World!")
+        
+        
+def program4_8():
+    # program4_8 recieves no arguments
+    # it outputs the number 1-10 squared
+    
+    # prints header
+    print("Number \t Square")
+    print("--------------")
+    
+    
+    # prints the number and the square
+    for num in range(1, 10 + 1):
+        square = (num ** 2)
+        print(num, '\t', square)
