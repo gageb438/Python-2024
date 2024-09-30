@@ -160,3 +160,122 @@ def program4_8():
     for num in range(1, 10 + 1):
         square = (num ** 2)
         print(num, '\t', square)
+        
+        
+def program4_9():
+    # program4_7 recieves no arguments
+    # outputs 60- 130 kph to mph
+    
+    
+    # initialize variables
+    startSpeed = 60
+    endSpeed = 131
+    speedIncrement = 10
+    kphMultiplier = .6214
+    # prints the header
+    print("KPH \t MPH")
+    print("------------")
+    
+    # prints kph and mph
+    for kph in range(startSpeed, endSpeed, speedIncrement):
+        mph = kphMultiplier * kph
+        print(kph, '\t', format(mph, '.1f'))
+    
+    
+def program4_10():
+    # program4_10 recieves no arguments
+    # it asks the user for an amount of squares
+    # prints the amount of squares
+    
+    # prints header
+    print("This program will display a list of numbers\n(starting at 1) and their squares.")
+    
+    # asks for how many squares
+    squares = int(input("How many squares? : "))
+    
+    # prints header 2
+    print("Number \t Square")
+    print("--------------")
+
+    # prints the number and the square
+    for num in range(1, squares + 1):
+        square = (num ** 2)
+        print(num, '\t', square)
+    
+    
+def program4_11():
+    # program4_11 recieves no arguments
+    # it asks the user for an amount of squares
+    # prints the amount of squares
+    
+    # prints header
+    print("This program will display a list of numbers and their squares")
+    
+    # asks for how many squares
+    start = int(input("Enter the starting number : "))
+    end = int(input("Enter the ending number : "))
+    
+    # prints header 2
+    print("Number \t Square")
+    print("--------------")
+
+    # prints the number and the square
+    for num in range(start, end + 1):
+        square = (num ** 2)
+        print(num, '\t', square)
+        
+        
+def program4_12():
+    # program4_12 recieves no arguments
+    # it asks user for 5 numbers
+    # outputs the sum of all five
+    
+    # initializes variables
+    total = 0
+    number = 0
+    maxNum = 5
+
+    print("This program calculates the sum of\n5 numbers you will enter.")
+    
+    for count in range(0, maxNum):
+        number = float(input("Please enter a number: "))
+        total += number
+    
+    # prints total
+    print("The total of your ", maxNum, " numbers is: ", format(total, '.1f'), sep = '')
+    
+    
+def program4_13():
+    # program4_13 accepts no arguments
+    # it prompts the user for a lot number and loops while lot number != 0
+    # it promts the user for a property value
+    # and calculates the property tax
+    # it ouputs the total property owed and prompts another lot
+    # it outputs the total property tax and prompts for another lot
+    # it outputs a program termination method
+    
+    # initializes variables
+    lotNumber = 1
+    
+    propertyTax = .0065
+    
+    # asks for the first lot number
+    
+    lotNumber = int(input("Please enter a lot number (enter 0 to end): "))
+    
+    while lotNumber != 0:
+        # finds tax
+        value = float(input("Please enter the property value: "))
+        tax = value * propertyTax
+        
+        print("Property tax: $", format(tax, '.2f'), sep = '')
+        
+        # asks for lot number
+        lotNumber = int(input("Please enter a lot number (enter 0 to end): "))
+        
+    # outputs termination message
+    print("Thank you for using the Cyberdyne Systems property tax calculator, all your rights reserved.")
+    
+    
+def program4_14():
+    
