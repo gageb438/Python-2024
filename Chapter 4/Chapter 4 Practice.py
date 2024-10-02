@@ -278,4 +278,148 @@ def program4_13():
     
     
 def program4_14():
+    #Gross pay accepts no arguments
+    # it takes input from the user in the form of hours worked and pay rate
+    # it calculates and outputs the gross pay
+    
+    hours = int(input("Enter the hours: "))
+    
+    pay_rate = int(input("Enter the hourly rate: "))
+    
+    gross_pay = hours * pay_rate
+    
+    print("Gross pay: $", format(gross_pay, ',.2f'), sep = '')
+    
+    
+def program4_15():
+    # retail no validation accepts no arguments
+    # it uses a string sentinel to control the loop
+    # ouytputs retail price
+    
+    mark_up = 1.25
+    another = 'y'
+    
+    while another =='y' or another == 'Y':
+        wholesale = float(input("Enter the wholesale cost: "))
+        retail = wholesale * mark_up
+        print('Retail Price: $', format(retail, ',.2f'), sep = '')
+        
+        another = input('Do you want to enter another item?' +
+                        '(Enter Y for yes): ')
+        
+        
+def program4_16():
+    # retail with validation accepts no arguments
+    # it uses a string sentinel to control the loop
+    # ouytputs retail price
+    
+    mark_up = 1.25
+    another = 'y'
+    
+    while another =='y' or another == 'Y':
+        wholesale = float(input("Enter the wholesale cost: "))
+        while wholesale <= 0:
+            wholesale = float(input("Enter a valid cost: "))
+        retail = wholesale * mark_up
+        print('Retail Price: $', format(retail, ',.2f'), sep = '')
+        
+        another = input('Do you want to enter another item?' +
+                        '(Enter Y for yes): ')
+    
+    
+def program4_17():
+    # program4_17 recieves no arguments
+    # takes the amount of students and amount of scores per student
+    # looping to find the average
+    
+    # initialize variables
+    total = 0.0
+    
+    # number of students
+    students = int(input("Enter the amount of students : "))
+    
+    # validate
+    while students <= 0:
+        students = input("Enter a valid amount of students : ")
+        
+    tests = int(input("Enter the amount of tests per student : "))
+    
+    # validate
+    while tests <= 0:
+        tests = input("Enter a valid amount of tests : ")
+        
+    print()
+    
+    for student in range(1, students + 1):
+        
+        # prints the title
+        print("Student number", student)
+        print("-----------------")
+        for test in range(1, tests + 1):
+            print("Test number", test, end = '')
+            score = float(input(": "))
+            total += score
+        print()
+        averageTests = total / tests
+        print("The average for student number", student, "is: ", format(averageTests, '.2f'), '\n')
+        
+        # reset variables
+        total = 0.0
+
+
+def program4_18():
+    # program4_18 recieves no arguments
+    # it asks for rows and columns
+    # outputs art
+    
+    # finds rows and validates
+    rows = int(input("Enter the number of rows to print: "))
+    while rows <=0:
+        rows = int(input("Enter a valid number of rows to print: "))
+    
+    # finds columns and validates
+    columns = int(input("Enter the number of columns to print: "))
+    while columns <=0:
+        columns = int(input("Enter a valid number of columns to print: "))
+        
+    for row in range(rows):
+        
+        for column in range(columns):
+            print("*", end = '')
+        print()
+    print("Art finished")
+    
+
+def program4_19():
+    # program4_19 recieves no arguments
+    # it asks for the base of a triangle
+    # outputs art of a triangle
+    
+    # initializes variables
+    base = 0
+    
+    # finds base and validates
+    base = int(input("Enter the base size of a triangle : "))
+    while base <= 0:
+        base = int(input("Enter a valid base size of a triangle : "))
+    
+    for length in range(1, base + 1):
+        for column in range(length):
+            print("*", end = '')
+        print()
+    
+    
+def program4_20():
+    # program4_20 recieves no arguments
+    # it asks for the number of stairs
+    # outputs the art of the amount of stairs
+    
+    stairs = int(input("Enter the amount of stairs: "))
+    while stairs <= 0:
+        stairs = int(input("Enter a valid amount of stairs: "))
+    
+    for stair in range(stairs):
+        for step in range(stair):
+            print(" ", end = '')
+        print("\\")
     
