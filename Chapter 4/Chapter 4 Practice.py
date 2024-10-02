@@ -423,3 +423,18 @@ def program4_20():
             print(" ", end = '')
         print("\\")
     
+    
+    
+def program4_21():
+    # program4_20 recieves no arguments
+    # it asks for the number of stairs
+    # outputs the art of the amount of stairs
+    
+    stairs = int(input("Enter the amount of stairs: "))
+    while stairs <= 0:
+        stairs = int(input("Enter a valid amount of stairs: "))
+    
+    for stair in range(stairs):
+        for step in range(stair):
+            print("\\", end = '')
+        print("\\")
