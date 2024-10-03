@@ -355,6 +355,7 @@ def program4_17():
         # prints the title
         print("Student number", student)
         print("-----------------")
+        
         for test in range(1, tests + 1):
             print("Test number", test, end = '')
             score = float(input(": "))
