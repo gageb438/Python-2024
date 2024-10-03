@@ -461,4 +461,42 @@ def program4_21():
     
     
 def program4_22():
-    pass
+    # program4_22 recieves no arguments
+    # it asks for a amount of circles
+    # and draws the amount of circles.
+    
+    # initialize variables
+    numCircles = 36
+    radius = 100
+    angle = 10
+    speed = 0
+    
+    t.speed(speed)
+    
+    for circle in range(numCircles):
+        t.circle(radius)
+        t.left(angle)
+        
+        
+        
+def program4_23():
+    # program4_23 recieves no arguments
+    # it draws a starburst
+    
+    startX = -200
+    startY = 0
+    numLines = 36
+    lineLength = 400
+    angle = 170
+    
+    t.speed(100)
+    t.hideturtle()
+    t.penup()
+    t.goto(startX, startY)
+    t.pendown()
+    
+    for x in range(numLines):
+        t.forward(lineLength)
+        t.left(angle)
+    
+    t.done()
