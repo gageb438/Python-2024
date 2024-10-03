@@ -1,3 +1,5 @@
+import turtle as t
+
 def practice_1():
     day = "Thursday"
     value = 0
@@ -423,19 +425,40 @@ def program4_20():
         for step in range(stair):
             print(" ", end = '')
         print("\\")
-    
-    
-    
+        
+
+
 def program4_21():
-    # program4_20 recieves no arguments
-    # it asks for the number of stairs
-    # outputs the art of the amount of stairs
+    # program4_21 recieves no arguments
+    # it draws that amount of squares
     
-    stairs = int(input("Enter the amount of stairs: "))
-    while stairs <= 0:
-        stairs = int(input("Enter a valid amount of stairs: "))
+    numCircles = int(input("Enter the number of circles: "))
+    while numCircles <= 0:
+        numCircles = int(input("Enter a valid number of circles: "))
     
-    for stair in range(stairs):
-        for step in range(stair):
-            print("\\", end = '')
-        print("\\")
+    startingRad = 20
+    offset = 10
+    animationSpeed = 0
+    
+    t.speed(animationSpeed)
+    t.hideturtle()
+    
+    radius = startingRad
+    
+    for circle in range(numCircles):
+        t.circle(radius)
+        
+        xcor = t.xcor()
+        ycor = t.ycor()
+        
+        radius = radius + offset
+        
+        t.penup()
+        t.goto(xcor, ycor - offset)
+        t.pendown()
+    
+    t.done()
+    
+    
+def program4_22():
+    pass
