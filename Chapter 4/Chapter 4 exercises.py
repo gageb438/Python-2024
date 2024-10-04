@@ -35,7 +35,7 @@ def main():
         distance_traveled()
     elif choice == 3:
         print("Calling... Population...")
-        popluation()
+        population()
     elif choice == 4:
         print("Calling... Reverse Triangle...")
         reverse_triangle()
@@ -62,9 +62,12 @@ def bug_collector():
     # prints header
     print("Welcome to the Bug Masteres bug collection system.")
     
+    print()
+    
     # finds the amount of bugs collected
-    for day in range(days + 1):
-        collected = int(input("How many bugs did you collect on day ", day, "?", sep = ''))
+    for day in range(1, days + 1):
+        print("How many bugs did you collect on day ", day, "?", sep = '', end = '')
+        collected = int(input(" :> "))
         
         # validates
         while collected <= 0:
@@ -75,6 +78,87 @@ def bug_collector():
         
         # resets collected
         collected = 0
+        
+    print()
     
     print("Great job, you collected ", total, " bugs this week. You're the bug master!", sep = '')
     
+    
+def distance_traveled():
+    # distance traveled recieves no arguments
+    # it asks the user for how fast they were going and how many hours they were traveling
+    # outputs the distance they will have traveled by then.
+    
+    # finds and validates the mph and hours traveled
+    speed = int(input("Enter the speed of the vehicle in mph: "))
+    
+    while speed <= 0:
+        speed = int(input("Enter a valid speed of the vehicle in mph: "))
+    
+    hours = int(input("Enter the amount of hours the vehicle traveled: "))
+    
+    while hours <= 0:
+        hours = int(input("Enter a valid amount of hours the vehicle traveled: "))
+    
+    # prints header
+    print("Hour \t\t Distance Traveled")
+    print("----------------------------------")
+    
+    for hour in range(1, hours + 1):
+        distance = speed * hour
+        
+        print(hour, "\t\t", distance)
+    
+    
+def population():
+    # population recieves no arguments
+    # it asks the user for the starting population, percent of growth, and the days to calculate
+    # outputs projected population each 
+    
+    # finds and validates starting popluation
+    start = int(input("Enter the starting popluation: "))
+    
+    while start <= 0:
+        start = int(input("Enter a valid starting popluation: "))
+    
+    # finds and validates daily growth
+    percentGrowth = int(input("Enter the percent of daily growth: "))
+    
+    while percentGrowth <= 0:
+        percentGrowth = int(input("Enter a valid percent of daily growth: "))
+    
+    # finds and validates number of days
+    days = int(input("Enter the number of days to simulate: "))
+    
+    while days <= 0:
+        days = int(input("Enter a valid number of days to simulate: "))
+    
+    print()
+    
+    # prints header
+    print("Day \t\t\t Projected Population")
+    print("---------------------------------------------")
+    
+    print("1 \t\t\t", start)
+    
+    for day in range(2, days + 1):
+        percent = percentGrowth / 100
+        projTotal = start + start * percent
+        start = projTotal
+        
+        print(day, "\t\t\t", projTotal)
+        
+    
+def reverse_triangle():
+    # reverse triangle recieves no arguments
+    # it asks the user for the base size of a triangle
+    # prints a triangle backwards
+    
+    # finds base and validates
+    base = int(input("Enter the base size of a triangle : "))
+    while base <= 0:
+        base = int(input("Enter a valid base size of a triangle : "))
+    
+    for length in range():
+            
+main()
