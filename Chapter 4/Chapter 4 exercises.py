@@ -150,20 +150,18 @@ def population():
         
     
 def reverse_triangle():
-        # reverse triangle recieves no arguments
-        # it asks the user for the base size of a triangle
-        # prints a triangle backwards
-        
-        # finds base and validates
-        base = int(input("Enter the base size of a triangle : "))
-        while base <= 0:
-            base = int(input("Enter a valid base size of a triangle : "))
-
-        # prints the triangle backwards
-        for bases in range(base + 1):
-            for size in range(bases):
-                print("*", end = '')
-            print()
+    # reverse triangle recieves no arguments
+    # it asks for the base size of a triangle
+    # and prints it backwards using a variable
+    base = int(input("Enter the base size of a triangle : "))
+    while base <= 0:
+        base = int(input("Enter a valid base size of a triangle : "))
     
+    
+    # prints the triangle backwards
+    for bases in range(base + 1):
+        print("*" * base)
+        base = base - 1
+
 
 main()
