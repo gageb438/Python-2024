@@ -2,6 +2,7 @@
 import math
 import turtle as t
 
+
 def main():
     # main acepts no arguments
     # it will prompt the user with a menu
@@ -12,7 +13,7 @@ def main():
     choice = 0
     
     # output the menu
-    print("Choose a program from the follopwing options:")
+    print("Choose a program from the following options:")
     print("1: Exercise 1 - Bug Collector")
     print("2: Exercise 4 - Distance Traveled")
     print("3: Exercise 13 - Population")
@@ -48,7 +49,6 @@ def main():
     elif choice == 7:
         print("Calling... Hypnotic Pattern...")
         hypnotic_pattern()
-    
         
         
 def bug_collector():
@@ -162,6 +162,20 @@ def reverse_triangle():
     for bases in range(base + 1):
         print("*" * base)
         base = base - 1
-
-
+        
+def stair_pattern_2():
+    # stair_pattern_2 recieves no arguments
+    # it asks for a amount of stairs
+    # it outputs the amount of stairs with a left margin
+    
+    stairs = int(input("Enter the amount of stairs: "))
+    while stairs <= 0:
+        stairs = int(input("Enter a valid amount of stairs: "))
+    
+    for stair in range(stairs):
+        print("@", end = '')
+        for step in range(stair):
+            print(" ", end = '')
+        print("@")
+        
 main()
