@@ -177,5 +177,27 @@ def stair_pattern_2():
         for step in range(stair):
             print(" ", end = '')
         print("@")
+  
+  
+        
+def repeating_squares():
+    # tortuga rcieves no arguments
+    # it asks for an amount of squares to draw
+    # it outputs the squares
+    startingX = 300
+    startingY = -300
+    seperator = 10
+    screenHeight = 450
+    screnWidth = 450
+    
+    squares = int(input("Enter a amount of squares: "))
+    while squares <= 0:
+        squares = int(input("Enter a valid amount of squares: "))
+    
+    t.setup(screenHeight, screnWidth)
+    t.penup()
+    t.goto(startingX, startingY)
+    
+    for square in range(squares):
         
 main()
