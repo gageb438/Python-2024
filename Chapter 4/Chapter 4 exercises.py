@@ -184,20 +184,42 @@ def repeating_squares():
     # tortuga rcieves no arguments
     # it asks for an amount of squares to draw
     # it outputs the squares
+
+    # initialize variables
     startingX = 300
     startingY = -300
     seperator = 10
     screenHeight = 450
     screnWidth = 450
-    
+    distance = 10
+    integer = 10
+
+    # prompts the user for the amount of squares
     squares = int(input("Enter a amount of squares: "))
     while squares <= 0:
         squares = int(input("Enter a valid amount of squares: "))
-    
+
+    # sets the turtle up
     t.setup(screenHeight, screnWidth)
     t.penup()
     t.goto(startingX, startingY)
+
     
     for square in range(squares):
+        color1 = random.randint(0,255)
+        color2 = random.randint(0,255)
+        color3 = random.randint(0,255)
+        
+        t.pencolor(color1, color2, color3)
+        
+        t.setheading(90)
+        t.forward(distance)
+        t.left(90)
+        t.forward(distance)
+        t.left(90)
+        t.forward(distance)
+        t.left(90)
+        t.forward(distance)
+        distance = distance + integer
         
 main()
