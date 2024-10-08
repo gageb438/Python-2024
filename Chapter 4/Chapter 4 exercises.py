@@ -1,6 +1,7 @@
 # imports
 import math
 import turtle as t
+import random
 
 
 def main():
@@ -13,6 +14,7 @@ def main():
     choice = 0
     
     # output the menu
+    print()
     print("Choose a program from the following options:")
     print("1: Exercise 1 - Bug Collector")
     print("2: Exercise 4 - Distance Traveled")
@@ -21,10 +23,11 @@ def main():
     print("5: Exercise 15 - Stair Pattern 2")
     print("6: Exercise 16 - Repeating Square")
     print("7: Exercise 18 - Hypnotic Pattern")
+    print("0: End")
     
     # get input for the user choice
     choice = int(input(":> "))
-    while choice <= 0:
+    while choice < 0:
         choice = int(input(":> "))
     
     # process the menu
@@ -49,6 +52,12 @@ def main():
     elif choice == 7:
         print("Calling... Hypnotic Pattern...")
         hypnotic_pattern()
+    
+    if choice != 0:
+        main()
+    elif choice == 0:
+        print("Ending program.")
+        
         
         
 def bug_collector():
@@ -189,8 +198,8 @@ def repeating_squares():
     startingX = 300
     startingY = -300
     seperator = 10
-    screenHeight = 450
-    screnWidth = 450
+    screenHeight = 900
+    screnWidth = 900
     distance = 10
     integer = 10
 
@@ -204,14 +213,11 @@ def repeating_squares():
     t.penup()
     t.goto(startingX, startingY)
 
+    t.pendown()
+    
+
     
     for square in range(squares):
-        color1 = random.randint(0,255)
-        color2 = random.randint(0,255)
-        color3 = random.randint(0,255)
-        
-        t.pencolor(color1, color2, color3)
-        
         t.setheading(90)
         t.forward(distance)
         t.left(90)
@@ -222,4 +228,5 @@ def repeating_squares():
         t.forward(distance)
         distance = distance + integer
         
+    t.done()
 main()
