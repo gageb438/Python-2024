@@ -212,12 +212,19 @@ def repeating_squares():
     t.setup(screenHeight, screnWidth)
     t.penup()
     t.goto(startingX, startingY)
+    t.colormode(255)
 
     t.pendown()
+    t.speed(500)
     
-
-    
+    # draws a square with random colors
     for square in range(squares):
+        color1 = random.randint(0,255)
+        color2 = random.randint(0,255)
+        color3 = random.randint(0,255)
+        
+        t.pencolor(color1, color2, color3)
+    
         t.setheading(90)
         t.forward(distance)
         t.left(90)
@@ -229,4 +236,30 @@ def repeating_squares():
         distance = distance + integer
         
     t.done()
+    
+
+def hypnotic_pattern():
+    # tortuga recieves no arguments
+    # it asks for a number of patterns to draw
+    # draws a hypnotizing pattern with random colors
+    
+    # initialize variables
+    startingX = 0
+    startingY = 0
+    distance = 5
+    integer = 10
+    # sets turtle up
+    t.penup()
+    t.goto(startingX, startingY)
+    
+    patterns = int(input("Enter a amount of patterns to draw: "))
+    while patterns <= 0:
+        patterns = int(input("Enter a valid number of patterns to draw: "))
+        
+    for pattern in range(patterns):
+        t.forward(distance)
+        t.left(90)
+        
+    
+    
 main()
