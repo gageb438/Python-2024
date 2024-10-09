@@ -246,20 +246,47 @@ def hypnotic_pattern():
     # initialize variables
     startingX = 0
     startingY = 0
-    distance = 5
-    integer = 10
+    distance = 3
+    integer = 3
+    
+    t.speed(1000)
+    
     # sets turtle up
     t.penup()
     t.goto(startingX, startingY)
+    t.pendown()
+    t.setheading(90)
+    t.colormode(255)
     
     patterns = int(input("Enter a amount of patterns to draw: "))
     while patterns <= 0:
         patterns = int(input("Enter a valid number of patterns to draw: "))
         
+    
     for pattern in range(patterns):
+        color1 = random.randint(0,255)
+        color2 = random.randint(0,255)
+        color3 = random.randint(0,255)
+        
+        t.pencolor(color1, color2, color3)
+        
+        distance = distance + (integer * 2)
         t.forward(distance)
         t.left(90)
         
+        distance = distance + (integer * 2)
+        t.forward(distance)
+        t.left(90)
+        
+        distance = distance + (integer * 2)
+        t.forward(distance)
+        t.left(90)
+        
+        distance = distance + (integer * 2)
+        t.forward(distance)
+        t.left(90)
+        
+    t.done()
     
     
 main()
