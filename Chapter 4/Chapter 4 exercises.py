@@ -5,7 +5,7 @@ import random
 
 
 def main():
-    # main acepts no arguments
+    # main accepts no arguments
     # it will prompt the user with a menu
     # and ask the user to make a choice
     # and will call the function depending on the user choice.
@@ -270,18 +270,7 @@ def hypnotic_pattern():
         
         t.pencolor(color1, color2, color3)
         
-        distance = distance + (integer * 2)
-        t.forward(distance)
-        t.left(90)
-        
-        distance = distance + (integer * 2)
-        t.forward(distance)
-        t.left(90)
-        
-        distance = distance + (integer * 2)
-        t.forward(distance)
-        t.left(90)
-        
+    for rotation in range(4):
         distance = distance + (integer * 2)
         t.forward(distance)
         t.left(90)
