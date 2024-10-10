@@ -3,7 +3,6 @@ import math
 import turtle as t
 import random
 
-
 def main():
     # main accepts no arguments
     # it will prompt the user with a menu
@@ -12,6 +11,7 @@ def main():
     
     # declare variable for the user choice
     choice = 0
+    runMain = True
     
     # output the menu
     print()
@@ -23,7 +23,6 @@ def main():
     print("5: Exercise 15 - Stair Pattern 2")
     print("6: Exercise 16 - Repeating Square")
     print("7: Exercise 18 - Hypnotic Pattern")
-    print("0: End")
     
     # get input for the user choice
     choice = int(input(":> "))
@@ -53,10 +52,15 @@ def main():
         print("Calling... Hypnotic Pattern...")
         hypnotic_pattern()
     
-    if choice != 0:
+    while runMain == True:
+        runMain = input("Do you want to quit the program? :>")
+    if runMain == "No" or runMain == "no":
+        t.clearscreen()
         main()
-    elif choice == 0:
-        print("Ending program.")
+    else:
+        print("Goodbye")
+        runMain == False
+        
         
         
         
@@ -209,6 +213,7 @@ def repeating_squares():
         squares = int(input("Enter a valid amount of squares: "))
 
     # sets the turtle up
+    t.clearscreen()
     t.setup(screenHeight, screnWidth)
     t.penup()
     t.goto(startingX, startingY)
@@ -252,6 +257,7 @@ def hypnotic_pattern():
     t.speed(1000)
     
     # sets turtle up
+    t.clearscreen()
     t.penup()
     t.goto(startingX, startingY)
     t.pendown()
@@ -270,10 +276,10 @@ def hypnotic_pattern():
         
         t.pencolor(color1, color2, color3)
         
-    for rotation in range(4):
-        distance = distance + (integer * 2)
-        t.forward(distance)
-        t.left(90)
+        for rotation in range(4):
+            distance = distance + (integer * 2)
+            t.forward(distance)
+            t.left(90)
         
     t.done()
     
