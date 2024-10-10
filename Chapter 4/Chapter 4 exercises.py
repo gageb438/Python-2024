@@ -239,8 +239,6 @@ def repeating_squares():
         t.left(90)
         t.forward(distance)
         distance = distance + integer
-        
-    t.done()
     
 
 def hypnotic_pattern():
@@ -280,8 +278,6 @@ def hypnotic_pattern():
             distance = distance + (integer * 2)
             t.forward(distance)
             t.left(90)
-        
-    t.done()
     
     
 main()
