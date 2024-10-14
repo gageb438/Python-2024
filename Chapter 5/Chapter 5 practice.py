@@ -139,4 +139,112 @@ def bird_calculator(): # program5-5
     
     texas()
     kansas()
-        
+    
+def pass_arg(): # program5-6
+    # pass args accepts no arguments
+    # it assigns the value = 5
+    # it calls show_double, passing value
+    
+    value = 5
+    show_double(value)
+    
+
+def show_double(number):
+    # show double accepts a value for a number
+    # it calculates that number * 2 and prints the result
+    
+    result = number * 2
+    print(number, "* 2 =", result)
+    
+
+def volume_conversion(): # program 5-7
+    # volume conversion accepts no arguments
+    # it calls intro() to display a greeting
+    # it prompts the user for the number of cups
+    # it calls cups_to_ounces, passing the value for cups
+    
+    # calls greeting
+    intro()
+    
+    # asks for the amount of cups and validates it
+    cups = int(input("Please enter the number of cups to convert to ounces: "))
+    while cups <= 0:
+        cups = int(input("Please enter a valid number of cups to convert to ounces: "))
+    
+    # calls cups to ounces and passes cups on
+    cups_to_ounces(cups)
+    
+def intro():
+    # into accepts no arguments
+    # it displasy a greeting message describing the program
+    # and the conversion rate of cups to ounces
+    print("Welcome to the cups to fluid ounces conversion program.\nFor your reference, 1 cup = 8 fluid ounces")
+    
+def cups_to_ounces(cups):
+    # cups_to_ounces accepts a value for cups
+    # it converts the number of cups to the number of ounces
+    # and outputs the result
+    
+    # finds ounces
+    ounces = cups * 8
+    
+    #  prints how many cups is equal to ounces
+    print(cups, " cup(s) is equal to ", ounces, " fluid ounces.", sep = '')
+    
+def show_sum(): # program 5-8
+    # show sum accepts no arguments
+    # it ouputs a message "The sum of 12 and 45 is"
+    # it calls sum_of_numbers(num1, num2) passing the values 12 and 45
+    num1 = 12
+    num2 = 45
+    sum_of_numbers(num1, num2)
+    
+def sum_of_numbers(num1, num2):
+    # sume of numbers accepts two arguments for num1 and num2
+    # it adds the two numbers together
+    # and prints the sum
+    sumof = num1 + num2
+    print("The sum of ", num1, " and ", num2, " is ", sumof, sep = '')
+    
+def get_name(): # program5-9
+    # get name accepts no arguments
+    # it prompts the user for their first then last name
+    # it calls reverse_name(first, last) passing values
+    # for first and last
+    firstName = input("Please enter your first name: ")
+    lastName = input("Please enter your last name: ")
+    reverse_name(firstName, lastName)
+    
+def reverse_name(first, last):
+    # reverse name accepts strings for first and last
+    # it ouputs the names in reverse order
+    print("Your name reversed is: ", last, " ", first, sep = '')
+    
+def get_value(): # program 5-10
+    # get value accepts no arguments
+    # it assigns value = 99 and passes value to change_me
+    # it ouputs a message showing the value of value in this function
+    value = 99
+    print("I just assigned the variable value: ", value)
+    change_me(value)
+    print("The value in the function get_value is still: ", value)
+    
+def change_me(value):
+    # change me accepts an integer for value
+    # it reassigns the value to 0
+    # and ouputs a message with the new value in this function
+    value = 0
+    print("The value in the function change_me has changed to: ", value)
+
+def set_args(): # program5-11
+    # set args accepts no arguments
+    # it calls show_interest passing principal, rate, and periods as keywords
+    
+    show_interest(rate = 0.01, periods = 10, principal = 10000.0)
+    
+def show_interest(rate, periods, principal):
+    # show interest accepts arguments for rate, periods, and principal
+    # it calculates the interest = principal*rate*periods
+    
+    interest = principal * rate * periods
+    print("The simple interest will be $", format(interest, '.2f'), sep = '')
