@@ -298,7 +298,7 @@ def global_variables_are_bad():
 #==========================
     
 # global constant for program 5-15
-CONTRIBUTION_RATE = 0.05
+# CONTRIBUTION_RATE = 0.05 # disabled to prevent issues
 
 def pay_me(): # program5-15
     #pay me accepts no arguments
@@ -327,3 +327,27 @@ def show_bonus(bonus):
     final_bonus = bonus * CONTRIBUTION_RATE
     print("Contribution for gross pay: $", format(final_bonus, ',.2f'), sep = '')
     
+#==========================
+    
+def example_main():
+    # main accep[ts no arguments
+    # it passes a value to calc()
+    # and outputs the result
+    
+    num = int(input("Enter a number from 1-10:  "))
+    
+    # pass num to calc
+    answer = calc(num)
+    
+    # prints the result
+    print(f"The result is: {answer}")
+    
+def calc(number):
+    # calc accepts an argument for number
+    # it performs a calculation with the number
+    # and returns the calculation
+    
+    # perform calculation
+    answer = number + 5
+    
+    return stuff
