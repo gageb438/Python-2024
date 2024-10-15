@@ -256,9 +256,9 @@ def set_args(): # program5-11
     # set args accepts no arguments
     # it calls show_interest passing principal, rate, and periods as keywords
     
-    show_interest(rate = 0.01, periods = 10, principal = 10000.0)
+    show_interest(principal = 10000.0, rate = 0.01, periods = 10)
     
-def show_interest(rate, periods, principal):
+def show_interest(principal, rate, periods):
     # show interest accepts arguments for rate, periods, and principal
     # it calculates the interest = principal*rate*periods
     
@@ -266,3 +266,64 @@ def show_interest(rate, periods, principal):
     print("The simple interest will be $", format(interest, '.2f'), sep = '')
 
 #==========================
+
+# my_value = 10 # global variable disabled to prevent issues
+
+def show_value(): # program 5-13
+    # show value recieves no arguments
+    # it prints the value of global my_value
+    
+    print("The value of the global variable my_value is", my_value)
+    
+#==========================
+    
+# create a global variable
+# number = 0 # disabled to prevent issues
+
+def change_global(): # program 5-14
+    # change_global accepts no arguments
+    # it changes the value of the global variable number
+    # then calls global_variables_are_bad to print the variable
+    
+    global number
+    number = int(input("What do you want to change global to? :> "))
+    global_variables_are_bad()
+    
+def global_variables_are_bad():
+    # global variables are bad accepts no arguments
+    # it prints the value of the global variable number
+    
+    print("The value of the global variable number was changed in change_global to the value of :", number)
+    
+#==========================
+    
+# global constant for program 5-15
+CONTRIBUTION_RATE = 0.05
+
+def pay_me(): # program5-15
+    #pay me accepts no arguments
+    # it prompots the user for the gross pay and the maount of bonuses
+    # it calls show_pay, passing gross
+    # and show_bonus, passing bonus
+    gross_pay = float(input("Please enter the amount for gross pay: "))
+    bonus = float(input("Please enter the amount of bonuses: "))
+    
+    show_pay(gross_pay)
+    show_bonus(bonus)
+    
+def show_pay(gross_pay):
+    # show pay accepts a float for gross
+    # it calculates the contribution = gross * the global constant
+    # it outputs the contribution for gross pay
+    
+    final_pay = gross_pay * CONTRIBUTION_RATE
+    print("Contribution for gross pay: $", format(final_pay, ',.2f'), sep = '')
+    
+def show_bonus(bonus):
+    # show_bonus accepts a float for a gbonus
+    # it calculates the contribution = bonus * the global constant
+    # it outputs the contribution for bonuses
+    
+    final_bonus = bonus * CONTRIBUTION_RATE
+    print("Contribution for gross pay: $", format(final_bonus, ',.2f'), sep = '')
+    
