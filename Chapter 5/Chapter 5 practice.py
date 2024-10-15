@@ -3,6 +3,7 @@
 import math
 import turtle
 import random
+
 #==========================
 
 def message(): # program 5-1
@@ -24,6 +25,7 @@ def main_5_2(): # program 5-2
     message()
     print("Only one way to win...")
 
+#==========================
 
 def acme_dryer(): # program 5-3
     # acme_dryer recieves no arguments
@@ -99,7 +101,8 @@ def acme_dryer(): # program 5-3
     print()        
     question()
     
-    
+#==========================
+
 def bad_scope(): # program5-4
     # bad local accepts no arguments
     # it calls procedure get_name() to get someones name
@@ -117,6 +120,7 @@ def get_name():
     
     name = input("Enter your name: ")
 
+#==========================
 
 def bird_calculator(): # program5-5
     # bird_calculator accepts no arguments
@@ -139,7 +143,10 @@ def bird_calculator(): # program5-5
     
     texas()
     kansas()
-    
+
+#==========================
+
+
 def pass_arg(): # program5-6
     # pass args accepts no arguments
     # it assigns the value = 5
@@ -155,7 +162,8 @@ def show_double(number):
     
     result = number * 2
     print(number, "* 2 =", result)
-    
+
+#==========================
 
 def volume_conversion(): # program 5-7
     # volume conversion accepts no arguments
@@ -190,7 +198,9 @@ def cups_to_ounces(cups):
     
     #  prints how many cups is equal to ounces
     print(cups, " cup(s) is equal to ", ounces, " fluid ounces.", sep = '')
-    
+
+#==========================
+
 def show_sum(): # program 5-8
     # show sum accepts no arguments
     # it ouputs a message "The sum of 12 and 45 is"
@@ -205,7 +215,9 @@ def sum_of_numbers(num1, num2):
     # and prints the sum
     sumof = num1 + num2
     print("The sum of ", num1, " and ", num2, " is ", sumof, sep = '')
-    
+
+#==========================
+
 def get_name(): # program5-9
     # get name accepts no arguments
     # it prompts the user for their first then last name
@@ -219,7 +231,9 @@ def reverse_name(first, last):
     # reverse name accepts strings for first and last
     # it ouputs the names in reverse order
     print("Your name reversed is: ", last, " ", first, sep = '')
-    
+
+#==========================
+
 def get_value(): # program 5-10
     # get value accepts no arguments
     # it assigns value = 99 and passes value to change_me
@@ -236,6 +250,8 @@ def change_me(value):
     value = 0
     print("The value in the function change_me has changed to: ", value)
 
+#==========================
+
 def set_args(): # program5-11
     # set args accepts no arguments
     # it calls show_interest passing principal, rate, and periods as keywords
@@ -248,3 +264,5 @@ def show_interest(rate, periods, principal):
     
     interest = principal * rate * periods
     print("The simple interest will be $", format(interest, '.2f'), sep = '')
+
+#==========================
