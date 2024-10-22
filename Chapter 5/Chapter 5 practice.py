@@ -329,7 +329,7 @@ def show_bonus(bonus):
     
 #==========================
     
-def example_main():
+def example_main(): # example to return values
     # main accep[ts no arguments
     # it passes a value to calc()
     # and outputs the result
@@ -351,3 +351,136 @@ def calc(number):
     answer = number + 5
     
     return stuff
+
+#==========================
+
+def random_numbers(): # program 5-16
+    # random_numbers accepts no arguments
+    # it generates a random in teger from 1-10
+    # output the number to the user
+    
+    number = random.randint(1,10)
+    
+    print(f"The random number is: {number}")
+    
+#==========================
+    
+def random_numbers_2(): # program 5-17
+    # random numbers 2 accepts no arguments
+    # it loops 5 times assigning a random integer from 1-100 to a number
+    # it ouputs the random integer for each iteration
+    
+    for count in range(5):
+        number = random.randint(1,100)
+        print(f"The number is : {number}")
+        
+#==========================
+
+def random_numbers_3(): # program 5-18
+    # random numbers 2 accepts no arguments
+    # it loops 5 times outputting a new random integer for each iteration
+    
+    # loop 5 times
+    for count in range(5):
+        print(random.randint(1,100))
+
+#==========================
+        
+def dice(): # program 5-19
+    # dice accepets no arguments
+    # it loops until the user enters "n" or "N" to stop
+    # each iteration prints two random 6-sided die rolls
+    # it prompts the user to roll again (y/n)
+    
+    # initializes variables
+    keep_going = "y"
+    Min = 1
+    Max = 6
+    
+    # starts or ends based on their input
+    while keep_going == "y":
+        # prints the dice numbers
+        print("Rolling your dice...")
+        print("Your two rolls are ", random.randint(Min,Max), " and ", random.randint(Min,Max))
+        
+        # asks if they want to keep going
+        keep_going = input("Try your luck again? (y/n) : ")
+        
+        # prints seperator
+        print()
+        
+#==========================
+        
+def coin_toss(): # program 5-20
+    # coin toss accepts no arguments
+    # it sets three named constants for heads, tails, and tosses
+    # it loops for 10 tosses and uses a random integer from 1 or 2 to determine
+    # if the coin flip resulted in a heads or tails, respectively
+    
+    # initializes variables
+    heads = 1
+    tails = 2
+    tosses = 10
+    
+    # repeats finding tosses
+    for toss in range(tosses):
+        randomToss = random.randint(heads,tails)
+        if randomToss == heads:
+            print("Heads!")
+        elif randomToss == tails:
+            print("Tails!")
+        else:
+            print("An error has occurred")
+
+#==========================
+            
+def total_ages(): # program 5-21
+    # def total ages accepts no arguments
+    # it prompts the user for two ages and passes those values to calculate_ages()
+    # it uses the return value to print the total ages
+    
+    # get input from the user
+    age1 = int(input("Please enter your age: "))
+    age2 = int(input("Please enter the age of your best friend: "))
+    
+    # call calculate ages, passing age1 and age2 and assign the return value to total
+    total = calculate_ages(age1, age2)
+    
+    # output the result
+    print("\nTogether you are", total, "years old.")
+    
+def calculate_ages(age1, age2):
+    # calculate ages recieves values for age1 and age2
+    # it addes the two ages together
+    # and returns the result
+    
+    # calculate the total age
+    total_ages = age1 + age2
+    
+    # return the value
+    return total_ages
+
+#==========================
+
+# declare global constant for program 5-22
+discount_percent = 0.20
+
+def sale_price(): # program 5-22
+    # sale price accepts no arguments
+    # it calls get regular price to get input from the user
+    # it calculates the sale price by taking the regular price and subtracting the
+    # return result of discount()
+    # it outputs the sale price
+    
+    get_regular_price()
+    
+def get_regular_price():
+    # get regular price accepts no arguments
+    # it prompts the user to input the item's regular prie
+    # and returns that value
+    regular_price = input("Please enter the regular price of the item: ")
+    
+    return regular_price
+
+def sale_price():
+    
