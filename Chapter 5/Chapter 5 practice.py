@@ -267,7 +267,7 @@ def show_interest(principal, rate, periods):
 
 #==========================
 
-# my_value = 10 # global variable disabled to prevent issues
+my_value = 10
 
 def show_value(): # program 5-13
     # show value recieves no arguments
@@ -278,7 +278,7 @@ def show_value(): # program 5-13
 #==========================
     
 # create a global variable
-# number = 0 # disabled to prevent issues
+number = 0 # 
 
 def change_global(): # program 5-14
     # change_global accepts no arguments
@@ -298,7 +298,7 @@ def global_variables_are_bad():
 #==========================
     
 # global constant for program 5-15
-# CONTRIBUTION_RATE = 0.05 # disabled to prevent issues
+CONTRIBUTION_RATE = 0.05
 
 def pay_me(): # program5-15
     #pay me accepts no arguments
@@ -330,7 +330,7 @@ def show_bonus(bonus):
 #==========================
     
 def example_main(): # example to return values
-    # main accep[ts no arguments
+    # main accepts no arguments
     # it passes a value to calc()
     # and outputs the result
     
@@ -472,15 +472,120 @@ def sale_price(): # program 5-22
     # return result of discount()
     # it outputs the sale price
     
-    get_regular_price()
+    regular_price = get_regular_price()
+    final_price = discount(regular_price)
     
+    print("The sale price is: $", format(final_price, ',.2f'), sep = '')
 def get_regular_price():
     # get regular price accepts no arguments
     # it prompts the user to input the item's regular prie
     # and returns that value
-    regular_price = input("Please enter the regular price of the item: ")
+    regular_price = float(input("Please enter the regular price of the item: "))
     
+    # returns the price
     return regular_price
 
-def sale_price():
+def discount(price):
+    # discount accepts an argument for the float price
+    # it returns the discount @ 20% off using
+    # the global constant discount_percent
+    
+    # finds final price
+    discount_price = price * discount_percent
+    final_price = price - discount_price
+    
+    # returns the final rpice for printing
+    return final_price
+
+#==========================
+
+def comission_rate(): # program 5-23
+    # comission rate accepts no arguments
+    # it calls get-sales and get_advanced_pay
+    # it calls determine_comm_rate passing sales
+    # it calculates the pay and outputs the pay
+    # it determines if the pay is negative and outputs if the salesperons
+    # the amount the salesperson must reimburse the company for
+    
+    # calls functions to prompt user for sales and advanced pay
+    sales = get_sales()
+    advanced_pay = get_advanced_pay()
+    
+    # passes sales on to find the comm rate
+    comm_rate = determine_comm_rate(sales)
+    
+    # calculates the pay and prints it
+    pay = ((sales * comm_rate) - advanced_pay) + sales
+    print("\nThe total pay with comission is $", format(pay, ',.2f'), sep = '')
+    
+    # prints how much the salesperson must pay the company if the pay is below 0
+    if pay < 0:
+        print("The salesperson must reimburse the company $", pay * -1, sep = '')
+        
+def get_sales():
+    # get sales accepts no raguments
+    # it prompts the user to input the total monthly sales
+    # and returns the monthly sales
+    
+    sales = float(input("Please enter the amount of sales for the month: "))
+    
+    # returns sales
+    return sales
+def get_advanced_pay():
+    # get advanced pay accepts no arguments
+    # it prompts the user to enter any advanced pay, or 0 for none
+    # it returns the advanced pay
+    
+    advanced_pay = float(input("Please enter any advanced pay you recieved (0 for none): "))
+    
+    return advanced_pay
+def determine_comm_rate(sales):
+    # determine comm rate accepts a float for sales
+    # it calculates the comission rate for sales
+    # and returns the calculated rate
+    
+    # finds commission rate
+    if sales < 10000:
+        comm_rate = .10
+    elif sales < 14999:
+        comm_rate = .12
+    elif sales < 17999:
+        comm_rate = .14
+    elif sales < 21999:
+        comm_rate = .16
+    else:
+        comm_rate = .18
+    
+    return comm_rate
+
+#==========================
+
+def isValid(num): # example boolean function
+    # is valid accepts an integer argument
+    # it will validate that the integer is > 0
+    
+    if num > 0:
+        return True
+    else:
+        return False
+    
+#==========================
+    
+def get_name(): # string return example
+    # get name accepts no arguments
+    # it prompts the user for a name
+    # and returns the name as a string
+    
+    first_name = input("Please enter your first name: ")
+    last_name = input("Please enter your last name: ")
+    return first_name, last_name
+    
+def validate_even(num): # boolean return example
+    # validate even accepts an integer for num
+    # it tests if num is even and returns true
+    
+    if (num % 2) == 0:
+        return True
+    else:
+        return False
     
