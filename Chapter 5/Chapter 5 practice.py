@@ -3,6 +3,7 @@
 import math
 import turtle
 import random
+import circle
 
 #==========================
 
@@ -589,3 +590,37 @@ def validate_even(num): # boolean return example
     else:
         return False
     
+#==========================
+    
+def square_root(): # program 5-24
+    # square_root accepts no arguments
+    # it prompts the user for a number and calculates square root
+    # outputs a message with the square root of the number the user chose
+    
+    # finds the number the user wants to find the square root of
+    number = float(input("Please enter a value to find the square root: "))
+    
+    # finds the square root
+    sqRoot = float(math.sqrt(number))
+    
+    # prints the number and the square root
+    print(f"The square root of {number} is: {sqRoot}")
+    
+#==========================
+
+def hypotenuse(): # program 5-25
+    # hypotenuse recieves no arguments
+    # it prompts the user for two sides
+    # outputs a message with the hypotenuse
+    
+    # finds the two sides
+    side1 = float(input("Enter the length of side A: "))
+    side2 = float(input("Enter the length of side B: "))
+    
+    length = math.hypot(side1, side2)
+    
+    print(f"The length of the hypotenuse is: {length}")
+    
+    
+arar = circle.area(20)
+print(arar)
