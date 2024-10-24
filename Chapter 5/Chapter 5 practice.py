@@ -3,7 +3,6 @@
 import math
 import turtle
 import random
-import circle
 
 #==========================
 
@@ -621,6 +620,3 @@ def hypotenuse(): # program 5-25
     
     print(f"The length of the hypotenuse is: {length}")
     
-    
-arar = circle.area(20)
-print(arar)
