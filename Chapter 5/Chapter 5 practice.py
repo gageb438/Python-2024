@@ -3,6 +3,7 @@
 import math
 import turtle
 import random
+import my_graphics
 
 #==========================
 
@@ -619,4 +620,45 @@ def hypotenuse(): # program 5-25
     length = math.hypot(side1, side2)
     
     print(f"The length of the hypotenuse is: {length}")
+    
+#==========================
+    
+def triangle(): # program 5-31
+    TOP_X = 0
+    TOP_Y = 100
+    BASE_LEFT_X = -100
+    BASE_LEFT_Y = -100
+    BASE_RIGHT_X = 100
+    BASE_RIGHT_Y = -100
+    line(TOP_X, TOP_Y, BASE_LEFT_X, BASE_LEFT_Y, 'red')
+    line(TOP_X, TOP_Y, BASE_RIGHT_X, BASE_RIGHT_Y, 'blue')
+    line(BASE_LEFT_X, BASE_LEFT_Y, BASE_RIGHT_X, BASE_RIGHT_Y, 'green')
+
+#==========================
+    
+def graphic_fun(): # program 5-33
+    # graphic fun recieves no arguments
+    # it draws a cool graphic
+    
+    # initialize constants
+    X1 = 0
+    Y1 = 100
+    X2 = -100
+    Y2 = -100
+    X3 = 100
+    Y3 = -100
+    RADIUS = 50
+    
+    # draw background square
+    my_graphics.square(-100, -100, 200, 'gray')
+    
+    # draw the red green and blue squares
+    my_graphics.circle(X1, Y1, RADIUS, 'blue')
+    my_graphics.circle(X2, Y2, RADIUS, 'red')
+    my_graphics.circle(X3, Y3, RADIUS, 'green')
+    
+    # draw middle triangle
+    my_graphics.line(X1, Y1, X2, Y2, 'black')
+    my_graphics.line(X2, Y2, X3, Y3, 'black')
+    my_graphics.line(X3, Y3, X1, Y1, 'black')
     
