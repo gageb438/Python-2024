@@ -649,16 +649,19 @@ def graphic_fun(): # program 5-33
     Y3 = -100
     RADIUS = 50
     
-    # draw background square
-    my_graphics.square(-100, -100, 200, 'gray')
+    # draw background square using my_graphics module square
+    my_graphics.square(X2, Y2, 200, 'gray')
     
-    # draw the red green and blue squares
+    # draw the red green and blue squares using my_graphics module circle
     my_graphics.circle(X1, Y1, RADIUS, 'blue')
     my_graphics.circle(X2, Y2, RADIUS, 'red')
     my_graphics.circle(X3, Y3, RADIUS, 'green')
     
-    # draw middle triangle
+    # draw middle triangle using my_graphics module line
     my_graphics.line(X1, Y1, X2, Y2, 'black')
     my_graphics.line(X2, Y2, X3, Y3, 'black')
     my_graphics.line(X3, Y3, X1, Y1, 'black')
+    
+    # ends turtle
+    t.done()
     
