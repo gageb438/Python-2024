@@ -1,5 +1,5 @@
 import circlemath
-import rectangle
+import rectanglemath
 
 def main():
     # main accepts and argument fron the user
@@ -18,6 +18,6 @@ def main():
     length = int(input("Enter the length of a side: "))
     width = int(input("Enter the width of a side: "))
     
-    print(f"The perimeter of the rectangle is: {rectangle.perimeter(width, length)}.")
-    print(f"The area of the rectangle is: {rectangle.area(width, length)}.")
+    print(f"The perimeter of the rectangle is: {rectanglemath.perimeter(width, length)}.")
+    print(f"The area of the rectangle is: {rectanglemath.area(width, length)}.")
 main()
