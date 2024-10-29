@@ -1,4 +1,4 @@
-import circle
+import circlemath
 import rectangle
 
 def main():
@@ -11,8 +11,8 @@ def main():
     radius = int(input("Enter the radius: "))
     
     # use the circle.py module to find the area of the circle
-    print(f"The area of the circle is: {circle.area(radius)}.")
-    print(f"The circumference of the circle is: {circle.circumference(radius)}.")
+    print(f"The area of the circle is: {circlemath.area(radius)}.")
+    print(f"The circumference of the circle is: {circlemath.circumference(radius)}.")
     
     # take input from the user for the length and width of a rectangle
     length = int(input("Enter the length of a side: "))
