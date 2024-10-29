@@ -1,8 +1,8 @@
 # this program allows the user to choose various
 # geometry calculations from a menu. This program
 # imports the circle and rectangle modules.
-import circle
-import rectangle
+import circlemath
+import rectanglemath
 
 # constants for menu choices
 AREA_CIRCLE_CHOICE = 1
@@ -26,18 +26,18 @@ def main():
         # perform the selected action
         if choice == AREA_CIRCLE_CHOICE:
             radius = float(input("Enter the circle's radius: "))
-            print("The area is", circle.area(radius))
+            print("The area is", circlemath.area(radius))
         elif choice == CIRCUMFERENCE_CHOICE:
             radius = float(input("Enter the circle's radius: "))
-            print("The circumference is", circle.circumference(radius))
+            print("The circumference is", circlemath.circumference(radius))
         elif choice == AREA_RECTANGLE_CHOICE:
             width = float(input("Enter the rectangle's width: "))
             length = float(input("Enter the rectangle's length: "))
-            print("The area is", rectangle.area(width, length))
+            print("The area is", rectanglemath.area(width, length))
         elif choice == PERIMETER_RECTANGLE_CHOICE:
             width = float(input("Enter your ractangle's width: "))
             length = float(input("Enter the rectangle's length: "))
-            print("The perimeter is", rectangle.perimeter(width,length))
+            print("The perimeter is", rectanglemath.perimeter(width,length))
         elif choice == QUIT_CHOICE:
             print("Exiting program...")
         else:
