@@ -36,4 +36,3 @@ def line(startX, startY, endX, endY, color):
     turtle.pendown()
     turtle.pencolor(color)
     turtle.goto(endX, endY)
-    
