@@ -30,40 +30,40 @@ def main():
     
     # get input for the user choice
     choice = int(input(":> "))
-    while choice < 0:
+    while choice < 1 or choice > 9:
         choice = int(input(":> "))
     
     # process the menu
     if choice == 1:
         print("Calling... Exercise 1...")
-        sales_tax()
+        return 1
     elif choice == 2:
         print("Calling... Exercise 2...")
-        calories()
+        return 2
     elif choice == 3:
         print("Calling... Exercise 3...")
-        stadium_seating()
+        return 3
     elif choice == 4:
         print("Calling... Exercise 4...")
-        paint_estimator()
+        return 4
     elif choice == 5:
         print("Calling... Exercise 5...")
-        math_quiz
+        return 5
     elif choice == 6:
         print("Calling... Exercise 6...")
-        falling_distance
+        return 6
     elif choice == 7:
         print("Calling... Exercise 7...")
-        rock_paper_scissors()
+        return 7
     elif choice == 8:
         print("Calling... Exercise 8...")
-        modular_snowman()
+        return 8
     elif choice == 9:
         print("Calling... Exercise 9...")
-        checkerboard()
-    
+        return 9
+        
     while runMain == True:
-        runMain = input("Do you want to quit the program? :>")
+        runMain = input("Do you want to quit the program? :> ")
     if runMain == "No" or runMain == "no":
         t.clearscreen()
         main()
