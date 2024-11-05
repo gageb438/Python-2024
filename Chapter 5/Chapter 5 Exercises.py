@@ -260,10 +260,16 @@ def exercise4(): # paint job estimator
         # totals recieves an argument for the squareFeet, and cost of the gallons
         # it finds the total costs of everything
         # returns it all
+
+        # finds the gallons
+        gallons = wallSpace % squareFeet
         
-        
-        
-        
+        # finds if there is extra wallspace
+        extraWallSpace = squareFeet % wallSpace
+
+        if extraWallSpace != 0:
+            gallons += 1
+
         
         
 title()
