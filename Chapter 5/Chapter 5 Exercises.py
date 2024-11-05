@@ -100,7 +100,7 @@ def exercise1(): #sales tax
     
 #==========================
     
-def exercise2():
+def exercise2(): # calories
     # exercise 2 accepts no arguments
     # it asks you for the grams of carbs and grams of fat you consume
     # outputs your calorie intake for the day.
@@ -108,6 +108,7 @@ def exercise2():
     def carbs():
         # carbs accepts no arguments
         # it asks for the amount of carbs you consumed and finds out how many calories that is
+        # it returns the amount of calories they intook today(carbs)
         
         # asks for their intake
         carbIntake = float(input("How many grams of carbs did you consume? : "))
@@ -117,13 +118,14 @@ def exercise2():
             carbIntake = float(input("Enter a valid amount of grams you consumed. :"))
             
         # finds the amount of calories
-        carbCalories = carbIntake * 9
+        carbCalories = carbIntake * 4
         
         return carbCalories
     
     def fat():
         # fat accepts no arguments
         # it asks for the amount of fat you consumed and finds how many calories that was
+        # it returns the amount of calories they intook today(fat)
         
         # asks for their intake
         fatIntake = float(input("How many grams of fat did you consume? : "))
@@ -133,13 +135,14 @@ def exercise2():
             fatIntake = float(input("Enter a valid grams of fat you consumed. : "))
             
         # finds the amount of fat calories
-        fatCalories = fatIntake * 4
+        fatCalories = fatIntake * 9
         
         return fatCalories
     
     def totalIntake(carbCalories, fatCalories):
         # total intake accepts arguments for carbCalories and fatCalories
         # it prints the total carb intake and fat intake with a message.
+        # prints the amount of calories they consumed today
         
         print("Here is your calorie intake for the day.")
         print(f"You consumed {carbCalories} calories worth of carbs today. Nice work...")
@@ -149,8 +152,118 @@ def exercise2():
     carbCalories = carbs()
     fatCalories = fat()
     
+    # passes the amount of carbs and fats to the printing
     totalIntake(carbCalories, fatCalories)
     
+#==========================
     
+def exercise3(): # stadium seating
+    # exercise 3 accepts no arguments
+    # it asks for the amount of class a, b, and c tickets sold
+    # outputs the amount of sales from tickets as a float with 2 decimals
+    
+    def classA():
+        # classA accepts no arguments
+        # it asks for the number of class A tickets sold
+        # it returns the variable for the amount of classA tickets sold
+        
+        # asks for the amount of class A tickets
+        aTickets = int(input("Enter the number of Class A tickets sold: "))
+        
+        # validates
+        while aTickets < 0:
+            aTickets = int(input("Enter a valid number of Class A tickets sold: "))
+            
+        # returns the amount of tickets sold
+        return aTickets
+    
+    def classB():
+        # classB accepts no arguments
+        # it asks for the number of class B tickets sold
+        # it returns the variable for the amount of classB tickets sold.
+        
+        # asks for the amount of classB tickets
+        bTickets = int(input("Enter the number of Class B tickets sold: "))
+        
+        # validates
+        while bTickets < 0:
+            bTickets = int(input("Enter a valid number of ClassB tickets sold: "))
+            
+        # returns the amount of tickets sold
+        return bTickets
+        
+    def classC():
+        # classC accepts no arguments
+        # it asks for the number of classC tickets sold
+        # it returns the variable for the amount of classC tickets sold.
+        
+        # ask for the amount of classC tickets sold
+        cTickets = int(input("Enter the number of Class C tickets sold: "))
+        
+        # validates
+        while cTickets < 0:
+            cTickets = int(input("Enter a valid number of Class C tickets sold: "))
+        
+        # returns
+        return cTickets
+    
+    def sales(aTickets, bTickets, cTickets):
+        # sales accepts an argument for aTickets, bTickets, and cTickets
+        # it calculates the total income sales from tickets
+        # outputs the amount of income from the sales tickets.
+        
+        totalSales = ((aTickets * 20) + (bTickets * 15) + (cTickets * 10))
+        
+        print("The total income sales from tickets is: $", format(totalSales, '.2f'), sep = '')
+
+    aTickets = classA()
+    bTickets = classB()
+    cTickets = classC()
+    
+    # calls sales passing aTickets, bTickets, and cTickets
+    sales(aTickets, bTickets, cTickets)
+
+#==========================
+
+def exercise4(): # paint job estimator
+    # exercise 4 recieves no arguments
+    # it asks for the square feet of paint and how much each gallon of paint is
+    # outputs the total number of paint gallons required, the cost of paint, the labor charges, and
+    # the total cost of the paint job
+    
+    # initialize constants
+    LABORHOURS = 8
+    LABORCOST = 35
+    WALLSPACE = 112
+    
+    def paintRequired():
+        # paintRequired recieves no arguments
+        # asks for the amount of the wall to be paitned
+        # returns the total feet required to be painted
+        
+        squareFeet = float(input("Please enter the total square feet to be painted: "))
+        
+        # returns it
+        return squareFeet
+    
+    def gallonCost():
+        # gallonCost recieves no arguments
+        # it asks for the cost of each gallon of paint
+        # returns the cost
+        
+        cost = float(input("How much is each gallon of paint? : "))
+        
+        # returns
+        return cost
+    
+    def totals():
+        # totals recieves an argument for the squareFeet, and cost of the gallons
+        # it finds the total costs of everything
+        # returns it all
+        
+        
+        
+        
+        
         
 title()
