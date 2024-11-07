@@ -256,20 +256,78 @@ def exercise4(): # paint job estimator
         # returns
         return cost
     
-    def totals():
+    def totals(squareFeet, cost):
         # totals recieves an argument for the squareFeet, and cost of the gallons
         # it finds the total costs of everything
         # returns it all
 
         # finds the gallons
-        gallons = wallSpace % squareFeet
+        gallons = WALLSPACE // squareFeet
         
         # finds if there is extra wallspace
-        extraWallSpace = squareFeet % wallSpace
+        extraWallSpace = squareFeet % WALLSPACE
 
         if extraWallSpace != 0:
-            gallons += 1
+            gallons +=1
+        
+        # finds paint cost, and hour cost and total
+        paintCost = gallons * cost
+        hours = gallons * 8
+        hourCost = hours * 35
+        total = hourCost + paintCost
+        
+        # prints cost
+        print()
+        print(f"The cost breakdown of {squareFeet} square feet is:")
+        print("-------------------------------------------")
+        print(f"Total cost of paint: ${paintCost:,.2f}")
+        print(f"Total labor cost: ${hourCost:,.2f}")
+        print(f"Total cost of the job is: ${total:,.2f}")
+        
+    
+    squareFeet = paintRequired()
+    cost = gallonCost()
+    totals(squareFeet, cost)
 
+#==========================
+
+def exercise5(): # math quiz
+    # math quiz recieves no arguments
+    # math quiz calls get_numbers to get two random numbers, loops while continue = y
+    # outputs the problem to the user and prompts to answer the question.
+    # prompts the user to continue (y/n)
+    
+    def get_numbers():
+        # recieves no arguments
+        # generates and returns two random integers from 1-200
+        # outputs nothing
+        number1 = random.randint(1,200)
+        number2 = random.randint(1,200)
+        
+        return number1, number2
+    
+    # starts the continue loop
+    go = "y"
+
+    while go == "y":
+        number1, number2 = get_numbers()
+        answer = number1 + number2
+        
+        print("Solve:")
+        print()
+        print(f"\t\t{number1}")
+        print(f"+\t\t{number2}")
+        print()
+        question = float(input("Answer: "))
+        
+        # finds if the answer is correct or not
+        if question == answer:
+            print("Correct!")
+        else:
+            print(f"Incorrect, the answer was {answer}")
+        
+        print()
+        go = input("Do you want another problem (y/n) : ")
         
         
 title()
