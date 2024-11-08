@@ -329,6 +329,70 @@ def exercise5(): # math quiz
         print()
         go = input("Do you want another problem (y/n) : ")
         
+#==========================
+        
+def exercise6(): # falling distance
+    # exercises 6 recieves no arguments
+    # it finds the distance an object will fall for 10 seconds.
+    # outputs the distance an object will fall for 10 seconds
+    
+    # initialize variable
+    SECONDS = 10
+    
+    def time_loop(seconds):
+        # time loop recieves seconds
+        # loops 1-10 calls falling_distance passing time, 1-10 in seconds
+        # outputs a table with each second and how far the object fell in that second.
+        
+        for time in range(1, seconds + 1):
+            distance = falling_distance(time)
+            print(f"{time} sec \t\t {distance:.2f}m")
+            
+    def falling_distance(time):
+        # recieves time
+        # calculates the distance fallen and returns distance
+        # outputs nothing
+        distance = .5 * 9.8 * time ** 2
+        
+        # returns
+        return distance
+    
+    # prints header
+    print(f"Here is the distance an object will fall for {SECONDS} seconds.")
+    print("-------------------------------------------------------------------")
+
+    
+    time_loop(SECONDS)
+
+#==========================
+
+def exercise7(): # rock, paper, scissors, lizard, spock
+    # exercise 7 recieves no arguments
+    # it calls game to run the game.
+    # outputs the winner and requests to play again
+    
+    def game():
+        # game recieves no arguments
+        # calls comp_choice, player_choice, and winner to play the game
+        # outputs a greeting, each player's weapon, and prompts to continue.
+        
+        def comp_choice():
+            # comp_choice recieves no arguments
+            # chooses a random integer 1-5 and returns the integer
+            # outputs nothing
+            
+            computer_weapon = random.randint(1,5)
+            
+            return computer_weapon
+        
+        def player_choice():
+            # player choice recieves no arguments
+            # it prompts the user for their weapon and returns the weapon
+            # outputs choose your weapon. (rock, paper, scissors, lizard, spock)
+            
+            player_weapon = input("Type your weapon of choice (rock, paper, scissors, lizard, spock) : ")
+            
+            return player_weapon.lower()
         
         def winner(computer_weapon, player_weapon):
             # winner recieves computer_weapon and player_weapon
