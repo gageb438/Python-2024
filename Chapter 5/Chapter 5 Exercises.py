@@ -330,4 +330,31 @@ def exercise5(): # math quiz
         go = input("Do you want another problem (y/n) : ")
         
         
+        def winner(computer_weapon, player_weapon):
+            # winner recieves computer_weapon and player_weapon
+            # determines the winner
+            # outputs who won
+            
+            # creates computer weapon
+            if computer_weapon == 1:
+                computer_weapon = "rock"
+            elif computer_weapon == 2:
+                computer_weapon = "paper"
+            elif computer_weapon == 3:
+                computer_weapon = "scissors"
+            elif computer_weapon == 4:
+                computer_weapon = "lizard"
+            elif computer_weapon == 5:
+                computer_weapon = "spock"
+            
+            # finds who won
+            if computer_weapon == player_weapon:
+                winner = "tie"
+            
+                
+        computer_weapon = comp_choice()
+        player_weapon = player_choice()
+        winner(computer_weapon, player_weapon)
+    game()
+    
 title()
