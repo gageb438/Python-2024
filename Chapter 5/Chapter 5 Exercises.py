@@ -410,12 +410,17 @@ def exercise7(): # rock, paper, scissors, lizard, spock
                 computer_weapon = "lizard"
             elif computer_weapon == 5:
                 computer_weapon = "spock"
+
+            # prints what the player chose
+            print(f{"You chose... {player_weapon}.")
+            print(f{"Computer chose... {computer_weapon}.")
             
             # finds who won
-            if computer_weapon == player_weapon:
-                winner = "tie"
+            if player_weapon == computer_weapon:
+                print("It's a tie!")
+            elif player_weapon == 'rock' and computer_weapon == 'scissors' or 'lizard':
+                print(f"You win! {player_weapon} crushes {computer_weapon}")
             
-                
         computer_weapon = comp_choice()
         player_weapon = player_choice()
         winner(computer_weapon, player_weapon)
