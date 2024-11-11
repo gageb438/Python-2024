@@ -412,18 +412,65 @@ def exercise7(): # rock, paper, scissors, lizard, spock
                 computer_weapon = "spock"
 
             # prints what the player chose
-            print(f{"You chose... {player_weapon}.")
-            print(f{"Computer chose... {computer_weapon}.")
+            print()
+            print("You chose... ", player_weapon, ".", sep = '')
+            print()
+            print("Computer chose... ", computer_weapon, ".", sep = '')
+            print()
             
             # finds who won
             if player_weapon == computer_weapon:
                 print("It's a tie!")
             elif player_weapon == 'rock' and computer_weapon == 'scissors' or 'lizard':
                 print(f"You win! {player_weapon} crushes {computer_weapon}")
+            elif player_weapon == 'rock' and computer_weapon == 'paper':
+                print("You lose. Paper covers rock.")
+            elif player_weapon == 'rock' and computer_weapon == 'spock':
+                print("You lose. Spock vaporizes rock.")
+            elif player_weapon == 'paper' and computer_weapon == 'rock':
+                print("You win! Paper covers rock.")
+            elif player_weapon == 'paper' and computer_weapon == 'spock':
+                print("You win! Paper disproves spock.")
+            elif player_weapon == 'paper' and computer_weapon == 'scissors':
+                print("You lose. Scissors cuts paper.")
+            elif player_weapon == 'paper' and computer_weapon == 'lizard':
+                print("You lose. Lizard eats paper.")
+            elif player_weapon == 'scissors' and computer_weapon == 'rock':
+                print("You lose. Rock crushes paper.")
+            elif player_weapon == 'scissors' and computer_weapon == 'paper':
+                print("You win! Scissors cuts paper.")
+            elif player_weapon == 'scissors' and computer_weapon == 'lizard':
+                print("You win! Scissors decapitates lizard.")
+            elif player_weapon == 'scissors' and computer_weapon == 'spock':
+                print("You lose. Spock smashes scissors.")
+            elif player_weapon == 'lizard' and computer_weapon == 'rock':
+                print("You lose. Rock crushes lizard.")
+            elif player_weapon == 'lizard' and computer_weapon == 'paper':
+                print("You win! Lizard eats paper.")
+            elif player_weapon == 'lizard' and computer_weapon == 'scissors':
+                print("You lose. Scissors decapitates lizard.")
+            elif player_weapon == 'lizard' and computer_weapon ==  'spock':
+                print("You win! Lizard poisons spock.")
+            elif player_weapon == 'spock' and computer_weapon == 'rock':
+                print("You win! Spock vaporizes rock.")
+            elif player_weapon == 'spock' and computer_weapon == 'paper':
+                print("You lose. Paper disproves spock.")
+            elif player_weapon == 'spock' and computer_weapon == 'scissors':
+                print("You win! Spock smashes scissors.")
+            elif player_weapon == 'spock' and computer_weapon == 'lizard':
+                print("You lose. Lizard poisons spock.")
+            else:
+                print("The computer wins! You entered an invalid weapon. Cheater!")
             
+            print()
+            play = input("Would you like to play again?(y/n) :> ")
+            
+            while play == 'y':
+              game()
         computer_weapon = comp_choice()
         player_weapon = player_choice()
         winner(computer_weapon, player_weapon)
     game()
+exercise7()
     
 title()
