@@ -421,8 +421,10 @@ def exercise7(): # rock, paper, scissors, lizard, spock
             # finds who won
             if player_weapon == computer_weapon:
                 print("It's a tie!")
-            elif player_weapon == 'rock' and computer_weapon == 'scissors' or 'lizard':
-                print(f"You win! {player_weapon} crushes {computer_weapon}")
+            elif player_weapon == 'rock' and computer_weapon == 'scissors':
+                print(f"You win! Rock crushes scissors.")
+            elif player_weapon == 'rock' and computer_weapon == 'lizard':
+                print("You win! Rock crushes lizard.")
             elif player_weapon == 'rock' and computer_weapon == 'paper':
                 print("You lose. Paper covers rock.")
             elif player_weapon == 'rock' and computer_weapon == 'spock':
@@ -465,12 +467,11 @@ def exercise7(): # rock, paper, scissors, lizard, spock
             print()
             play = input("Would you like to play again?(y/n) :> ")
             
-            while play == 'y':
+            if play == 'y':
               game()
         computer_weapon = comp_choice()
         player_weapon = player_choice()
         winner(computer_weapon, player_weapon)
     game()
-exercise7()
     
 title()
