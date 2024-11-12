@@ -3,6 +3,7 @@ import menu
 import math
 import random
 import my_graphics
+import turtle
 
 #==========================
 
@@ -474,4 +475,51 @@ def exercise7(): # rock, paper, scissors, lizard, spock
         winner(computer_weapon, player_weapon)
     game()
     
+#==========================   
+
+def exercise8():
+    # exercise 8 recieves no arguments
+    # it handles the snowman drawing functions
+    # outputs a snowman
+    
+    def drawSnowman():
+        # recieves no arguments
+        # main function to call all other functions
+        # outputs nothing
+        
+        def drawBase():
+            # drawBase recieves no arguments
+            # draws the base of the snowman
+            # outputs the bottom most large circle.
+            my_graphics.circle(0, -150, 150, 'red')
+            
+        def drawMidSection():
+            # drawMidSection recieves no arguments
+            # draws the mid section of the snowman
+            # outputs the second largest circle on top of the first
+            my_graphics.circle(0, 0, 125, 'red')
+        def drawArms():
+            # drawArms recieves no arguments
+            # draws the arms of the snowman
+            # outputs seven total lines depicting arms
+            pass
+        def drawHead():
+            # draw head recieves no arguments
+            # draws the head for the snowman with the eyes
+            # outputs a smaller circle on top of the middle circle. Two filled circles for eyes
+            my_graphics.circle(0, 150, 100, 'red')
+            pass
+        def drawHat():
+            # drawHat recieves no arguments
+            # draws the hat for the snowmal
+            # two rectangular shapes filled to depict a hat
+            pass
+        turtle.speed(150)
+        drawBase()
+        drawMidSection()
+        drawArms()
+        drawHead()
+        turtle.done()
+        
+    drawSnowman()
 title()
