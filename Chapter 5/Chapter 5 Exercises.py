@@ -491,6 +491,7 @@ def exercise8():
             # drawBase recieves no arguments
             # draws the base of the snowman
             # outputs the bottom most large circle.
+            turtle.pencolor('black')
             my_graphics.circle(0, -150, 150, 'red')
             
         def drawMidSection():
@@ -498,23 +499,32 @@ def exercise8():
             # draws the mid section of the snowman
             # outputs the second largest circle on top of the first
             my_graphics.circle(0, 0, 125, 'red')
+            
         def drawArms():
             # drawArms recieves no arguments
             # draws the arms of the snowman
             # outputs seven total lines depicting arms
-            pass
+            my_graphics.line(-113, 50, -250, -30, 'brown')
+            my_graphics.line(-250, -30, -280, 10, 'brown')
+            my_graphics.line(-250, -30, -220, -50, 'brown')
+            my_graphics.line(113, 50, 250, -30, 'brown')
+            my_graphics.line(250, -30, 280, 10, 'brown')
+            my_graphics.line(250, -30, 220, -50, 'brown')
+            my_graphics.line(250, -30, 270, -40, 'brown')
+            turtle.pencolor('black')
+            
         def drawHead():
             # draw head recieves no arguments
             # draws the head for the snowman with the eyes
             # outputs a smaller circle on top of the middle circle. Two filled circles for eyes
             my_graphics.circle(0, 150, 100, 'red')
-            pass
+            
         def drawHat():
             # drawHat recieves no arguments
             # draws the hat for the snowmal
             # two rectangular shapes filled to depict a hat
             pass
-        turtle.speed(150)
+        turtle.speed(50)
         drawBase()
         drawMidSection()
         drawArms()
