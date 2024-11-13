@@ -26,7 +26,20 @@ def square(x, y, width, color):
         turtle.forward(width)
         turtle.left(90)
     turtle.end_fill()
-    
+
+def rectangle(x,y, topWidth, sideWidth, color):
+    # rectangle accepts an argument for the x,y, topWidth, sideWidth, and color
+    # it draws a rectangle using these arguments
+    turtle.penup()
+    turtle.goto(x,y)
+    turtle.fillcolor(color)
+    turtle.pendown()
+    turtle.begin_fill()
+    for count in range(2):
+      turtle.forward(topWidth)
+      turtle.left(90)
+      turtle.forward(sideWidth)
+    turtle.endfill()
 
 def line(startX, startY, endX, endY, color):
     # line accepts arguments for startx, starty, endx, endy, and color
