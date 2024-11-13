@@ -498,7 +498,7 @@ def exercise8():
             # drawMidSection recieves no arguments
             # draws the mid section of the snowman
             # outputs the second largest circle on top of the first
-            my_graphics.circle(0, 0, 125, 'red')
+            my_graphics.circle(0, 120, 125, 'red')
             
         def drawArms():
             # drawArms recieves no arguments
@@ -517,7 +517,7 @@ def exercise8():
             # draw head recieves no arguments
             # draws the head for the snowman with the eyes
             # outputs a smaller circle on top of the middle circle. Two filled circles for eyes
-            my_graphics.circle(0, 150, 100, 'red')
+            my_graphics.circle(0, 330, 100, 'red')
             
         def drawHat():
             # drawHat recieves no arguments
@@ -532,4 +532,38 @@ def exercise8():
         turtle.done()
         
     drawSnowman()
+    
+#==========================
+    
+def exercise9():
+    # exercise 9 recieves no arguments
+    # it draws a checkerboard
+    # outputs a checkerboard
+    
+    # initialize variables
+    SQUAREWIDTH = 100
+    WIDTH = 5
+    HEIGHT = 5
+    isBlack = True
+    squareX = -500
+    squareY = 500
+    turtle.speed = 180
+    # setup turtle
+    turtle.setup(1500,1500)
+    for height in range(HEIGHT):
+        for width in range(WIDTH):
+            if isBlack == True:
+                my_graphics.square(squareX,squareY, SQUAREWIDTH, 'black')
+                squareX = squareX + SQUAREWIDTH
+                isBlack = False
+            else:
+                my_graphics.square(squareX,squareY, SQUAREWIDTH, 'white')
+                squareX = squareX + SQUAREWIDTH
+                isBlack = True
+        
+        squareX = squareX - (SQUAREWIDTH * WIDTH)
+        squareY = squareY - SQUAREWIDTH
+            
+    turtle.done()
+    
 title()
