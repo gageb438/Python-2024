@@ -12,7 +12,7 @@ def title():
     # it handles the menu
     
     # calls menu
-    choice = menu.main()
+    choice = menu.main(9)
     # calls exercise
     if choice == 1:
         exercise1()
@@ -492,43 +492,64 @@ def exercise8():
             # draws the base of the snowman
             # outputs the bottom most large circle.
             turtle.pencolor('black')
-            my_graphics.circle(0, -150, 150, 'red')
+            my_graphics.circle(0, -150, 150, 'blue')
             
         def drawMidSection():
             # drawMidSection recieves no arguments
             # draws the mid section of the snowman
             # outputs the second largest circle on top of the first
-            my_graphics.circle(0, 120, 125, 'red')
+            my_graphics.circle(0, 120, 125, 'blue')
             
         def drawArms():
             # drawArms recieves no arguments
             # draws the arms of the snowman
             # outputs seven total lines depicting arms
-            my_graphics.line(-113, 50, -250, -30, 'brown')
-            my_graphics.line(-250, -30, -280, 10, 'brown')
-            my_graphics.line(-250, -30, -220, -50, 'brown')
-            my_graphics.line(113, 50, 250, -30, 'brown')
-            my_graphics.line(250, -30, 280, 10, 'brown')
-            my_graphics.line(250, -30, 220, -50, 'brown')
-            my_graphics.line(250, -30, 270, -40, 'brown')
+            my_graphics.line(-113, 170, -250, 110, 'brown')
+            my_graphics.line(-250, 110, -280, 10, 'brown')
+            my_graphics.line(-250, 110, -270, 160, 'brown')
+            my_graphics.line(113, 170, 250, 60, 'brown')
+            my_graphics.line(250, 60, 280, 130, 'brown')
+            my_graphics.line(250, 60, 220, 120, 'brown')
+            my_graphics.line(250, 60, 270, -40, 'brown')
             turtle.pencolor('black')
             
         def drawHead():
             # draw head recieves no arguments
             # draws the head for the snowman with the eyes
             # outputs a smaller circle on top of the middle circle. Two filled circles for eyes
-            my_graphics.circle(0, 330, 100, 'red')
+            my_graphics.circle(0, 330, 100, 'blue')
             
         def drawHat():
             # drawHat recieves no arguments
             # draws the hat for the snowmal
             # two rectangular shapes filled to depict a hat
-            pass
+            my_graphics.rectangle(-75,430, 150, 40, 'red')
+            my_graphics.rectangle(27,470, -150, -60, 'red')
+        
+        def drawFace():
+            # draw face recieves no arguments
+            # draws a mouth and a corncomb pipe with smoke billowing out
+            # outputs a line for the mouth, a filled square attached to a line
+            # attached to the mouth for the pipe
+            # loop to create gray smoke billowing out of the pipe with a thicker pen size
+            my_graphics.circle(-50, 375, 10, 'black')
+            my_graphics.circle(50, 375, 10, 'black')
+            my_graphics.line(-60, 290, 60, 290, 'black')
+            my_graphics.line(40, 290, 150, 155, 'brown')
+            my_graphics.square(160,165, 10, 'brown')
+            turtle.pensize(10)
+            turtle.setheading(90)
+            for swirl in range(4):
+                turtle.left(20)
+                turtle.forward(10)
+                               
         turtle.speed(50)
         drawBase()
         drawMidSection()
         drawArms()
         drawHead()
+        drawHat()
+        drawFace()
         turtle.done()
         
     drawSnowman()

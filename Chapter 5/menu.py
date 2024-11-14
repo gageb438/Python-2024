@@ -15,7 +15,7 @@ def main(exercise):
     # output the menu
     print()
     print("Choose a program from the following options.")
-    for exerciseNumber in range(exercise):
+    for exerciseNumber in range(exercise + 1):
         print(f"{exerciseNumber}: Exercise {exerciseNumber}")
     
     # get input for the user choice
@@ -29,4 +29,3 @@ def main(exercise):
     return choice
 
 #==========================
-main(9)

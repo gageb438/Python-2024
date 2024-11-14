@@ -35,11 +35,15 @@ def rectangle(x,y, topWidth, sideWidth, color):
     turtle.fillcolor(color)
     turtle.pendown()
     turtle.begin_fill()
-    for count in range(2):
-      turtle.forward(topWidth)
-      turtle.left(90)
-      turtle.forward(sideWidth)
-    turtle.endfill()
+    turtle.forward(topWidth)
+    turtle.left(90)
+    turtle.forward(sideWidth)
+    turtle.left(90)
+    turtle.forward(topWidth)
+    turtle.left(90)
+    turtle.forward(sideWidth)
+        
+    turtle.end_fill()
 
 def line(startX, startY, endX, endY, color):
     # line accepts arguments for startx, starty, endx, endy, and color
