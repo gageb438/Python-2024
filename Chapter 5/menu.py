@@ -14,15 +14,19 @@ def main(exercise):
     
     # output the menu
     print()
+    print("Choose a program from the following options.")
     for exerciseNumber in range(exercise):
         print(f"{exerciseNumber}: Exercise {exerciseNumber}")
     
     # get input for the user choice
     choice = int(input(":> "))
-    while choice < 1 or choice > exercise
+    while choice < 1 or choice > exercise:
         choice = int(input(":> "))
+    print()
         
     print(f"Calling... Exercise {choice}...")
+    print()
     return choice
 
 #==========================
+main(9)
