@@ -118,3 +118,6 @@ def strip_newline(): #program6-5
     print(line1)
     print(line2)
     print(line3)
+
+#==========================
+    
