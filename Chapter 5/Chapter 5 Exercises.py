@@ -536,13 +536,23 @@ def exercise8():
             my_graphics.circle(50, 375, 10, 'black')
             my_graphics.line(-60, 290, 60, 290, 'black')
             my_graphics.line(40, 290, 150, 155, 'brown')
-            my_graphics.square(160,165, 10, 'brown')
-            turtle.pensize(10)
+            turtle.setheading(45)
+            my_graphics.square(150,155, 10, 'brown')
+            turtle.pensize(5)
             turtle.setheading(90)
-            for swirl in range(4):
-                turtle.left(20)
-                turtle.forward(10)
-                               
+            turtle.penup()
+            turtle.forward(15)
+            turtle.pendown()
+            
+            turtle.pencolor('gray')
+            for circle in range(3):
+                for swirl in range(4):
+                    turtle.right(5)
+                    turtle.forward(10)
+                
+                for swirl in range(8):
+                  turtle.left(45)
+                  turtle.forward(5)                               
         turtle.speed(50)
         drawBase()
         drawMidSection()
