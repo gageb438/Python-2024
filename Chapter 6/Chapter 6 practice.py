@@ -105,14 +105,9 @@ def strip_newline(): #program6-5
     infile = open('lotr.txt', 'r')
     
     # reads the lines
-    line1 = infile.readline()
-    line2 = infile.readline()
-    line3 = infile.readline()
-    
-    # strips them of their '\n'
-    line1 = line1.rstrip('\n')
-    line2 = line2.rstrip('\n')
-    line3 = line3.rstrip('\n')
+    line1 = infile.readline().rstrip('\n')
+    line2 = infile.readline().rstrip('\n')
+    line3 = infile.readline().rstrip('\n')
     
     # prints them
     print(line1)
