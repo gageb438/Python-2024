@@ -116,3 +116,29 @@ def strip_newline(): #program6-5
 
 #==========================
     
+def writeNamesMod(): # program6-6
+    # writeNames accepts no arguments
+    # it prompts the user for the names of three friends
+    # and assigns each name to a unique variable
+    # it opens friends.txt and writes each name to the file
+    # on it's own line in the file
+    
+    print("Please enter the names of three friends.")
+    
+    # asks for the names
+    friend1 = input("Friend 1: ")
+    friend2 = input("Friend 2: ")
+    friend3 = input("Friend 3: ")
+    
+    # opens the file
+    friendsFile = open('friends.txt', 'a')
+    
+    # writes the names
+    friendsFile.write(friend1 + '\n')
+    friendsFile.write(friend2 + '\n')
+    friendsFile.write(friend3 + '\n')
+    
+    # closes the file
+    friendsFile.close()
+    
+    print("Names successfully written to 'friends.txt'")
