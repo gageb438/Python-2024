@@ -116,7 +116,7 @@ def strip_newline(): #program6-5
 
 #==========================
     
-def writeNamesMod(): # program6-6
+def writeNamesMod(): # program6-5 md
     # writeNames accepts no arguments
     # it prompts the user for the names of three friends
     # and assigns each name to a unique variable
@@ -142,3 +142,178 @@ def writeNamesMod(): # program6-6
     friendsFile.close()
     
     print("Names successfully written to 'friends.txt'")
+    
+#==========================
+
+def writeNumbers(): # program 6-6
+    # write numbers accepts no arguments
+    # it takes input from the user in the form of three integers
+    # it opens the file numbers.txt
+    # and writes the three numbers to the file as strings
+    
+    # asks for the numbers
+    num1 = int(input("Please enter a number: "))
+    num2 = int(input("Please enter a number: "))
+    num3 = int(input("Please enter a number: "))
+    
+    # opens the file
+    numbersFile = open('numbers.txt', 'w')
+    
+    numbersFile.write(str(num1) + '\n')
+    numbersFile.write(str(num2) + '\n')
+    numbersFile.write(str(num3) + '\n')
+    
+    # closes the file
+    numbersFile.close()
+    
+    print("Your numbers have been written to numbers.txt")
+    
+#==========================
+    
+def readNumbers(): # program6-7
+    # read numbers accepts no arguments
+    # it opens the file numbers.txt and reads in each line
+    # converting each from a string to an integer
+    # it totals and outputs the three numbers and their total
+    
+    # open the file
+    infile = open("numbers.txt", 'r')
+    
+    # read in the numbers and convert to an int
+    num1 = int(infile.readline())
+    num2 = int(infile.readline())
+    num3 = int(infile.readline())
+    
+    # close the file
+    infile.close()
+    
+    # perform calculations and output the result
+    total = num1 + num2 + num3
+    
+    print(f"Here is your problem: {num1} + {num2} + {num3} = {total}")
+    
+#==========================
+    
+def writeSales(): # program 6-8
+    # write sales accepts no arguments
+    # it prompts the user for the number of days for to input sales
+    # for each iteration it writes the sale to the file sales.txt
+    # after all days have been processed
+    # it closes the file and outputs a message
+    
+    days = int(input("How many days do you want to enter the sales for? :> "))
+    
+    # open the file
+    salesFile = open('sales.txt', 'w')
+    
+    for dayCounter in range(1, days + 1):
+        daySale = input(f"Enter the sales for day #{dayCounter} :> ")
+        salesFile.write(daySale + '\n')
+        
+    # close the file
+    salesFile.close()
+    
+    print("All data has been saved to sales.txt.")
+    
+#==========================
+    
+def readSales(): # program 6-9
+    # readSales accepts no argument
+    # it opens and reads from sales.txt
+    # it loops until it reaches the end of the file
+    # each iteration of the loop will output the amount
+    # and read the next line
+    
+    # open the file
+    salesFile = open("sales.txt", 'r')
+    
+    # read the first line
+    line = salesFile.readline()
+    
+    # loop while the line isnt blank
+    while line != '':
+        amount = float(line)
+        
+        # print the amount
+        print(f"${amount:,.2f}")
+        
+        line = salesFile.readline()
+        
+    # close the file
+    salesFile.close()
+    
+#==========================
+    
+def readSales2(): # program 6-10
+    # read sales accepts no arguments
+    # it opens and reads from sales.txt
+    # it loops for each line in the file
+    # and outputs the line
+    
+    # open the file
+    salesFile = open("sales.txt", 'r')
+    
+    for line in salesFile:
+        # make it a float
+        amount = float(line)
+        
+        # output the amount
+        print(f"${amount:,.2f}")
+    
+    # close the file
+    salesFile.close()
+    
+#==========================
+    
+def writeVideoTimes(): # program 6-11
+    # writevideoTimes accepts no arguments
+    # it asks the user for how many videos are in the project and how long the video is
+    # it loops for the total videos
+    # writes the length to a file
+    # writes all to video_times
+    
+    videos = int(input("How many videos are in the project? :> "))
+    
+    # opens the file videoTimes
+    videoTimes = open("videoTimes.txt", 'w')
+    
+    for video in range(1, videos + 1):
+        time = input(f"Enter the time for video #{video}: ")
+        
+        # write the time
+        videoTimes.write(time + '\n')
+        
+    # close the file
+    videoTimes.close()
+    
+    # prints closing statement
+    print("All times have been written to videoTimes.txt.")
+
+#==========================
+    
+def readVideoTimes(): # progrma 6-12
+    # readVideoTimes accpets no arguments
+    # it reads each line from videoTimes.txt
+    # it outputs the times of the videos and the total running time of all seconds
+    
+    # initialize variable
+    total = 0
+    lineNumber = 0
+    
+    # open the file
+    videoTimes = open("videoTimes.txt", 'r')
+    
+    for line in videoTimes:
+        # makes the number a float
+        time = float(line)
+        
+        lineNumber = lineNumber + 1
+        # adds to the total
+        total = total + time
+        
+        print(f"Video #{lineNumber} time: {time} seconds")
+        
+    print(f"Total running time of all videos is {total} seconds.")
+    
+#==========================
+    
