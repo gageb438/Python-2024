@@ -1,4 +1,4 @@
-import io
+import os
 
 #---------- coffee shop menu ----------
 def coffee_shop_menu():
@@ -44,7 +44,7 @@ def main(): # program 2-16 - 6-19
             read_coffee()
         elif choice == 5:
             search_coffee()
-        choice == int(coffee_shop_menu())
+        choice = int(coffee_shop_menu())
     print("Thank you for using the Caffeine Overload Inventory Control System. Have a great day.")
     
 #--------- write a record ----------
@@ -101,5 +101,129 @@ def read_coffee(): #program 6-16
     # close the file
     coffee_file.close()
     print("All records read.")
+       
+#-------- search for records ---------
+def search_coffee(): # program 6-17
+    # search coffee accepts no arguments
+    # it searches coffee.txt for a string the user enters
+    # if no record matches, it outputs a message to the user
+    
+    # initialize a boolean flag variable
+    found = False
+    
+    # get input from the user
+    search = input("Enter a coffee name to search for: ")
+    
+    # open coffee.txt to read
+    coffee_file = open("coffee.txt", "r")
+    
+    # get the first description to prime the loop
+    desc = coffee_file.readline()
+    
+    while desc != "":
+        # read the next line, pounds
+        pounds = coffee_file.readline()
         
+        # strip new line from description
+        desc = desc.rstrip("\n")
+        
+        # check if desc == search string
+        if desc.lower() == search.lower():
+            print("\n---Record Found---")
+            print(f"Description: {desc}")
+            print(f"Pounds: {pounds}")
+            found = True
+            break
+        
+        # get the next description
+        desc = coffee_file.readline()
+    
+    # close the file
+    coffee_file.close()
+    
+    if not found: # if found == false
+        print("\nThe record was not found.")
+    
+#---------- change a record ---------
+def modify_coffee(): # program 6-18
+    # modify coffee accepts no arguments
+    # it imports the os module - this is needed to perform OS related file commands
+    # it searches through the records and allows the user to modify the quantity
+    
+    # boolean flag variable
+    found = False
+    
+    # get inputs from the user
+    search = input("Enter the coffee description to modify: ")
+    newQty = input("Enter the new quantity (in pounds): ")
+    
+    # open coffee.txt to read and a new temporary file to write
+    coffee_file = open("coffee.txt", "r")
+    temp_file = open("temp.txt.", "w")
+    
+    # read the first description to prime the loop
+    desc = coffee_file.readline()
+    
+    # loop to read and process each record
+    while desc != "":
+        qty = coffee_file.readline()
+        
+        # strip newline
+        desc = desc.rstrip("\n")
+        qty = qty.rstrip("\n")
+        
+        if search.lower() == desc.lower(): # coffee found, add it and new qty to the temp file
+            # write the description to temp.txt
+            temp_file.write(desc + "\n")
+            temp_file.write(qty + "\n")
+            found = True
+            break
+        else: # not the coffee you are looking, write original description and original qty to temp file
+            temp_file.write(desc + "\n")
+            temp_file.write(qty + "\n")
+            
+        # read the next description
+        desc = coffee_file.readline()
+        
+    # close both files
+    coffee_file.close()
+    temp_file.close()
+    
+    # delete the original coffee.txt
+    os.remove("coffee.txt")
+    
+    #rename the temp file to coffee.txt
+    os.rename("temp.txt", "coffee.txt")
+    
+    # description not found
+    if found == False:
+        print("\nRecord not found.")
+    else:
+        print(f"The quantity for {search} has been updated to {newQty} pounds.")
+
+#--------- delete a record --------
+def delete_coffee(): # program 6-19
+    # delete coffee accepts no arguments
+    # it opens the file coffee.txt and searches for a string to delete
+    # it writes every other record to a temp file
+    # then deletes the old file and renames temp.txt to coffee.txxt
+    
+    # set a boolean flag
+    found = False
+    
+    # get the search description
+    search = input("Enter the coffee description to delete: ")
+    
+    # open coffee.txt and temp.txt
+    coffee_file = open("coffee.txt", "r")
+    temp_file = open("temp.txt", "w")
+    
+    # read the first description to prime the loop
+    desc = coffee_file.readline()
+    
+    # loop while there is input
+    while desc != "":
+        qty = coffee_file.readline()
+        
+
 main()
