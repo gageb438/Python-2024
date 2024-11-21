@@ -82,9 +82,19 @@ def read_coffee(): #program 6-16
     # read_coffee accepts no arguments
     # it loops to readf the records in coffee.txt
     # and ouputs the description and pounds of coffee
-    
+
+    # prints spacer
+    print()
+   
+    # validate the file exists
     # open coffee.txt and read the first description
-    coffee_file = open("coffee.txt", 'r')
+    if os.path.exists("coffee.txt"):
+        coffee_file = open("coffee.txt", 'r')
+    
+    else:
+        print("File not found!")
+        return
+    
     desc = coffee_file.readline()
     
     while desc != "":
@@ -175,9 +185,8 @@ def modify_coffee(): # program 6-18
         if search.lower() == desc.lower(): # coffee found, add it and new qty to the temp file
             # write the description to temp.txt
             temp_file.write(desc + "\n")
-            temp_file.write(qty + "\n")
+            temp_file.write(newQty + "\n")
             found = True
-            break
         else: # not the coffee you are looking, write original description and original qty to temp file
             temp_file.write(desc + "\n")
             temp_file.write(qty + "\n")
@@ -193,7 +202,7 @@ def modify_coffee(): # program 6-18
     os.remove("coffee.txt")
     
     #rename the temp file to coffee.txt
-    os.rename("temp.txt", "coffee.txt")
+    os.rename('temp.txt', 'coffee.txt')
     
     # description not found
     if found == False:
@@ -225,5 +234,31 @@ def delete_coffee(): # program 6-19
     while desc != "":
         qty = coffee_file.readline()
         
+        # strip the newline from the input
+        desc = desc.rstrip('\n')
+        qty = qty.rstrip('\n')
+        
+        if search.lower() != desc.lower(): # this is not hte record you are looking for
+            temp_file.write(desc + "\n")
+            temp_file.write(qty + "\n")
+        else:
+            found = True
+            
+        # get the next description
+        desc = coffee_file.readline()
+        
+    # all the records have been red, close the files
+    coffee_file.close()
+    temp_file.close()
+    
+    # delete the original and rename the old one
+    os.remove("coffee.txt")
+    os.rename("temp.txt", "coffee.txt")
+    
+    # output results ot the user
+    if not found:
+        print("Record not found.")
+    else:
+        print(f"{search} has been delete from coffee.txt.")
 
 main()
