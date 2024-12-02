@@ -317,3 +317,87 @@ def readVideoTimes(): # progrma 6-12
     
 #==========================
     
+def crash():
+    # crash accepts no arugments
+    # it tries to perform division by 0
+    
+    numerator = int("12a")
+    denominator = 0
+    
+    # perform division
+    total = numerator / denominator
+    
+    print(total)
+    
+#==========================
+
+def gross_pay1(): # progrma 6-22
+    # gross pay 1 accepts no arguments
+    # it prompts the user for hours worked and hourly pay
+    # it calculates the gross pay = hours * rate and outputs the result
+    
+    try:
+        # get input from the user
+        hours = int(input("Enter the number of hours worked: "))
+        rate = float(input("Enter the pay rate: "))
+        
+        pay = hours * rate
+        
+        print(f"Gross pay: ${pay:,.2f}")
+    except ValueError as err:
+        print(f"Error: {err}")
+        print("ERROR: Hours worked and hourly rate must be vaid integers. ")
+        
+#==========================
+        
+def display_file1(): #program 6-24
+    # display file 1 accepts no arguments
+    # takes input from the user for a filename to open
+    # and reads the contents of the file
+    
+    # get input from the user
+    filename = input("Enter the filename to open: ")
+    
+    try:
+        # opens the file and read the contents
+        infile = open(filename, 'r')
+        contents = infile.read()
+        
+        # output and close the file
+        print(contents)
+        infile.close()
+    except IOError:
+        print("File does not exist.")
+
+#==========================
+        
+def sales_report1():
+    # sales report 1 accepts no arguments
+    # it opens a file sales_data.txt to read
+    # it accumulates the total for each line in the file
+    
+    # initialize the total
+    total = 0
+    
+    try:
+        # open the file
+        sales_data = open("sales_data.txt", "r")
+        
+        # loop for each line and accumulate the valu
+        for line in sales_data:
+            amount = float(line)
+            total += amount
+        
+        # close thew file
+        sales_data.close()
+        
+        # output the data
+        print(format(total, ",.2f"))
+        
+    except IOError:
+        print("ERROR: An error occured trying to read the file.")
+    except ValueError:
+        print("ERROR: Non-numeric data found, calculations haulted.")
+    # catch final exceptions
+    except:
+        print("ERROR: A problem was encountered")
