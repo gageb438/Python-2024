@@ -20,11 +20,11 @@ def menu(exercise):
     print("0: Exit")
     # get input for the user choice
     choice = int(input(":> "))
-    while choice < 1 or choice > exercise:
+    while choice < 0 or choice > exercise:
         choice = int(input(":> "))
     print()
-        
-    print(f"Calling... Exercise {choice}...")
+    if choice > 0:
+        print(f"Calling... Exercise {choice}...")
     print()
     return choice
 

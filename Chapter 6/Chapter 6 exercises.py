@@ -1,6 +1,7 @@
 # imports
 import menu
 import os
+import random
 
 def main():
     # menu recieves no arguments
@@ -20,12 +21,16 @@ def main():
 
     if choice == 1:
         line_numbers()
+        main()
     elif choice == 2:
         line_counter()
+        main()
     elif choice == 3:
         average_numbers()
+        main()
     elif choice == 4:
         random_number_write()
+        
     elif choice == 5:
         random_number_read()
     elif choice == 6:
@@ -36,7 +41,7 @@ def main():
         average_steps()
     elif choice == 0:
         print("Goodbye.")
-
+        
 def line_numbers(): #exercise 3
     # line numbers recieve no arguments
     # it asks the user for the name of a file
@@ -84,6 +89,7 @@ def line_counter(): #exercise 4
     
     # print the amount of lines
     print(f"{name} contains {counter} lines.")
+    
 def average_numbers(): #exercise 6
     # average numbers recieves no arguments
     # it opens the file numbers.txt to read
@@ -101,10 +107,49 @@ def average_numbers(): #exercise 6
         print(counter)
     
 def random_number_write(): # exercise 7
-    pass
+    #random_number_write recieves no arguments
+    # it asks the user for an amount of numbers to write
+    # and writes them to a file
+    
+    try:
+        numbers = int(input("How many numbers would you like to write? :> "))
+        while numbers < 0:
+            print("Pick a number above 0.")
+            numbers = int(input(":> "))
+        outfile = open("ran_number_list.txt", "w")
+        for number in range(numbers):
+            rand_num = str(random.randint(0,500))
+            outfile.write(rand_num + '\n')
+        
+        outfile.close()
+        print("All numbers have been written to ran_number_list.txt")
+    
+    except Exception as exception:
+        print(exception)
+
 
 def random_number_read(): #exercise 8
-    pass
+    # random_number_read recieves no arguments
+    # it reads the file ran_number_list.txt and totals the number
+    # initialize variables
+    
+    counter = 0
+    total = 0
+    try:
+      infile = open("ran_number_list.txt", "r")
+    except Exception as exception:
+        print(exception)
+        return
+      
+    for num in infile:
+        num = num.rstrip('\n')
+        print(num)
+        counter += 1
+        total += int(num)
+    
+    print("The total of ", counter, " random numbers is: ", total, sep = '')
+    infile.close()
+
 
 def golf_scores(): #exercise 10
     pass
