@@ -30,11 +30,10 @@ def main():
         main()
     elif choice == 4:
         random_number_write()
-        
     elif choice == 5:
         random_number_read()
     elif choice == 6:
-        golf_scores()
+        golf_main()
     elif choice == 7:
         personal_page_generator()
     elif choice == 8:
@@ -61,6 +60,7 @@ def line_numbers(): #exercise 3
         return
     
     for lineNumber in infile:
+        lineNumber = lineNumber.rstrip("\n")
         counter += 1
         print(f"{counter}:\t {lineNumber}")
 
@@ -89,22 +89,27 @@ def line_counter(): #exercise 4
     
     # print the amount of lines
     print(f"{name} contains {counter} lines.")
-    
+    infile.close()
 def average_numbers(): #exercise 6
     # average numbers recieves no arguments
     # it opens the file numbers.txt to read
     # it reads and caculates the average of all the items in the file
     
     # initialize variables
-    infile = open('steps.txt', 'r')
+    if os.path.exists("numbers.txt"):
+        infile = open('numbers.txt', 'r')
+    else:
+        print("File is not found")
+        return
     totalItems = 0
     counter = 0
     
     for lineNumber in infile:
-        totalItems += int(infile.readline())
+        totalItems += int(lineNumber)
         counter += 1
-        print(totalItems)
-        print(counter)
+    average = totalItems / counter
+    print(f"There were {counter} items with an average value of {average}")
+    infile.close()
     
 def random_number_write(): # exercise 7
     #random_number_write recieves no arguments
@@ -151,11 +156,91 @@ def random_number_read(): #exercise 8
     infile.close()
 
 
-def golf_scores(): #exercise 10
-    pass
+def golf_main(): # exercise 10
+    def display_menu():
+        # display menu recieves no arguments
+        # it prints the header for the golf management system
+        print("Welcome to Hole in Twelve golf management system.\n" +
+        "Please choose form the following commands...")
+        print("\n1) Read Golf Data\n2) Append Golf Data\n3) Exit")
+        
+        # get the users choice 
+        choice = input("\nMenu choice: ")
+        
+        # validate the user choice
+        try:
+            choice = int(choice)
+            while choice < 1 or choice > 3:
+                choice = input("Menu choice: ")
+        except:
+            print("\nPlease put in a choice on the menu.\n")
+            input("Press enter to continue...\n")
+            display_menu()
+        
+        if choice == 1:
+            read_data()
+            display_menu()
+        elif choice == 2:
+            append_data()
+            display_menu()
+        else:
+            print("\nThank you for using Hole in Twelve golf management system. Have a great day.")
+    
+    def append_data():
+        # append data recieves no arugments
+        # it asks the users for a name and score, it then writes it to golf_data.txt
+        
+        # opens the file
+        infile = open("golf_data.txt", "a")
+        
+        # ask the user for the name and score of someone
+        name = input("\nName: ")
+        score = input("Score: ")
+        
+        print()
+        
+        # write the data to the file
+        infile.write(name + "\n")
+        infile.write(score + "\n")
+        
+        # close the file
+        infile.close()
+        
+    def read_data():
+        # read data recieves no arguments
+        # it prints out the data from golf_data.txt
+        
+        # check that the file exists
+        if os.path.exists("golf_data.txt"):
+            outfile = open("golf_data.txt", "r")
+        else:
+            print("\nFile not found. Returning to menu.\n")
+            return()
+        
+        # prime the loop
+        name = "temp"
+        score = "temp"
+        
+        while name != "":
+            # read the lines and print the scores out
+            name = outfile.readline().rstrip("\n")
+            score = outfile.readline().rstrip("\n")
+            print()
+            print(name)
+            print(score)
+            
+        # close the file
+        outfile.close()
+        
+        print("All records successfully read!\n")
+        return()
+    display_menu()
 
 def personal_page_generator(): #exercise 11
-    pass
+    # personal page generator recieves no arguments
+    # it asks the user for their name and a little bit about themselves
+    # it then writes it to a file named their name .html
+    # it will then open a website using it
 
 def average_steps(): #exercise 12
     pass
