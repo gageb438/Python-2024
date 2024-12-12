@@ -30,14 +30,19 @@ def main():
         main()
     elif choice == 4:
         random_number_write()
+        main()
     elif choice == 5:
         random_number_read()
+        main()
     elif choice == 6:
         golf_main()
+        main()
     elif choice == 7:
         personal_page_generator()
+        main()
     elif choice == 8:
         average_steps()
+        main()
     elif choice == 0:
         print("Goodbye.")
         
@@ -241,8 +246,55 @@ def personal_page_generator(): #exercise 11
     # it asks the user for their name and a little bit about themselves
     # it then writes it to a file named their name .html
     # it will then open a website using it
+    
+    # assk for name and description
+    name = input("Enter your name: ")
+    desc = input("Write a short description of yourself: ")
+    
+    infile = open(f"{name}.html", "w")
+    
+    # write the page
+    infile.write("<html>" + "\n")
+    infile.write("<head>" + "\n")
+    infile.write("</head>" + "\n")
+    infile.write("<body>" + "\n")
+    infile.write("\t<center>" + "\n")
+    infile.write(f"\t\t<h1>{name}</h1>" + "\n")
+    infile.write("\t</center>" + "\n")
+    infile.write("\t<hr />" + "\n")
+    infile.write(f"\t{desc}")
+    infile.write("\t<hr />" + "\n")
+    infile.write("</body>" +"\n")
+    infile.write("</html>" + "\n")
+    
+    infile.close()
+    
+    # print closing
+    print(f"Webpage saved to {name}.html")
 
 def average_steps(): #exercise 12
-    pass
-
+    # average steps recieves no arguments
+    # it uses lists to find the amount of steps from the file
+    # outputs the amount of steps per month
+    
+    # initialize variables
+    DAYS_PER_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    total = 0
+    index = 0
+    
+    outfile = open('steps.txt', "r")
+    
+    #for month in MONTHS:
+    for days in DAYS_PER_MONTH:
+        for day in range(days):
+            line = outfile.readline().rstrip("\n")
+            #print(line)
+            line = int(line)
+            total += line
+        average = total / DAYS_PER_MONTH[index]
+        print(f"{MONTHS[index]}\t\t{average:.2f} steps")
+        index +=1
+        total = 0
+    
 main()
