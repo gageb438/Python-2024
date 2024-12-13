@@ -279,7 +279,7 @@ def average_steps(): #exercise 12
     
     # initialize variables
     DAYS_PER_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    MONTHS = ['January\t', 'February', 'March\t', 'April\t', 'May\t', 'June\t', 'July\t', 'August\t', 'September', 'October\t', 'November', 'December']
     total = 0
     index = 0
     
@@ -293,7 +293,7 @@ def average_steps(): #exercise 12
             line = int(line)
             total += line
         average = total / DAYS_PER_MONTH[index]
-        print(f"{MONTHS[index]}\t\t{average:10.2f} steps")
+        print(f"{MONTHS[index]}\t{average:.2f} steps")
         index +=1
         total = 0
     
