@@ -293,7 +293,7 @@ def average_steps(): #exercise 12
             line = int(line)
             total += line
         average = total / DAYS_PER_MONTH[index]
-        print(f"{MONTHS[index]}\t\t{average:.2f} steps")
+        print(f"{MONTHS[index]}\t\t{average:10.2f} steps")
         index +=1
         total = 0
     
