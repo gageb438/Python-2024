@@ -9,13 +9,17 @@ def main():
 
     # intialize variable
     score = 0
+    TOTAL_QUESTIONS = 3 # max is 10
+    if TOTAL_QUESTIONS > 10 or TOTAL_QUESTIONS < 1:
+        print("Critical Error, TOTAL_QUESTIONS is configrued wrong.")
+        return
     
     # ask the questions
-    for question_num in range(1, 10):
+    for question_num in range(1, TOTAL_QUESTIONS + 1):
         score += question(question_num)
     
     # print total score
-    print(f"Quiz Completed! Your score: {score}/10")
+    print("Quiz Completed! Your score:",score, "/", TOTAL_QUESTIONS, sep = '')
     
     # call the save prompt
     save(score)
@@ -74,6 +78,50 @@ def question(question_num):
             print("Input one of the letters.")
             question(2)
 
+    if question_num == 3:
+        # question 3
+        print("3. What is 12 + 32?")
+        print("\ta) 44\n\tb) 34\n\tc) 54")
+        
+        try:
+            q2_choice = input("Enter your choice (a/b/c): ")
+            while q2_choice.isnumeric() == True:
+                q2_choice = input("Enter your choice (a/b/c): ")
+            while q2_choice > "c":
+                q1_choice = input("Enter your choice (a/b/c): ")
+            if q2_choice.lower() == "a":
+                print("Correct!")
+                score = 1
+            else:
+                print("Incorrect.")
+            print()
+            return score
+        except:
+            print("Input one of the letters.")
+            question(3)
+
+    if question_num == 4:
+        # question 4
+        print("3. What is -12 + 46?")
+        print("\ta) 46\n\tb) -34\n\tc) 34")
+        
+        try:
+            q2_choice = input("Enter your choice (a/b/c): ")
+            while q2_choice.isnumeric() == True:
+                q2_choice = input("Enter your choice (a/b/c): ")
+            while q2_choice > "c":
+                q1_choice = input("Enter your choice (a/b/c): ")
+            if q2_choice.lower() == "c":
+                print("Correct!")
+                score = 1
+            else:
+                print("Incorrect.")
+            print()
+            return score
+        except:
+            print("Input one of the letters.")
+            question(3)
+
 def save(score):
     # save recieves an argument for user score
     # it asks the user if they would like to save
@@ -86,7 +134,7 @@ def save(score):
     if save.lower() == "yes":
         infile = open("test_results.txt", "a")
         # write the result to the file
-        infile.write(f"{name} - {score}/10" + "\n")
+        infile.write(name," - ",score,"/10" + "\n", sep = '')
         # close the file
         infile.close()
         print("\nResults saved successfully.\n")
