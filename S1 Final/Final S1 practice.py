@@ -266,7 +266,7 @@ def save(score, max_questions):
     if save_choice.lower() == "yes":
         infile = open("test_results.txt", "a")
         # write the result to the file
-        infile.write(f"{name} - {score}/{max_questions}")
+        infile.write(f"{name} - {score}/{max_questions}" + "\n")
         # close the file
         infile.close()
         print("\nResults saved successfully.\n")
