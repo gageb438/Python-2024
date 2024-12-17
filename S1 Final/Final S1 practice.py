@@ -9,7 +9,7 @@ def main():
 
     # intialize variable
     score = 0
-    TOTAL_QUESTIONS = 4 # max is 10
+    TOTAL_QUESTIONS = 10 # max is 10
     if TOTAL_QUESTIONS > 10 or TOTAL_QUESTIONS < 1:
         print("Critical Error, TOTAL_QUESTIONS is configrued wrong.")
         return
@@ -19,10 +19,10 @@ def main():
         score += question(question_num)
     
     # print total score
-    print("Quiz Completed! Your score:",score, "/", TOTAL_QUESTIONS, sep = '')
+    print(f"Quiz Completed! Your score: {score}/{TOTAL_QUESTIONS}")
     
     # call the save prompt
-    save(score)
+    save(score, TOTAL_QUESTIONS)
     load()
     
 def question(question_num):
@@ -131,7 +131,7 @@ def question(question_num):
             choice = input("Enter your choice (a/b/c): ")
             while choice.isnumeric() == True:
                 choice = input("Enter your choice (a/b/c): ")
-            while choice > "b":
+            while choice > "c":
                 choice = input("Enter your choice (a/b/c): ")
             if choice.lower() == "b":
                 print("Correct!")
@@ -153,7 +153,7 @@ def question(question_num):
             choice = input("Enter your choice (a/b/c): ")
             while choice.isnumeric() == True:
                 choice = input("Enter your choice (a/b/c): ")
-            while choice > "a":
+            while choice > "c":
                 choice = input("Enter your choice (a/b/c): ")
             if choice.lower() == "a":
                 print("Correct!")
@@ -187,32 +187,103 @@ def question(question_num):
         except:
             print("Input one of the letters.")
             question(7)
+            
+    if question_num == 8:
+        # question 8
+        print("8. What is 70 / 10?")
+        print("\ta) 7\n\tb) 10\n\tc) .7")
+        
+        try:
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "c":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "a":
+                print("Correct!")
+                score = 1
+            else:
+                print("Incorrect.")
+            print()
+            return score
+        except:
+            print("Input one of the letters.")
+            question(8)
+            
+    if question_num == 9:
+        # question 9
+        print("9. What is 42 / 7?")
+        print("\ta) 7\n\tb) 8\n\tc) 6")
+        
+        try:
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "c":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "c":
+                print("Correct!")
+                score = 1
+            else:
+                print("Incorrect.")
+            print()
+            return score
+        except:
+            print("Input one of the letters.")
+            question(9)
 
-def save(score):
-    # save recieves an argument for user score
+    if question_num == 10:
+        # question 10
+        print("10. What is 9 + 14?")
+        print("\ta) 24\n\tb) 23\n\tc) 25")
+        
+        try:
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "c":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "b":
+                print("Correct!")
+                score = 1
+            else:
+                print("Incorrect.")
+            print()
+            return score
+        except:
+            print("Input one of the letters.")
+            question(7)
+
+def save(score, max_questions):
+    # save recieves an argument for user score and amount of questions
     # it asks the user if they would like to save
     # and if they would like to display old results
     
     name = input("\nWhat is your name? : ")
     
-    save = input("Would you like to save your results? (yes/no) : ")
+    save_choice = input("Would you like to save your results? (yes/no) : ")
     
-    if save.lower() == "yes":
+    if save_choice.lower() == "yes":
         infile = open("test_results.txt", "a")
         # write the result to the file
-        infile.write(name," - ",score,"/10" + "\n", sep = '')
+        infile.write(f"{name} - {score}/{max_questions}")
         # close the file
         infile.close()
         print("\nResults saved successfully.\n")
-
+    elif save_choice.lower() == "no":
+        return
+    else:
+        print("Enter a valid choice")
+        save(score)
+  
 def load():
     # load recieves no arguments
     # it asks the user if they would like to load previous results
     # output previous results
     
-    load = input("Would you like to load your old results? (yes/no) : ")
+    load_choice = input("Would you like to load your old results? (yes/no) : ")
     
-    if load.lower() == "yes":
+    if load_choice.lower() == "yes":
         if os.path.exists("test_results.txt"):
             outfile = open("test_results.txt", "r")
         else:
