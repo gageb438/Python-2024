@@ -9,7 +9,7 @@ def main():
 
     # intialize variable
     score = 0
-    TOTAL_QUESTIONS = 3 # max is 10
+    TOTAL_QUESTIONS = 4 # max is 10
     if TOTAL_QUESTIONS > 10 or TOTAL_QUESTIONS < 1:
         print("Critical Error, TOTAL_QUESTIONS is configrued wrong.")
         return
@@ -40,12 +40,12 @@ def question(question_num):
         print("\ta) 40\n\tb) 50\n\tc) 70")
         
         try:
-            q1_choice = input("Enter your choice (a/b/c): ")
-            while q1_choice.isnumeric() == True:
-                q1_choice = input("Enter your choice (a/b/c): ")
-            while q1_choice > "c":
-                q1_choice = input("Enter your choice (a/b/c): ")
-            if q1_choice.lower() == "b":
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "c":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "b":
                 print("Correct!")
                 score = 1
             else:
@@ -62,12 +62,12 @@ def question(question_num):
         print("\ta) 10\n\tb) 11\n\tc) 12")
         
         try:
-            q2_choice = input("Enter your choice (a/b/c): ")
-            while q2_choice.isnumeric() == True:
-                q2_choice = input("Enter your choice (a/b/c): ")
-            while q2_choice > "c":
-                q1_choice = input("Enter your choice (a/b/c): ")
-            if q2_choice.lower() == "c":
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "c":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "c":
                 print("Correct!")
                 score = 1
             else:
@@ -84,12 +84,12 @@ def question(question_num):
         print("\ta) 44\n\tb) 34\n\tc) 54")
         
         try:
-            q2_choice = input("Enter your choice (a/b/c): ")
-            while q2_choice.isnumeric() == True:
-                q2_choice = input("Enter your choice (a/b/c): ")
-            while q2_choice > "c":
-                q1_choice = input("Enter your choice (a/b/c): ")
-            if q2_choice.lower() == "a":
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "c":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "a":
                 print("Correct!")
                 score = 1
             else:
@@ -102,16 +102,16 @@ def question(question_num):
 
     if question_num == 4:
         # question 4
-        print("3. What is -12 + 46?")
+        print("4. What is -12 + 46?")
         print("\ta) 46\n\tb) -34\n\tc) 34")
         
         try:
-            q2_choice = input("Enter your choice (a/b/c): ")
-            while q2_choice.isnumeric() == True:
-                q2_choice = input("Enter your choice (a/b/c): ")
-            while q2_choice > "c":
-                q1_choice = input("Enter your choice (a/b/c): ")
-            if q2_choice.lower() == "c":
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "c":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "c":
                 print("Correct!")
                 score = 1
             else:
@@ -120,7 +120,73 @@ def question(question_num):
             return score
         except:
             print("Input one of the letters.")
-            question(3)
+            question(4)
+
+    if question_num == 5:
+        # question 5
+        print("5. What is -400 - 32?")
+        print("\ta) -342\n\tb) -432\n\tc) -423")
+        
+        try:
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "b":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "b":
+                print("Correct!")
+                score = 1
+            else:
+                print("Incorrect.")
+            print()
+            return score
+        except:
+            print("Input one of the letters.")
+            question(5)
+            
+    if question_num == 6:
+        # question 6
+        print("6. What is 109 * 177?")
+        print("\ta) 19239\n\tb) 20891\n\tc) 18413")
+        
+        try:
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "a":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "a":
+                print("Correct!")
+                score = 1
+            else:
+                print("Incorrect.")
+            print()
+            return score
+        except:
+            print("Input one of the letters.")
+            question(6)
+            
+    if question_num == 7:
+        # question 7
+        print("7. What is 27 / 3?")
+        print("\ta) 6\n\tb) 3\n\tc) 9")
+        
+        try:
+            choice = input("Enter your choice (a/b/c): ")
+            while choice.isnumeric() == True:
+                choice = input("Enter your choice (a/b/c): ")
+            while choice > "c":
+                choice = input("Enter your choice (a/b/c): ")
+            if choice.lower() == "c":
+                print("Correct!")
+                score = 1
+            else:
+                print("Incorrect.")
+            print()
+            return score
+        except:
+            print("Input one of the letters.")
+            question(7)
 
 def save(score):
     # save recieves an argument for user score
