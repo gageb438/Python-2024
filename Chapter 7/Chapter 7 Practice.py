@@ -47,3 +47,48 @@ def sales_list(): # program 7-1
     
     for sale in sales:
         print(format(sale, '.2f'))
+
+def validate_me():
+    # validate me accepts no arguments
+    # it takes a value from the user
+    # and validates that value
+    
+    # create a list of possible correct answers
+    answers = ["yes", "no", "maybe"]
+    
+    # get input from the user
+    answer = input("What is your answer? : ").lower()
+    
+    if answer not in answers:
+        print("Please only specify yes, no, or maybe.")
+        
+def in_list(): # program 7-2
+    # in list accepts no arguments
+    # it creates a list of part numbers
+    # V45, V65, VF750, VFR1100, VTX1300
+    # and prompts the user for a string to search for
+    # and it prints if the list contains the search string
+    
+    # create the list
+    partList = ["V45", "V65", "VF750", "VFR1100", "VTX1300"]
+    
+    # ask for the input
+    searchPrompt = input("Enter a part to search for(Case senstive): ")
+    
+    if searchPrompt not in partList:
+        print("Part number not found.")
+    else:
+        print(f"Part number {searchPrompt} was found in the list of part numbers.")
+
+def inList(num):
+    # inList accepts an integer
+    # it checks to see if an element is in the list
+    # if it is, it returns the index of that item
+    
+    # initialize the list
+    myList = [1, 2, 3, 4, 5]
+    
+    if num in myList: 
+        print("Your item is at index: ", myList.index(num))
+    else:
+        print(f"{num} is not in the list.")
