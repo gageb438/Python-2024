@@ -62,33 +62,95 @@ def validate_me():
     if answer not in answers:
         print("Please only specify yes, no, or maybe.")
         
-def in_list(): # program 7-2
-    # in list accepts no arguments
-    # it creates a list of part numbers
-    # V45, V65, VF750, VFR1100, VTX1300
-    # and prompts the user for a string to search for
-    # and it prints if the list contains the search string
-    
-    # create the list
-    partList = ["V45", "V65", "VF750", "VFR1100", "VTX1300"]
-    
-    # ask for the input
-    searchPrompt = input("Enter a part to search for(Case senstive): ")
-    
-    if searchPrompt not in partList:
-        print("Part number not found.")
-    else:
-        print(f"Part number {searchPrompt} was found in the list of part numbers.")
+        
+def list_append(): # program 7-3
+    # list append accepts no arguments
+    # it creates an empty list
+    # and loops to append the list with input from the user
+    # then prompts to continue
 
-def inList(num):
-    # inList accepts an integer
-    # it checks to see if an element is in the list
-    # if it is, it returns the index of that item
+    # prime the list of names
+    names = []
+    keep_going = 'y'
     
-    # initialize the list
-    myList = [1, 2, 3, 4, 5]
+    while keep_going.lower() == 'y':
+        name = input("Enter a name: ")
+        
+        # adds it to the current list
+        names.append(name)
+        
+        # prompt to continue
+        keep_going = input("Add another name? (y to continue)")
+        print()
     
-    if num in myList: 
-        print("Your item is at index: ", myList.index(num))
-    else:
-        print(f"{num} is not in the list.")
+    # output the names as entered
+    print("You entered the following names: ")
+    
+    for name in name_list:
+        print(name)
+        
+def list_index(): # program 7-4
+    # list index accepts no arguments
+    # it creates a list of three food items
+    # and it prompts the user to replace one of the items
+    # it searches the list for the index of the item
+    # and prompts the user with a replacement of food
+    
+    # insert the food list
+    food_list = ["Burger", "Pizza", "Hotdog"]
+    
+    # ask for a search
+    search = input("Enter a string to search for: ")
+    
+    try:
+        if food_list.index(search) >= 0:
+            index = food_list.index(search)
+            new_food = input("Item found. Enter a new food item: ")
+            food_list[index] = new_food
+            
+    except:
+        print()
+        print(f"{search} was not found in the list. Check your spelling and try again")
+    
+    print(f"\nHere is the list: {food_list}")
+    
+def list_insert(): # program 7-5
+    # list_insert accepts no arguments
+    # it prints the original list of three names
+    # it inserts a name in a list of names
+    # at a specific index it prints the new list
+    
+    # create the starter list and print it
+    name_list = ["Bruce", "Steve", "Tony"]
+    print(f"Here is the list before the insert method: {name_list}")
+    
+    # insert the name Sam into the list
+    name_list.insert(2, "Sam")
+    
+    # print it after the items
+    print(f"Here is the list after the insert method: {name_list}")
+
+def list_remove(): # program 7-6
+    # list remove accepts no arguments
+    # it creates a list of three food items
+    # and it prompts the user to remove one of the items
+    # it searches the list for the index of the item
+    # and prompts the user with a remove of food
+    
+    # insert the food list
+    food_list = ["Burger", "Pizza", "Hotdog"]
+    
+    # ask for a search
+    search = input("Enter a string to search for: ")
+    
+    try:
+        if food_list.index(search) >= 0:
+            food_list.remove(search)
+            print("Item removed.")
+            
+    except:
+        print()
+        print(f"{search} was not found in the list. Check your spelling and try again")
+    
+    print(f"\nHere is the list: {food_list}")
+    
