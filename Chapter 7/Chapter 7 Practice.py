@@ -61,8 +61,7 @@ def validate_me():
     
     if answer not in answers:
         print("Please only specify yes, no, or maybe.")
-        
-        
+    
 def list_append(): # program 7-3
     # list append accepts no arguments
     # it creates an empty list
@@ -153,4 +152,142 @@ def list_remove(): # program 7-6
         print(f"{search} was not found in the list. Check your spelling and try again")
     
     print(f"\nHere is the list: {food_list}")
+
+
+def list_copy():
+    # list copier
+    # create a list
+    names = ["Bob", "Mary", "Sue"]
     
+    # create an empty list
+    new_names = []
+    
+    # copy listnames to list new_names
+    # this preserves both lists as unique lists
+    
+    for name in names:
+        new_names.append(name)
+    
+    # print the old and new names
+    print(f"Old names list: {names}")
+    print(f"New names list: {new_names}")
+    
+    # modify the new names list and reprint the old one
+    new_names.append("Jerry")
+
+    print(f"New modified names list: {new_names}")
+    
+    
+def barista_pay(): # program 7-7
+    # barista_pay accepts no argument
+    # it prompts the user for the number of employees, hours worked for each employee
+    # and the hourly rate all employees are paid
+    # then outputs each employee's gross pay
+    
+    # ask for the number of employees
+    employees = int(input("How many employees do you want to calculate pay for? : "))
+    
+    hoursWorked = []
+    counter = 0
+    
+    for employee in range(1, employees + 1):
+        # ask for the hours worked by each worker
+        hours = input(f"Enter the hours worked by employee {employee} : ")
+        
+        hoursWorked.append(hours)
+        
+    # ask for hourly rate
+    hourlyRate = float(input("Enter the hourly rate for all employees: "))
+    
+    # print the gross pay for each employee
+    for employee in employees:
+        counter += 1
+        print(f"Gross pay for employee {counter}: {employee * hourlyRate}")
+        
+def list_total(): # program 7-8
+    # list total accepts no arguments
+    # it creates a list of numbers [2, 4, 6, 8, 10]
+    # and loops to accumulate the total of all numbers in the list
+    
+    # create the list
+    number_list = [2, 4, 6, 8, 10]
+    # create the total
+    total = 0
+    
+    # read each number in the list
+    for number in number_list:
+        # add the number to the total
+        total += number
+    
+    print(f"The sum of the numbers {number_list} is: {total}")
+
+def list_avg():
+    # list avg accepts no arguments
+    # it creates a list of numbers [2.5, 7.3, 6.5, 4.0, 5.2]
+    # and it calculates the average of the numbers using len
+    
+    # create the list and the total
+    number_list = [2.5, 7.3, 6.5, 4.0, 5.2]
+    total = 0
+    
+    for number in number_list:
+        # add the number to the total
+        total += number
+    
+    # find the length of the list and divide to find the average
+    average = total / len(number_list)
+    
+    print(f"The average of the numbers {number_list} is: {average}")
+    
+def list_function(): # program 7-10
+    # list function accepts no arguments
+    # it creates a list [2, 4, 6, 8, 10]
+    # it passes the list to get_total
+    # it prints the returned total
+    
+    # create the list
+    number_list = [2, 4, 6, 8, 10]
+    
+    # pass the list to get_total
+    total = get_total(number_list)
+    
+    # print the total
+    print(f"The total of {number_list} is: {total}")
+
+def get_total(number_list):
+    # get total accepts a list of numbers
+    # it calculates and returns the total
+    
+    total = 0
+    
+    # find the total
+    for number in number_list:
+        total += number
+    
+    # return the total
+    return total
+
+def get_values():
+    # get values accepts no arguments
+    # it creates an empty list
+    # and loops, prompting the user to enter a vlaue
+    # and appending that value to the list
+    # and to if they want to add another value
+    # it returns the reference to the list
+    
+    number_list = []
+    
+    cont = 'y'
+    while cont.lower() == 'y':
+        number = int(input("Input a number: "))
+        
+        cont = 'z'
+        
+        while cont.lower() != 'y' or cont.lower() != 'n':
+            cont = input("Do you want to enter another number? (y/n): ")
+        
+        # add it to the list
+        number_list.append(number)
+    
+    # print the list
+    print(f"You entered the numbers: {number_list}")
