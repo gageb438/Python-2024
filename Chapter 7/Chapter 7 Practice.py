@@ -275,19 +275,179 @@ def get_values():
     # and to if they want to add another value
     # it returns the reference to the list
     
-    number_list = []
+    values = []
+    again = 'y'
     
+    # get values
+    while again.lower() == 'y':
+        value = int(input("Input a number: "))
+        
+        values.append(value)
+        
+        again = input("Do you want to enter another number? (y/n): ")
+    return values
+
+def list_return(): #program 7-11
+    # list return accepts no arguments
+    # it calls get_values to create a list reference and outputs the numbers in the list
+    
+    # get a reference in the list
+    numbers = get_values()
+    
+    print(f"You entered the numbers: {numbers}")
+
+
+def test_calc():
+    # test_calc recieves no arguments
+    # it recieves scores from get_scores then gets the total
+    # it averages
+    # and outputs the average and lowest score
+    
+    # get the scores
+    scores,low_score = get_scores()
+    
+    # find and remove the bottom score
+    total = get_total(scores)
+    
+    # print the total scores
+    print(f"The average score, with {low_score} dropped from the scores, is: {total}")
+    
+def get_total(scores):
+    # get total recieves an argument for the scores
+    # it removes the lowest score and calculates the average
+    
+    # remove the average
+    low_score = min(scores)
+    scores.remove(low_score)
+    
+    # output ending message
+    print(f"Dropping the lowest score of {low_score}.")
+    
+    # calculate the average score
+    for num in scores:
+        total += num
+    
+    average = total / len(scores)
+    
+    return average, low_score
+
+    
+def get_scores():
+    # get_score recieves no arguments
+    # it asks the user for scores
+    # adds them to al ist
+    # and returns the list
+    
+    score_list = []
     cont = 'y'
+    
+    # ask the user for scores
     while cont.lower() == 'y':
-        number = int(input("Input a number: "))
-        
-        cont = 'z'
-        
-        while cont.lower() != 'y' or cont.lower() != 'n':
-            cont = input("Do you want to enter another number? (y/n): ")
+        # ask for the score
+        score = float(input("Enter a score: "))
         
         # add it to the list
-        number_list.append(number)
+        score_list.append(score)
+        
+        # ask for another
+        cont = input("Enter another score? (y/n): ")
+        
+    # return the list
+    return score_list
+
+def list_writelines(): # program 7-13
+    # list writelines accepts no arguments
+    # it writes the entire contents of a list
+    # to the file cities.txt
+    
+    cities = ['Kansas City', 'Lawrence', 'Wichita', 'Manhattan']
+    
+    try:
+        # open the file
+        outfile = open('cities.txt', 'w')
+        
+        # write the list to the file
+        outfile.writelines(cities)
+        
+        # close the file
+        print("All data written to cities.txt")
+        outfile.close()
+        
+    except Exception as err:
+        print(err)
+    
+def list_write(): # program 7-14
+    # list writelines accepts no arguments
+    # it writes the entire contents of a list
+    # to the file cities.txt
+    
+    cities = ['Kansas City', 'Lawrence', 'Wichita', 'Manhattan']
+    
+    try:
+        # open the file
+        outfile = open('cities.txt', 'w')
+        
+        for city in cities:
+            # write the list to the file
+            outfile.write(city + '\n')
+            
+        # close the file
+        print("All data written to cities.txt")
+        outfile.close()
+    
+    except Exception as err:
+        print(err)
+        
+def list_read(): # program 4-15
+    # list read accepts no arguments
+    # it reads from cities.txt and aggregates the data
+    # to the list cities, stripping \n from each
+    
+    try:
+        # open the file
+        infile = open('cities.txt', 'r')
+        
+        # read the contents to a list
+        cities = infile.readlines()
+        
+        # close the file
+        infile.close()
+        
+    except:
+        print("Error reading from file.")
+    
+    # initalize index
+    index = 0
+    
+    # strip the newline and reassign it to the list
+    while index < len(cities):
+        cities[index] = cities[index].rstrip('\n')
+        index += 1
+    
+    print("Here is the information read from cities.txt.")
+    print(cities)
+    infile.close()
+    
+def random_numbers(): #program 7-18
+    # random numbers accepts no arguments
+    # it creates a 2D list with a mximum row index of 3
+    # and a maximum column index of 2
+    # it uses nexted loops to fill the 2D list with a random number
+    # from 1-100
+    
+    # constants for roww/cols loops
+    ROWS = 3
+    COLS = 4
+    
+    values = [[0, 0, 0, 0],
+              [0, 0, 0, 0],
+              [0, 0, 0, 0]]
+    
+    # loop to fill the list with random numbers
+    for row in range(ROWS):
+        for col in range (COLS):
+            values[row][col] = random.randint(1,100)
     
     # print the list
-    print(f"You entered the numbers: {number_list}")
+    print(values)
+   
