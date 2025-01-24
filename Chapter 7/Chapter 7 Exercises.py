@@ -27,27 +27,23 @@ def rainfall():
     
     for month in MONTHS:
         # ask user for the rainfall in the month
-        month_rainfall = input(f"Enter the rainfall for {month}: ")
+        month_rainfall = int(input(f"Enter the rainfall for {month}: "))
         
         Rainfall.append(month_rainfall)
-    
     print()
     
     # find the minimum in the list and print the month along with it
     minimum = min(Rainfall)
     maximum = max(Rainfall)
-    
+
     # find min amd max indexes
     minimum_index = Rainfall.index(minimum)
     maximum_index = Rainfall.index(maximum)
-    
+
     # find min month and max month
     minimum_month = MONTHS[minimum_index]
     maximum_month = MONTHS[maximum_index]
     
-    print(f"{maximum_index}")
-    print(f"{minimum_index}")
-    
     print(f"{minimum_month} had the least rain with {minimum} inches of rain.")
     print(f"{maximum_month} had the most rain with {maximum} inches of rain.")
-    
+  
