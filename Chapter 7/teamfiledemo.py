@@ -1,30 +1,77 @@
+global game_number
+global roll_number
+game_number = 0
+roll_number = 0
+
 import random
+import time
+import os
 
 def main():
-  # main recieves no arguments
-  # main handles everything in the program
-  try:
-    games = int(input("How many games would you like to play? : "))
-    while games < 0:
-      games = int(input(":> "))
-      
-  except:
-    print("Please enter a valid number.")
-  
-  for game in range(games):
-      # get the first dice list
-      dice_list = first_roll()
-      
-      # find the mode
-      mode = find_mode(dice_list)
-      
-      # find which dice need to be rerolled
-      indexes = list_unmatched(dice_list, mode)
-      print(dice_list)
-      print(mode)
-      print(indexes)
-      
-      dice_list = reroll_many(dice_list, indexes)
+    # main recieves no arguments
+    # main handles everything in the program
+    
+    # check that the highscore file exists
+    if os.path.exists("high_score.txt"):
+        highscore = open("high_score.txt","r")
+        highscor = highscore.readline()
+        print(f"High score found of {highscor}")
+        highscore.close()
+    else:
+        print("Highscore not found. Generating high score.")
+        highscore = open("high_score.txt", "w")
+        highscore.write("9" * 99)
+        highscore.close()
+    
+    try:
+        games = int(input("How many games would you like to play? : "))
+        while games < 0:
+            games = int(input(":> "))
+    except: 
+        print("Please enter a valid number.")
+
+    for game in range(games):
+        # reset the game number
+        global game_number
+        global roll_number
+        game_number += 1
+        roll_number = 0
+        # get the first dice list
+        dice_list = first_roll()
+
+        # wipe indexes and index variables
+        indexes = [0]
+
+        while indexes != []:
+            # output the dice
+            display_rolls(dice_list)
+
+            # find the mode
+            mode = find_mode(dice_list)
+
+            # find which dice need to be rerolled
+            indexes = list_unmatched(dice_list, mode)
+
+            # remake the dice list
+            dice_list = reroll_many(dice_list, indexes)
+
+        # check if they got the highscore
+        try:
+            highscore_file = open("high_score.txt", "r")
+            highscore = int(highscore_file.readline())
+            highscore_file.close()
+            if roll_number < highscore:
+                print(f"New highscore of {roll_number} rolls!")
+                # request and input to continue
+                input("Press enter to continue.")
+
+                # write the highscore to the file
+                highscore_file = open("high_score.txt", "w")
+                highscore_file.write(str(roll_number))
+                highscore_file.close()
+        except Exception as err:
+            print(err)
+        input("Press enter to continue...")
 
 def first_roll():
     # first_roll recieves no arguments
@@ -99,7 +146,6 @@ def reroll_many(dice_list, indexes):
     for index in indexes:
         dice_list = reroll_one(dice_list, index)
     
-    print(dice_list)
     return dice_list
 
 def reroll_one(dice_list, index):
@@ -113,4 +159,26 @@ def reroll_one(dice_list, index):
     dice_list[index] = new_die
     
     return dice_list
+
+def display_rolls(dice_list,):
+    # display_rolls accepts an argument for the list of dice
+    # it prints the dice and the roll number for each one
+    
+    # access global variables
+    global roll_number
+    
+    # add onto the roll number
+    roll_number += 1
+    
+    # print the header
+    print(f"\n---Roll Number {roll_number}---")
+    
+    # begin to read the list and initalize a counter
+    counter = 0
+    
+    for die in dice_list:
+        # add onto the counter
+        counter += 1
+        print(f"Dice #{counter}:\t{die}")
+    time.sleep(.5)
 main()
