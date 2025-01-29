@@ -1,6 +1,7 @@
 #imports
 import random
 import time
+import os
 
 def lottery():
     # lottery generates 7 random numbers from 0 - 9
@@ -102,14 +103,71 @@ def drivers_exam():
     # drivers exam recieves no arguments
     # it reads a test key from a file
     another = 'y'
-    
-    while another = 'y':
+    TOTAL_QUESTIONS = 20
+    while another.lower() == 'y':
         # prompt the user for the filename to read
-        test_file = input("Please enter the name of the file to read: ")
+        test_file = input("\nPlease enter the name of the file to read: ")
         
         if not os.path.exists(test_file):
             print(f"{test_file} not found.")
         else:
-            # check if each test answer is in the 
+            # open the answerkey
+            answer_key = open("driver_test_key.txt", "r")
+            # open the test file
+            test_answers = open(test_file, "r")
+            
+            # intialize answers key list and test_answers list
+            answers = []
+            user_answers = []
+            # create the list with all the answers
+            for line in answer_key:
+                line = line.rstrip("\n")
+                answers.append(line)
+                
+            for line in test_answers:
+                line = line.rstrip("\n")
+                user_answers.append(line)
+            
+            # create a list of wrong indexes and begin index
+            wrong_indexes = []
+            counter = -1
+            correct = 0
+            
+            # check if each answer is correct
+            for ans in answers:
+                counter += 1
+                if ans == user_answers[counter]:
+                    correct += 1
+                else:
+                    # add wrong question number to list
+                    wrong_indexes.append(counter + 1)
+            
+            # output message
+            print("\nTest grading complete.")
+            
+            # output score and missed questsions
+            print(f"\nYou answered {correct} questions correctly out of {TOTAL_QUESTIONS}")
+            
+            missed_questions = TOTAL_QUESTIONS - correct
+            
+            print(f"You missed {missed_questions}. The minimum you could miss to pass was 5.")
+            
+            if missed_questions > 5:
+                print("You did not pass, study and try again.\n")
+            else:
+                print("\nCongratulations, you passed the exam!")
+                
+            if missed_questions == 0:
+                print()
+            else:
+                print(f"Here are the questions you missed:\n{wrong_indexes}\n")
+            
+            another = input("Check another test? (y/n) : ")
+            
+            
+            answer_key.close()
+            test_answers.close()
+            
+            
         
-        
+drivers_exam()
