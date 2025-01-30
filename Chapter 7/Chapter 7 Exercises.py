@@ -168,6 +168,18 @@ def drivers_exam():
             answer_key.close()
             test_answers.close()
             
+def tic_tac_toe():
+    # tic tac to plays the game
+    # it calls everything to play the game
+    
+    # create the list for the board
+    
+    board = [["-", "-", "-"],
+             ["-", "-", "-"],
+             ["-", "-", "-"]]
+    
+    while winner = False:
+        for col in range(0,3):
+            for row in range(0,3):
+                
             
-        
-drivers_exam()
