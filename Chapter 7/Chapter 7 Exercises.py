@@ -171,15 +171,42 @@ def drivers_exam():
 def tic_tac_toe():
     # tic tac to plays the game
     # it calls everything to play the game
-    
+
+    def game_over(board):
+        # game_over recieves an argument for the board
+        # and checks if all plays have been made
+        # without a winner
+        # if so it returns true, false otherwise
+            # left and right
+        if board[0][0] == board[0][1] and board[0][1] == board[0][2]:
+            return False
+        elif board[1][0] == board[1][1] and board[1][1] == board[1][2]:
+            return False
+        elif board[2][0] == board[2][1] and board[2][1] == board[2][2]:
+            return False
+        # up and down
+        elif board[0][0] == board[1][0] and board[1][0] == board[2][0]:
+            return False
+        elif board[0][1] == board[1][1] and board[1][1] == board[2][1]:
+            return False
+        elif board[0][2] == board[1][2] and board[1][2] == board[2][2]:
+            return False
+        # diagnals
+        elif board[0][0] == board[1][1] and board[1][1] == board[2][2]:
+            return False
+        elif board[0][2] == board[1][1] and board[1][1] == board[2][0]:
+            return False
+        else:
+            return True
+
+
     # create the list for the board
     
-    board = [["-", "-", "-"],
-             ["-", "-", "-"],
-             ["-", "-", "-"]]
+    board = [["X", "X", "X"],
+             ["O", "-", "-"],
+             ["-", "O", "-"]]
+
+    print(board)
+    game_over(board)
+
     
-    while winner = False:
-        for col in range(0,3):
-            for row in range(0,3):
-                
-            
