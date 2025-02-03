@@ -178,35 +178,106 @@ def tic_tac_toe():
         # without a winner
         # if so it returns true, false otherwise
             # left and right
-        if board[0][0] == board[0][1] and board[0][1] == board[0][2]:
+        if board[0][0] == board[0][1] and board[0][1] == board[0][2] and board[0][0] != '-':
             return False
-        elif board[1][0] == board[1][1] and board[1][1] == board[1][2]:
+        elif board[1][0] == board[1][1] and board[1][1] == board[1][2] and board[1][0] != '-':
             return False
-        elif board[2][0] == board[2][1] and board[2][1] == board[2][2]:
+        elif board[2][0] == board[2][1] and board[2][1] == board[2][2] and board[2][0] != '-':
             return False
         # up and down
-        elif board[0][0] == board[1][0] and board[1][0] == board[2][0]:
+        elif board[0][0] == board[1][0] and board[1][0] == board[2][0] and board[0][0] != '-':
             return False
-        elif board[0][1] == board[1][1] and board[1][1] == board[2][1]:
+        elif board[0][1] == board[1][1] and board[1][1] == board[2][1] and board[0][1] != '-':
             return False
-        elif board[0][2] == board[1][2] and board[1][2] == board[2][2]:
+        elif board[0][2] == board[1][2] and board[1][2] == board[2][2] and board[0][2] != '-':
             return False
         # diagnals
-        elif board[0][0] == board[1][1] and board[1][1] == board[2][2]:
+        elif board[0][0] == board[1][1] and board[1][1] == board[2][2] and board[0][0] != '-':
             return False
-        elif board[0][2] == board[1][1] and board[1][1] == board[2][0]:
+        elif board[0][2] == board[1][1] and board[1][1] == board[2][0] and board[0][2] != '-':
             return False
         else:
             return True
-
-
+        
+    def winner_check(board):
+        # game_over recieves an argument for the board
+        # and checks if all plays have been made
+        # without a winner
+        # if so it returns true, false otherwise
+            # left and right
+        if board[0][0] == board[0][1] and board[0][1] == board[0][2] and board[0][0] != '-':
+            return board[0][0]
+        elif board[1][0] == board[1][1] and board[1][1] == board[1][2] and board[1][0] != '-':
+            return board[1][0]
+        elif board[2][0] == board[2][1] and board[2][1] == board[2][2] and board[2][0] != '-':
+            return board[2][0]
+        # up and down
+        elif board[0][0] == board[1][0] and board[1][0] == board[2][0] and board[0][0] != '-':
+            return board[0][0]
+        elif board[0][1] == board[1][1] and board[1][1] == board[2][1] and board[0][1] != '-':
+            return board[0][1]
+        elif board[0][2] == board[1][2] and board[1][2] == board[2][2] and board[0][2] != '-':
+            return board[0][2]
+        # diagnals
+        elif board[0][0] == board[1][1] and board[1][1] == board[2][2] and board[0][0] != '-':
+            return board[0][0]
+        elif board[0][2] == board[1][1] and board[1][1] == board[2][0] and board[0][2] != '-':
+            return board[0][2]
+        else:
+            return 'Tie'
+        
     # create the list for the board
+    board = [["-", "-", "-"],
+             ["-", "-", "-"],
+             ["-", "-", "-"]]
+    x_or_o = 0
+    not_over = True
     
-    board = [["X", "X", "X"],
-             ["O", "-", "-"],
-             ["-", "O", "-"]]
+    while not_over == True:
+        x_or_o += 1
+        index1 = random.randint(0,2)
+        index2 = random.randint(0,2)
+        while board[index1][index2] != '-':
+            index1 = random.randint(0,2)
+            index2 = random.randint(0,2)
+        
+        if x_or_o % 2 == 0:
+            letter = "X"
+        else:
+            letter = "O"
+        
+        board[index1][index2] = letter
+        
+        not_over = game_over(board)
 
-    print(board)
-    game_over(board)
+    winner = winner_check(board)
+    if winner != 'Tie':
+        print(f"Winner is {winner}")
+    else:
+        print("It's a draw!")
 
+    print(board[0],"\n",board[1],"\n",board[2], sep = '')
     
+def white_elephant():
+    pass
+
+def magic_8_ball():
+    # magic 8 ball asks people for a qquestion
+    # it reads from a file and adds the responses to a list
+    # it prints the answer
+    
+    response = open("8_ball_responses.txt", "r")
+    responses = []
+    again = 'y'
+    
+    for res in response:
+        responses.append(res)
+    response.close()
+    while again == 'y':
+        input("\nWhat is your question? ")
+        print()
+        response = random.randint(0,11)
+        print(responses[response])
+        again = input("Do you want to ask another question? (y/n): ")
+    
+    print('\nBeware the prophecy... Take care.')
