@@ -259,8 +259,26 @@ def tic_tac_toe():
     print(board[0],"\n",board[1],"\n",board[2], sep = '')
     
 def white_elephant():
-    pass
-
+    # white elephant recieves no arguments
+    # it gives a random person to a random person on who they should gift
+    # it outputs who can gift who
+    
+    # create the lists
+    development_department = ["Julia", "Oliver", "Abigail"]
+    hr_department = ["Camden", "Kayleigh", "Cooper", "Kerrigan"]
+    sales_department = ["Avery", "Charlotte", "Elle"]
+    
+    PEOPLE = ["Julia", "Oliver", "Abigail", "Camden", "Kayleigh", "Cooper", "Kerrigan", "Avery", "Charlotte", "Elle"]
+    gived = []
+    recieved = []
+    
+    # find who gets gifted to who
+    for person in PEOPLE:
+        if person in development_department:
+            giftable = PEOPLE - person in development_department
+            
+        
+    
 def magic_8_ball():
     # magic 8 ball asks people for a qquestion
     # it reads from a file and adds the responses to a list
