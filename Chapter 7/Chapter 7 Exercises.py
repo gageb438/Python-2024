@@ -51,7 +51,7 @@ def rainfall():
     print(f"{minimum_month} had the least rain with {minimum} inches of rain.")
     print(f"{maximum_month} had the most rain with {maximum} inches of rain.")
     
-def charge_acts():
+def charge_accts():
     # charge accounts recieves no arguments
     # it checks if the account number entered is correct
     # it outputs if the number is in the list of account
@@ -316,7 +316,7 @@ while keep_going == 'y':
     elif menu_number == 2:
         rainfall()
     elif menu_number == 3:
-        charge_acts()
+        charge_accts()
     elif menu_number == 4:
         drivers_exam()
     elif menu_number == 5:
