@@ -2,6 +2,7 @@
 import random
 import time
 import os
+import menu
 
 def lottery():
     # lottery generates 7 random numbers from 0 - 9
@@ -50,7 +51,7 @@ def rainfall():
     print(f"{minimum_month} had the least rain with {minimum} inches of rain.")
     print(f"{maximum_month} had the most rain with {maximum} inches of rain.")
     
-def charge_accts():
+def charge_acts():
     # charge accounts recieves no arguments
     # it checks if the account number entered is correct
     # it outputs if the number is in the list of account
@@ -268,16 +269,23 @@ def white_elephant():
     hr_department = ["Camden", "Kayleigh", "Cooper", "Kerrigan"]
     sales_department = ["Avery", "Charlotte", "Elle"]
     
+    # initialize lists
+    givers = ["Julia", "Oliver", "Abigail", "Camden", "Kayleigh", "Cooper", "Kerrigan", "Avery", "Charlotte", "Elle"]
+    recievers = ["Julia", "Oliver", "Abigail", "Camden", "Kayleigh", "Cooper", "Kerrigan", "Avery", "Charlotte", "Elle"]
     PEOPLE = ["Julia", "Oliver", "Abigail", "Camden", "Kayleigh", "Cooper", "Kerrigan", "Avery", "Charlotte", "Elle"]
-    gived = []
-    recieved = []
     
+    print("Here are the results:")
     # find who gets gifted to who
     for person in PEOPLE:
-        if person in development_department:
-            giftable = PEOPLE - person in development_department
-            
-        
+        giver = random.choice(givers)
+        reciever = random.choice(recievers)
+        while giver in development_department and reciever in development_department or giver in hr_department and reciever in hr_department or giver in sales_department and reciever in sales_department:
+            giver = random.choice(givers)
+            reciever = random.choice(recievers)
+        print(f"{giver} gifts to {reciever}")
+        # remove them from the list
+        givers.remove(giver)
+        recievers.remove(reciever)
     
 def magic_8_ball():
     # magic 8 ball asks people for a qquestion
@@ -299,3 +307,23 @@ def magic_8_ball():
         again = input("Do you want to ask another question? (y/n): ")
     
     print('\nBeware the prophecy... Take care.')
+    
+keep_going = 'y'
+while keep_going == 'y':
+    menu_number = menu.menu(7)
+    if menu_number == 1:
+        lottery()
+    elif menu_number == 2:
+        rainfall()
+    elif menu_number == 3:
+        charge_acts()
+    elif menu_number == 4:
+        drivers_exam()
+    elif menu_number == 5:
+        tic_tac_toe()
+    elif menu_number == 6:
+        white_elephant()
+    elif menu_number == 7:
+        magic_8_ball()
+    
+    keep_going = input("Would you like to run another program? (y/n): ")
