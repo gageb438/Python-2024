@@ -13,7 +13,7 @@ def count_t(): #8-1
 
     # count the times
     for letter in word:
-        if word.lower() = 't':
+        if letter.lower() == 't':
             occured += 1
 
     # output final statement.
@@ -58,3 +58,76 @@ def generate_login(): #8-4
 
     print(f"Your system login name is: {login_name}")
 
+def string_test(): #8-5
+    # string test accepts no arguments
+    # it it akes input from the user in the form of a string
+    # and performs a variety of tests on the string
+    
+    # get input
+    user_string = input("Enter the string to evaluate: ")
+    
+    # perform string tests
+    if user_string.isalnum():
+        print("The string only contains alphanumeric characters.")
+    if user_string.isdigit():
+        print("The string only contains digits")
+    if user_string.isalpha():
+        print("The string only contains alpha characters.")
+    if user_string.isspace():
+        print("The string only contains whitespaces.")
+    if user_string.islower():
+        print("The string is all lowercase.")
+    if user_string.isupper():
+        print("The string is all uppercase.")
+    
+    print()
+    print(f"Your string converted to all uppercase is: {user_string.upper()}")
+    print(f"Your string converted to all lowercase is: {user_string.lower()}")
+
+def valid_password(password): #8-6
+    # valid password accepts a string for password
+    # it tests the following conditiions
+    # is password atleast 7 characters
+    # does password have at least one uppercase letter
+    # does password have atleast one digit (numeric)
+    # if password meets all conditions is_valid is true
+    # valid_password returns is_valid
+    upper = 0
+    lower = 0
+    digit = 0
+
+    if len(password) >= 7:
+        for letter in password:
+            if letter.islower():
+                lower += 1
+            if letter.isupper():
+                upper += 1
+        if lower >= 1 and upper >= 1:
+            for letter in password:
+                if letter.isdigit():
+                    digit += 1
+            if digit >= 1:
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+def validate_password(): #8-7
+    # validate_password accepts no arguments
+    # it prompts the user for a password
+    # and passes the password to login.valid_password
+    # to loop while the password is invalid
+    
+    is_valid = False
+    
+    while is_valid == False:
+        password = input("\nPlease enter your password: ")
+        
+        is_valid = valid_password(password)
+        
+        if is_valid == False:
+            print("The password you entered is not valid. Please try again.")
+        elif is_valid == True:
+            print("\nPassword accepted.")
