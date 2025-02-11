@@ -205,6 +205,7 @@ def tic_tac_toe():
         # and checks if all plays have been made
         # without a winner
         # if so it returns true, false otherwise
+        tie = "Tie"
             # left and right
         if board[0][0] == board[0][1] and board[0][1] == board[0][2] and board[0][0] != '-':
             return board[0][0]
@@ -225,7 +226,7 @@ def tic_tac_toe():
         elif board[0][2] == board[1][1] and board[1][1] == board[2][0] and board[0][2] != '-':
             return board[0][2]
         else:
-            return 'Tie'
+            return tie
         
     # create the list for the board
     board = [["-", "-", "-"],
@@ -252,7 +253,7 @@ def tic_tac_toe():
         not_over = game_over(board)
 
     winner = winner_check(board)
-    if winner != 'Tie':
+    if winner != "Tie":
         print(f"Winner is {winner}")
     else:
         print("It's a draw!")
