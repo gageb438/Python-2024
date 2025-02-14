@@ -1,3 +1,5 @@
+import login
+
 def count_t(): #8-1
     # count_t recieves no arguments
     # it prompts the user for a word
@@ -28,20 +30,6 @@ def concatenate(): #8-2
     carmen = "Where in the world is Carmen"
     print(carmen)
     print(carmen + " Sandiego")
-
-def get_login_name(first, last, idnumber): #8-3
-    # login accepts arguments for first, last, and id number.
-    # it createss seperate substrings of the first 3 letters of both
-    # the first name and last and last 3 characters of the id number.
-    # it concatenates the strings in order of first, last, id
-    # and it returns the newly generated login.
-
-    first_slice = first[0:3]
-    last_slice = last[-3:]
-    last_id = idnumber[-3:]
-
-    new_login = first_slice + last_slice + last_id
-    return new_login
     
 def generate_login(): #8-4
     # get login accepts no arguments
@@ -54,7 +42,7 @@ def generate_login(): #8-4
     idnumber =  input("Enter your id number: ")
 
     # call get login name to get new login name
-    login_name = get_login_name(first, last, idnumber)
+    login_name = login.get_login_name(first, last, idnumber)
 
     print(f"Your system login name is: {login_name}")
 
@@ -102,18 +90,15 @@ def valid_password(password): #8-6
                 lower += 1
             if letter.isupper():
                 upper += 1
-        if lower >= 1 and upper >= 1:
-            for letter in password:
-                if letter.isdigit():
-                    digit += 1
-            if digit >= 1:
-                return True
-            else:
-                return False
+            if letter.isdigit():
+                digit += 1
+        if upper >= 1 and lower >= 1 and digit >= 1:
+            return True
         else:
             return False
     else:
         return False
+
 def validate_password(): #8-7
     # validate_password accepts no arguments
     # it prompts the user for a password
@@ -131,3 +116,31 @@ def validate_password(): #8-7
             print("The password you entered is not valid. Please try again.")
         elif is_valid == True:
             print("\nPassword accepted.")
+
+def repitition(): #8-8
+    # repitition accepts no arguments
+    # it multiples 'Z' by range(1,10)
+    # then multiples 'Z' by range (8, 0, -1)
+    
+    # print Z range(1,10)-times increasing in length
+    for count in range(1,10):
+        print("Z" * count)
+        
+    for count in range(8,0,-1):
+        print("Z" * count)
+        
+def string_split(): #8-9
+    # string split accepts no arguments
+    # it splits the string into one two three four
+    # adding it to a list
+    text = "one.two.three.four"
+    new_text = text.split(".")
+    print(new_text)
+    
+def split_date(): #8-10
+    # split date accepts no arguments
+    # it creates a date string of 11/26/2018
+    # and splits the date into mm dd yyyy
+    date = "11/26/2018"
+    new_date = date.split("/")
+    print(f"Month: {new_date[0]}\nDay: {new_date[1]}\nYear: {new_date[2]}")
