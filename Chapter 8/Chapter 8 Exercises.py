@@ -70,4 +70,38 @@ def date_converter():
     # print the ending
     print(f"The date is: {real_month} {date_list[1]}, {date_list[2]}")
 
+def morse_code():
+    # mores_code recieves no arguments
+    # it translates text and numbers to morse code
+    ALPHABET = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    MORSE_ALPHABET = ['•-', '-•••', '-•-•', '-••', '•', '••-•', '--•', '••••', '••', '•---', '-•-', '•-••', '--','-•', '---', '•--•', '--•-', '•-•', '•••', '-', '••-', '•••-', '•--', '-••-', '-•--', '--••','•----', '••---', '•••---', '••••-', '•••••', '-••••', '--•••', '---••', '----•', '-----']
+    
+    input_string = "@"
+    
+    # prompt user for morse code string
+    while input_string.isalnum() == False:
+        print("No spaces, or special characters, only letters and numbers.")
+        input_string = input("Enter a message to encode to morse code: ")
+    
+    # check each letter and convert it
+    for letter in input_string:
+        if letter in ALPHABET:
+            letters_index = ALPHABET.index(letter)
+            morse_letter = MORSE_ALPHABET[letters_index]
+            
+            print(morse_letter, end = ' ')
+            
+def phone_converter():
+    # phone_converted recieves no arguments
+    # it makes sure they follow the argument for the telephone number
+    
+    again == True
+    
+    while again == True:
+        number = input("Enter a telephone number in the form of XXX-XXX-XXXX: ")
+        number_list = list.split("-")
+        if len(number_list) == 3:
+            if number_list[0].isdigit() == True and number_list[1].isdigit() == True and number_list[2].isdigit() == True:
+                if len(number_list[0]) == 3 and len(number_list[1]) == 3 and len(number_list[2]) == 3:
+                    #####################################################
     
