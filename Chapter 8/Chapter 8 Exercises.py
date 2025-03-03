@@ -95,13 +95,89 @@ def phone_converter():
     # phone_converted recieves no arguments
     # it makes sure they follow the argument for the telephone number
     
-    again == True
-    
+    # initalize variables
+    again = True
+    final_string = ""
+    NUMBER_ALPHABET = ["2", "2", "2", "3", "3", "3", "4", "4", "4", "5", "5", "5", "6", "6", "6", "7", "7", "7", "8", "8", "8", "9", "9", "9", "9"]
+    ALPHABET = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+    # loop for if they make a mistake
     while again == True:
+        # ask for input
         number = input("Enter a telephone number in the form of XXX-XXX-XXXX: ")
-        number_list = list.split("-")
+        # split to a list
+        number_list = number.split("-")
+        # verify it follows every rule
         if len(number_list) == 3:
-            if number_list[0].isdigit() == True and number_list[1].isdigit() == True and number_list[2].isdigit() == True:
-                if len(number_list[0]) == 3 and len(number_list[1]) == 3 and len(number_list[2]) == 3:
-                    #####################################################
+            if len(number_list[0]) == 3 and len(number_list[1]) == 3 and len(number_list[2]) == 4:
+                for row in number_list:
+                    # get each letter
+                    for letter in row:
+                        if letter.lower() in ALPHABET:
+                            # translate them
+                            letter = letter.lower()
+                            letters_index = ALPHABET.index(letter)
+                            number = NUMBER_ALPHABET[letters_index]
+                            # add them to final string
+                            final_string += number
+                        else:
+                            final_string += letter
+                    if row != number_list[2]:
+                        # add a spacer
+                        final_string += "-"
+                # print final number and set again to false
+                print(f"Here is your converted telephone number: {final_string}")
+                again = False
+                
+def avg_num_words():
+    # avg_num_words recieves no arguments
+    # it checks the amount of words in a file
+    # it also counts the sentences
+    # it also checks the words per sentence
     
+    # initialize variables
+    outfile = open("text.txt", "r")
+    sentences = 0
+    words = 0
+    
+    # count each line in the outfile
+    for line in outfile:
+        # create the line, split it, get the length of the list, and add the sentences
+        line = line.rstrip("\n")
+        line_list = line.split(" ")
+        words += len(line_list)
+        sentences += 1
+    
+    # get the average
+    average = words / sentences
+    
+    # output.
+    print(f"The file text.txt has {words} words.")
+    print(f"There are {sentences} total sentences.")
+    print(f"The average number of words per sentence is: {words}")
+
+def igpay_atinlay():
+    # pig latin takes a string
+    # it adds the last letter to the first
+    # it then adds ay to the end
+    
+    # ask for the string
+    latinify = input("Enter a message to convert to pig latin: ")
+    
+    # split the string
+    latinify_list = latinify.split(" ")
+    
+    for word in latinify_list:
+        period = False
+        if "." in word:
+            word = word.replace(".", "")
+            period = True
+        # assign new word
+        new_word = ''
+        # get the first letter
+        first_letter = word[0]
+        word += first_letter
+        word = word[1:]
+        if period == True:
+            word += "."
+        final_string += word + " "
