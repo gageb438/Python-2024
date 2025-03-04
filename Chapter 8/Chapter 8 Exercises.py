@@ -199,3 +199,47 @@ def igpay_atinlay():
     
     # print the final string in all upercase
     print(final_string.upper())
+    
+def gas_prices():
+    # gas prices recieves no arguments
+    # it controls all functions
+    # for checking gas prices per each year.
+    
+    
+    def average_per_year():
+        # average_per_year accepts no arguments
+        # it calculates the average of gas prices per each year
+        # then it returns them
+        year_data = []
+        date_list = []
+        price_list = []
+        average = 0
+        total = 0
+        
+        # open the file
+        outfile = open("GasPrices.txt", "r")
+        
+        for line in outfile:
+            year_data = []
+            
+            year_data_temp = line.split("-")
+            print(year_data_temp)
+            
+            year_data_temp_2 = year_data_temp[2].split(":")
+            print(year_data_temp_2)
+            
+            year_data.append(year_data_temp[0])
+            year_data.append(year_data_temp[1])
+            year_data.append(year_data_temp_2[0])
+            year_data.append(year_data_temp_2[1].rstrip("\n"))
+            print(year_data)
+            
+            year = year_data[2]
+            total += 
+            
+            
+            if year != old_year:
+                old_year = year
+                average = 
+    average_per_year()
+gas_prices()
