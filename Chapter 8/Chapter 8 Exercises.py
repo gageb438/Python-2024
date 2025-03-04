@@ -199,6 +199,3 @@ def igpay_atinlay():
     
     # print the final string in all upercase
     print(final_string.upper())
-        if period == True:
-            word += "."
-        final_string += word + " "
