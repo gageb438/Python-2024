@@ -161,23 +161,44 @@ def igpay_atinlay():
     # it adds the last letter to the first
     # it then adds ay to the end
     
-    # ask for the string
+    # initalize variables
+    final_string = ""
+    
+    # request input
     latinify = input("Enter a message to convert to pig latin: ")
     
     # split the string
     latinify_list = latinify.split(" ")
     
     for word in latinify_list:
+        # reset the period, and check if there is one.
         period = False
         if "." in word:
+            # replace period with nothing
             word = word.replace(".", "")
             period = True
-        # assign new word
-        new_word = ''
+        
         # get the first letter
         first_letter = word[0]
+        
+        # add the first letter to the end
         word += first_letter
+        
+        # remake the word to remove the letter at the start
         word = word[1:]
+        
+        # add ay to it
+        word += "AY"
+        
+        # add a period if there was one
+        if period == True:
+            word += "."
+        
+        # add it to the final string
+        final_string += word + " "
+    
+    # print the final string in all upercase
+    print(final_string.upper())
         if period == True:
             word += "."
         final_string += word + " "
