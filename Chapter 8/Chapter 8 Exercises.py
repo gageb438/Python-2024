@@ -204,7 +204,12 @@ def pb_main():
     # pb main recieves no arguments
     # it handles all function calls
     # outputs the 10 most common and 10 least common powerball numbers
-    pass
+    
+    # get the frequency and pb_frequency lists
+    frequency, pb_freq = pb_frequency()
+    
+    # get the most common numbers
+    most_common = pb_most_common(frequency, pb_freq)
 def pb_frequency():
     # pb_frequency recieves no arguments
     # it checks the frequency of all numbers
@@ -212,34 +217,57 @@ def pb_frequency():
     NUMBERS = []
     frequency = []
     PB_NUMBERS = []
-    pb_frequencys = []
+    pb_freq = []
     
-    for num in range(0, 69 + 1):
+    # generate the lists
+    for num in range(0, 69):
         NUMBERS.append(num)
         frequency.append(0)
     
-    for num in range(0, 24 + 1):
+    for num in range(0, 25 + 1):
         PB_NUMBERS.append(num)
-        pb_frequencys.append(0)
+        pb_freq.append(0)
     
     
+    # open the file
     outfile = open("pbnumbers.txt", "r")
     
+    # make each lien a list
     for line in outfile:
         line_list = line.split(" ")
         line_list[5] = line_list[5].rstrip("\n")
+        
+        # preset counter
         counter = -1
-        for number in line_list:
-            number = int(number)
-            counter += 1
-            if number == line_list[5]:
-                num = line_list[counter]
-                num_index = NUMBERS.index(int(num))
-                pb_freuqencys[int(num_index)] += 1
-            else:
-                num = line_list[counter]
-                num_index = NUMBERS.index(int(num))
-                frequency[int(num_index)] += 1
-    print(frequency)
-    print(pb_frequencys)
-pb_frequency()
+        
+        # add the frequency to each counter list
+        for number in range(0,4+1):
+            num = int(line_list[number])
+            num_index = NUMBERS.index(num - 1)
+            frequency[int(num_index)] += 1
+        # add pb frequency to pb list
+        num = int(line_list[5])
+        num_index = NUMBERS.index(num -1)
+        pb_freq[int(num_index)] += 1
+    
+    # return the frequency lists
+    return frequency, pb_freq
+
+def pb_most_common(frequency, pb_freq):
+    # pb_most_common recieves a list for the frequency
+    maximum = 0
+    maximums = []
+    
+    for num in range(0, 10):
+        for num in frequency:
+            if num > maximum:
+                maximum = num
+        print(maximum)
+        print(len(frequency))
+        frequency_index = frequency[maximum - 1]
+        frequency_index += 1
+        
+        maximums.append(frequency_index)
+        frequency.remove(maximum)
+        maximum = 0
+    print(maximums)
