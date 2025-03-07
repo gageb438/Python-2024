@@ -210,6 +210,9 @@ def pb_main():
     
     # get the most common numbers
     most_common = pb_most_common(frequency, pb_freq)
+    minimum_freq, minimum_pb_freq = pb_least_common(frequency, pb_freq)
+    
+    
 def pb_frequency():
     # pb_frequency recieves no arguments
     # it checks the frequency of all numbers
@@ -254,20 +257,95 @@ def pb_frequency():
     return frequency, pb_freq
 
 def pb_most_common(frequency, pb_freq):
-    # pb_most_common recieves a list for the frequency
+    # pb_most_common recieves a list for the frequency and pb frequency
+    # it returns 2 lists with the maximums
+    
+    # initalize variables
     maximum = 0
     maximums = []
+    pb_maximums = []
+    frequency_copy = []
+    pb_freq_copy = []
     
+    # copy frequency
+    for num in frequency:
+        frequency_copy.append(num)
+    
+    for num in pb_freq:
+        pb_freq_copy.append(num)
+        
     for num in range(0, 10):
-        for num in frequency:
+        for num in frequency_copy:
             if num > maximum:
                 maximum = num
-        print(maximum)
-        print(len(frequency))
-        frequency_index = frequency[maximum - 1]
-        frequency_index += 1
+            if maximum == 0:
+                break
+        maximum_index = frequency_copy.index(maximum)
+        frequency_copy[maximum_index] = 0
         
-        maximums.append(frequency_index)
-        frequency.remove(maximum)
+        maximums.append(maximum_index + 1)
+        
         maximum = 0
-    print(maximums)
+        
+    for num in range(0,10):
+        for num in pb_freq_copy:
+            if num > maximum:
+                maximum = num
+            if maximum == 0:
+                break
+        maximum_index = pb_freq_copy.index(maximum)
+        pb_freq_copy[maximum_index] = 0
+        
+        pb_maximums.append(maximum_index + 1)
+        
+        maximum = 0
+        
+    return maximum, pb_maximums
+
+def pb_least_common(frequency, pb_freq):
+    # pb_least_common recieves a list for the frequency and pb frequency
+    # it returns 2 lists with the minimums
+    
+    # initalize variables
+    minimum = 0
+    miniums = []
+    pb_minimums = []
+    frequency_copy = []
+    pb_freq_copy = []
+    
+    # copy frequency
+    for num in frequency:
+        frequency_copy.append(num)
+    
+    for num in pb_freq:
+        pb_freq_copy.append(num)
+        
+    for num in range(0, 10):
+        for num in frequency_copy:
+            if num < minimum:
+                minimum = num
+        
+        print(minimum)
+        print(frequency_copy)
+        minimum_index = frequency_copy.index(minimum)
+        frequency_copy[minimum_index] = 69
+        
+        minimums.append(minimum_index + 1)
+        
+        minimum = 70
+        
+    for num in range(0,10):
+        for num in pb_freq_copy:
+            if num < minimum:
+                minimum = num
+                
+        minimum_index = pb_freq_copy.index(minimum)
+        pb_freq_copy[minimum_index] = 0
+        
+        pb_minimums.append(minimum_index + 1)
+        
+        minimum = 70
+        
+    
+    print(minimums)
+    print(pb_minimums)
