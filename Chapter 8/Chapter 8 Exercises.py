@@ -79,8 +79,6 @@ def date_converter():
         else:
             print("Make sure you follow the format.")
     
-    print('pass1')
-    
     # create the list of months
     MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December']
     
@@ -108,7 +106,7 @@ def morse_code():
     final_string = ""
     # loop for while there is a invalid word, prompt for input again and begin checking
     while good == False:
-        input_string = input("Enter a message to encode to morse code: ")
+        input_string = input("Enter a message to encode to morse code: ").lower()
         input_list = input_string.split(" ")
         
         # check
@@ -432,24 +430,29 @@ def gas_prices():
     counter += 1
     old_date = date
     
+    # read each line in the file and split it
     for line in gas:
         line_list = line.split("-")
         line_list[2] = line_list[2].split(":")
         line_list[2][1] = line_list[2][1].rstrip("\n")
         
+        # set price and date
         price = line_list[2][1]
         date = line_list[2][0]
         
+        # check if the date matches
         if date == old_date:
             total += float(price)
             counter += 1
         else:
+            # get the average and reset the old date and counter.
             average = total / counter
             print(f"The average price in {old_date} was ${average:.2f}.")
             
             total = float(price)
             counter = 1
             old_date = date
+    # print final prices
     print(f"The average price in {old_date} was ${average:.2f}.")
     
 main()
