@@ -1,7 +1,36 @@
 # imports
-import random
-import string
+import menu
 
+def main():
+    # main recieves no arguments
+    # it calls all functions
+    
+    # preset menu_go
+    menu_go = True
+    # generate menu
+    while 1:
+        choice = menu.menu(8)
+        
+        # find choice and send them to the right function
+        if choice == 1:
+            sum_of_digits()
+        elif choice == 2:
+            date_converter()
+        elif choice == 3:
+            morse_code()
+        elif choice == 4:
+            phone_converter()
+        elif choice == 5:
+            avg_num_words()
+        elif choice == 6:
+            igpay_atinlay()
+        elif choice == 7:
+            pb_main()
+        elif choice == 8:
+            gas_prices()
+        elif choice == 0:
+            break
+    print("Goodbye!")
 def sum_of_digits():
     # sum of digits recieves no arguments
     # it asks the user for numbers
@@ -58,7 +87,6 @@ def date_converter():
     # preset variables
     month_number = int(date_list[0])
     month = ''
-    done1 = False
     
     # find the month
     for month in MONTHS:
@@ -75,22 +103,33 @@ def morse_code():
     # it translates text and numbers to morse code
     ALPHABET = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     MORSE_ALPHABET = ['•-', '-•••', '-•-•', '-••', '•', '••-•', '--•', '••••', '••', '•---', '-•-', '•-••', '--','-•', '---', '•--•', '--•-', '•-•', '•••', '-', '••-', '•••-', '•--', '-••-', '-•--', '--••','•----', '••---', '•••---', '••••-', '•••••', '-••••', '--•••', '---••', '----•', '-----']
-    
-    input_string = "@"
-    
-    # prompt user for morse code string
-    while input_string.isalnum() == False:
-        print("No spaces, or special characters, only letters and numbers.")
+    good = False
+    bads = 0
+    final_string = ""
+    # loop for while there is a invalid word, prompt for input again and begin checking
+    while good == False:
         input_string = input("Enter a message to encode to morse code: ")
-    
+        input_list = input_string.split(" ")
+        
+        # check
+        for word in input_list:
+            if word.isalnum() == False:
+                bads += 1
+        if bads != 0:
+            good = False
+            bads = 0
+        else:
+            good = True
+            
     # check each letter and convert it
     for letter in input_string:
         if letter in ALPHABET:
             letters_index = ALPHABET.index(letter)
             morse_letter = MORSE_ALPHABET[letters_index]
-            
-            print(morse_letter, end = ' ')
-            
+            final_string += morse_letter + " "
+        else:
+            final_string += " "
+    print("\n" + final_string)
 def phone_converter():
     # phone_converted recieves no arguments
     # it makes sure they follow the argument for the telephone number
@@ -148,13 +187,11 @@ def avg_num_words():
         words += len(line_list)
         sentences += 1
     
-    # get the average
     average = words / sentences
-    
     # output.
     print(f"The file text.txt has {words} words.")
     print(f"There are {sentences} total sentences.")
-    print(f"The average number of words per sentence is: {words}")
+    print(f"The average number of words per sentence is: {average}")
 
 def igpay_atinlay():
     # pig latin takes a string
@@ -209,8 +246,34 @@ def pb_main():
     frequency, pb_freq = pb_frequency()
     
     # get the most common numbers
-    most_common = pb_most_common(frequency, pb_freq)
+    most_common_freq, most_common_pb = pb_most_common(frequency, pb_freq)
     minimum_freq, minimum_pb_freq = pb_least_common(frequency, pb_freq)
+    
+    # sort each list
+    most_common_freq.sort()
+    most_common_pb.sort()
+    minimum_freq.sort()
+    minimum_pb_freq.sort()
+    
+    # print out the numbers
+    print("The most common lottery numbers are:")
+    for num in most_common_freq:
+        print(num)
+    print()
+    
+    print("The most common powerball numbers are:")
+    for num in most_common_pb:
+        print(num)
+    print()
+    
+    print("The least common lottery numbers are:")
+    for num in minimum_freq:
+        print(num)
+    print()
+    
+    print("The least common powerball numbers are:")
+    for num in minimum_pb_freq:
+        print(num)
     
     
 def pb_frequency():
@@ -240,10 +303,7 @@ def pb_frequency():
         line_list = line.split(" ")
         line_list[5] = line_list[5].rstrip("\n")
         
-        # preset counter
-        counter = -1
         
-        # add the frequency to each counter list
         for number in range(0,4+1):
             num = int(line_list[number])
             num_index = NUMBERS.index(num - 1)
@@ -267,13 +327,14 @@ def pb_most_common(frequency, pb_freq):
     frequency_copy = []
     pb_freq_copy = []
     
-    # copy frequency
+    # copy frequencies
     for num in frequency:
         frequency_copy.append(num)
     
     for num in pb_freq:
         pb_freq_copy.append(num)
-        
+    
+    # get the maxium list
     for num in range(0, 10):
         for num in frequency_copy:
             if num > maximum:
@@ -286,7 +347,8 @@ def pb_most_common(frequency, pb_freq):
         maximums.append(maximum_index + 1)
         
         maximum = 0
-        
+    
+    # get powerball maximum list
     for num in range(0,10):
         for num in pb_freq_copy:
             if num > maximum:
@@ -299,53 +361,95 @@ def pb_most_common(frequency, pb_freq):
         pb_maximums.append(maximum_index + 1)
         
         maximum = 0
-        
-    return maximum, pb_maximums
+    
+    # return them
+    return maximums, pb_maximums
 
 def pb_least_common(frequency, pb_freq):
     # pb_least_common recieves a list for the frequency and pb frequency
     # it returns 2 lists with the minimums
     
     # initalize variables
-    minimum = 0
-    miniums = []
+    minimum = 100
+    minimums = []
     pb_minimums = []
     frequency_copy = []
     pb_freq_copy = []
     
-    # copy frequency
+    # copy frequencies
     for num in frequency:
         frequency_copy.append(num)
-    
     for num in pb_freq:
         pb_freq_copy.append(num)
-        
-    for num in range(0, 10):
+    
+    # get minimums
+    for num in range(0,10):
         for num in frequency_copy:
             if num < minimum:
-                minimum = num
+                minimum = num    
+        index = frequency_copy.index(minimum)
+        frequency_copy[index] = 100
         
-        print(minimum)
-        print(frequency_copy)
-        minimum_index = frequency_copy.index(minimum)
-        frequency_copy[minimum_index] = 69
-        
-        minimums.append(minimum_index + 1)
-        
-        minimum = 70
-        
+        minimums.append(index + 1)
+        minimum = 100
+    
+    # get minimum powerballs
     for num in range(0,10):
         for num in pb_freq_copy:
             if num < minimum:
-                minimum = num
-                
-        minimum_index = pb_freq_copy.index(minimum)
-        pb_freq_copy[minimum_index] = 0
+                minimum = num        
+        index = pb_freq_copy.index(minimum)
+        pb_freq_copy[index] = 100
         
-        pb_minimums.append(minimum_index + 1)
-        
-        minimum = 70
-        
+        pb_minimums.append(index + 1)
+        minimum = 100
     
-    print(minimums)
-    print(pb_minimums)
+    # return
+    return minimums, pb_minimums
+
+def gas_prices():
+    # gas_prices recieves no arguments
+    # it gets the average price per year
+    # and prints the average prices.
+    
+    gas = open("GasPrices.txt", "r")
+    
+    # preset counter and total
+    total = 0.0
+    counter = 0
+    # split up the line, making it into lists
+    line = gas.readline()
+    line_list = line.split("-")
+    line_list[2] = line_list[2].split(":")
+    line_list[2][1] = line_list[2][1].rstrip("\n")
+    
+    # set price and date variables
+    price = line_list[2][1]
+    date = line_list[2][0]
+    
+    # add the price to the total, and add onto counter, setting old date for loop
+    total += float(price)
+    counter += 1
+    old_date = date
+    
+    for line in gas:
+        line_list = line.split("-")
+        line_list[2] = line_list[2].split(":")
+        line_list[2][1] = line_list[2][1].rstrip("\n")
+        
+        price = line_list[2][1]
+        date = line_list[2][0]
+        
+        if date == old_date:
+            total += float(price)
+            counter += 1
+        else:
+            average = total / counter
+            print(f"The average price in {old_date} was ${average:.2f}.")
+            
+            total = float(price)
+            counter = 1
+            old_date = date
+    print(f"The average price in {old_date} was ${average:.2f}.")
+    
+main()
