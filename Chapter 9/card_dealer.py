@@ -16,7 +16,7 @@ def card_dealer_main(): #program 9-1
                 if card_amnt <= len(deck):
                     go = True
                 else:
-                    print("No more than 52 cards.")
+                    print("No more than 52 cards. This uses a standard playing deck.")
             else:
                 print("Has to be a number greater than 0.")
         except:
@@ -66,7 +66,7 @@ def deal_cards(deck, number):
     
     # set hand to 0
     hand = 0
-    
+    print("\nHere is your hand: \n")
     # deal them a card
     for num in range(number):
         # get a random card
@@ -76,6 +76,6 @@ def deal_cards(deck, number):
         hand += value
         print(card)
     
-    print(f"The value of your hand is {hand}.")
+    print(f"\nThe value of your hand is {hand}.")
 
 card_dealer_main()
