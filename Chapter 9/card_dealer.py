@@ -1,3 +1,6 @@
+# imports
+import random
+
 def card_dealer_main(): #program 9-1
     # card dealer main accepts no arguments
     # it calls create_deck to generate a deck of cards
@@ -5,12 +8,22 @@ def card_dealer_main(): #program 9-1
     # it then calls deal_cards to deal the number of cards to the user
     deck = create_deck()
     
+    go = False
     while go == False:
         try:
             card_amnt = int(input("Enter the amount of cards to deal: "))
-            go = True
+            if card_amnt > 0:
+                if card_amnt <= len(deck):
+                    go = True
+                else:
+                    print("No more than 52 cards.")
+            else:
+                print("Has to be a number greater than 0.")
         except:
             go = False
+    
+    deck = create_deck()
+    deal_cards(deck, card_amnt)
 def create_deck():
     # create deck accepts no arguments
     # it geneerates a dictionary with the name of the card a the key
@@ -39,7 +52,7 @@ def create_deck():
         '7 of Diamonds' : 7, '8 of Diamonds' : 8, '9 of Diamonds' : 9,
         '10 of Diamonds' : 10, 'Jack of Diamonds' : 10, 'Queen of Diamonds' : 10,
         'King of Diamonds' : 10}
-    
+
     return deck
 
 def deal_cards(deck, number):
@@ -50,3 +63,19 @@ def deal_cards(deck, number):
     # it randomly selects and removes a key/value from the deck
     # it prints the card and calculates the value of the hand
     # after all cards have been dealt, it outputs the total value of the hand
+    
+    # set hand to 0
+    hand = 0
+    
+    # deal them a card
+    for num in range(number):
+        # get a random card
+        card = random.choice(list(deck))
+        # get the value of it, and
+        value = deck.pop(card)
+        hand += value
+        print(card)
+    
+    print(f"The value of your hand is {hand}.")
+
+card_dealer_main()
