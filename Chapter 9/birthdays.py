@@ -34,20 +34,20 @@ def get_menu_choice():
     print("\nFriends and their birthdays\n---------------------------\n1. Lookup\n2. Add a new birthday\n3. Change a birthday\n4. Delete a birthday\n5. Quit")
     
     # while they mess up, ask for another choice
-    while go == True:
+    while True:
         try:
             # get choice
             choice = int(input("\nEnter a menu choice: "))
             
+            # verify its an option
             if choice < 1 or choice > 5:
                 print("Use only numbers on the list.")
             else:
-                go = False
+                return choice
             
         except:
             print("Numbers only")
-    
-    return choice
+            
 def look_up(birthdays):
     # look up recieves an argument for birthdays
     # it looks to see if the birthday is in the dictionary
