@@ -28,6 +28,7 @@ def get_menu_choice():
     
     # preset variables
     go = True
+    choice = ''
     
     # print headers
     print("\nFriends and their birthdays\n---------------------------\n1. Lookup\n2. Add a new birthday\n3. Change a birthday\n4. Delete a birthday\n5. Quit")
@@ -42,6 +43,7 @@ def get_menu_choice():
                 print("Use only numbers on the list.")
             else:
                 go = False
+            
         except:
             print("Numbers only")
     
