@@ -31,8 +31,8 @@ def set_main():
         
     print()
     
-    # get the people who either play softball or basketball, but not both
-    only_one = basketball ^ softball
+    # get the people who either play sports
+    only_one = basketball | softball
 
     print("The following students play either softball OR basketball:")
     for person in only_one:
@@ -58,7 +58,14 @@ def set_main():
         
     print()
     
-    # get the people who only play 1 sport
-    only_1_sport = 
+    # get the people who play only one sport
+    only_one = basketball ^ softball
+    
+    print("The following students play one sport, but not both.")
+    for person in only_one:
+        print(person)
+    
+    print()
+    
     
 set_main()
