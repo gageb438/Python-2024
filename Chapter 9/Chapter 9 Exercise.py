@@ -147,3 +147,143 @@ def world_series():
         else:
             # add to year counter to keep track of year if it was not correct.
             year_counter += 1
+
+def card_dealer_main(): #program 9-1
+    # card dealer main accepts no arguments
+    # it calls create_deck to generate a deck of cards
+    # and takes input from the user for the number of cards to deal
+    # it then calls deal_cards to deal the number of cards to the user
+    
+    print("\nNew Game.")
+    deck = create_deck()
+    deal_cards(deck)
+    
+def create_deck():
+    # create deck accepts no arguments
+    # it geneerates a dictionary with the name of the card a the key
+    # and the point value of the card as the value
+    # and returns the dictionary of cards
+    deck = {'Ace of Spades' : 1, '2 of Spades' : 2, '3 of Spades' : 3,
+        '4 of Spades' : 4, '5 of Spades' : 5, '6 of Spades' : 6,
+        '7 of Spades' : 7, '8 of Spades' : 8, '9 of Spades' : 9,
+        '10 of Spades' : 10, 'Jack of Spades' : 10, 'Queen of Spades' : 10,
+        'King of Spades' : 10,
+        
+        'Ace of Hearts' : 1, '2 of Hearts' : 2, '3 of Hearts' : 3,
+        '4 of Hearts' : 4, '5 of Hearts' : 5, '6 of Hearts' : 6,
+        '7 of Hearts' : 7, '8 of Hearts' : 8, '9 of Hearts' : 9,
+        '10 of Hearts' : 10, 'Jack of Hearts' : 10, 'Queen of Hearts' : 10,
+        'King of Hearts' : 10,
+        
+        'Ace of Clubs' : 1, '2 of Clubs' : 2, '3 of Clubs' : 3,
+        '4 of Clubs' : 4, '5 of Clubs' : 5, '6 of Clubs' : 6,
+        '7 of Clubs' : 7, '8 of Clubs' : 8, '9 of Clubs' : 9,
+        '10 of Clubs' : 10, 'Jack of Clubs' : 10, 'Queen of Clubs' : 10,
+        'King of Clubs' : 10,
+        
+        'Ace of Diamonds' : 1, '2 of Diamonds' : 2, '3 of Diamonds' : 3,
+        '4 of Diamonds' : 4, '5 of Diamonds' : 5, '6 of Diamonds' : 6,
+        '7 of Diamonds' : 7, '8 of Diamonds' : 8, '9 of Diamonds' : 9,
+        '10 of Diamonds' : 10, 'Jack of Diamonds' : 10, 'Queen of Diamonds' : 10,
+        'King of Diamonds' : 10}
+
+    return deck
+
+def deal_cards(deck):
+    # deal cards accepts deck as a dictionary and number as an integer
+    # it verifies number isn't greater than the deck size
+    # if it is, it sets the number to the length to the deck size to not
+    # exceed the maximum index
+    # it randomly selects and removes a key/value from the deck
+    # it prints the card and calculates the value of the players hands
+    # it prints out each players hand as they move and their total points
+    
+    # set player hands to 0
+    plr_1_scor = 0
+    plr_2_scor = 0
+    
+    go = True
+    # deal them a card
+    try:
+        while go == True:
+            # pull player 1 cards first
+            
+            # get 2 random card for player 1 and add to score
+            for num in range(2):
+                rand_card = random.choice(list(deck))
+                value = deck.pop(rand_card)
+                if "Ace" in rand_card:
+                    if plr_1_scor + 11 > 21:
+                        value = 1
+                    else:
+                        value = 11
+                plr_1_scor += int(value)
+            
+            # get 2 random cards for player 2 and add to score
+            for num in range(2):
+                rand_card = random.choice(list(deck))
+                value = deck.pop(rand_card)
+                
+                # check if it is an ace and if so lower score 
+                if "Ace" in rand_card:
+                    if plr_2_scor + 11 > 21:
+                        value = 1
+                    else:
+                        value = 11
+                plr_2_scor += int(value)
+            
+            # check if anyone lost or it was a draw off the bat
+            if plr_1_scor > 21 and plr_2_scor > 21:
+                print("It's a draw! Both players tied off the bat.")
+            elif plr_1_scor > 21:
+                print("Player 1 lost off the bat.")
+            elif plr_2_scor > 21:
+                print("Player 2 lost off the bat.")
+
+            # check if their hand is 21 or greater and print who won
+            while plr_1_scor < 21 or plr_2_scor < 21:
+                # get player 1 another card
+                rand_card = random.choice(list(deck))
+                value = deck.pop(rand_card)
+                if "Ace" in rand_card:
+                    if plr_1_scor + 11 > 21:
+                        value = 1
+                    else:
+                        value = 11
+                plr_1_scor += int(value)
+                
+                # check if player 1 wins that
+                if plr_1_scor == 21:
+                    print(f"Player 1 wins! Their deck exactly hit 21. Player 2's score was {plr_2_scor}.")
+                    plr_1_scor = 0
+                    plr_2_scor = 0
+                    break
+                elif plr_1_scor > 21:
+                    print(f"Player 2 wins! Player 1's score exceeded 21. Their score was {plr_1_scor}.")
+                    plr_1_scor = 0
+                    plr_2_scor = 0
+                    break
+                
+                # get player another card
+                rand_card = random.choice(list(deck))
+                value = deck.pop(rand_card)
+                if "Ace" in rand_card:
+                    if plr_2_scor + 11 > 21:
+                        value = 1
+                    else:
+                        value = 11
+                plr_2_scor += int(value)
+        
+                # check if player 2 wins that
+                if plr_2_scor == 21:
+                    print(f"Player 2 wins! Their deck hit exactly 21. Player 1's score was {plr_1_score}.")
+                    plr_1_scor = 0
+                    plr_2_scor = 0
+                    break
+                elif plr_2_scor > 21:
+                    print(f"Player 1 wins! Player 2's score exceeded 21. Their score was {plr_2_scor}.")
+                    plr_1_scor = 0
+                    plr_2_scor = 0
+                    break
+    except Exception as err:
+        print("Deck ran out of cards!")
