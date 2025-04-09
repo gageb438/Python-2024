@@ -1,7 +1,30 @@
 # imports
 import random
 import string
+import menu
 
+def main():
+    # main recieves no arguments
+    # it calls all functions
+    
+    # generate menu
+    while 1:
+        choice = menu.menu(5)
+        
+        if choice == 0:
+            print("Goodbye.")
+            break
+        elif choice == 1:
+            encrypt()
+        elif choice == 2:
+            decrypt()
+        elif choice == 3:
+            unique_words()
+        elif choice == 4:
+            world_series()
+        else:
+            card_dealer_main()
+    
 def encrypt():
     # encrypt takes a file, reads its contents, and encrypts it all in a new
     
@@ -21,6 +44,8 @@ def encrypt():
     # close the files
     file.close()
     encoded_file.close()
+    print(f"Encrypted storage_file.txt to encoded_file.txt.")
+    
 def decrypt():
     # decrypt takes a file, reads it contents, and decrypts it in a new file
     
@@ -48,6 +73,7 @@ def decrypt():
     # close the files
     decoded_file.close()
     encoded_file.close()
+    print(f"Decrypted encoded_file.txt to decoded_file.txt.")
     
 def unique_words():
     # unique_words accepts no arguments
@@ -287,3 +313,4 @@ def deal_cards(deck):
                     break
     except Exception as err:
         print("Deck ran out of cards!")
+main()
