@@ -14,7 +14,7 @@ def main(): #program 10-6
     counter = 0
 
     # print the side up
-    print(f"This side is up: {my_coin.get_sideup()")
+    print(f"This side is up: {my_coin.get_sideup()}\nTossing the coin 10 times...")
 
     # loop for while the counter isnt 10
     while counter != 10:
