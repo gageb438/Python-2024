@@ -1,16 +1,17 @@
-class Dog:
-    species = "Canis familaris"
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+import coin
+
+def main():
+    # main accepts no arguments
+    # it uses an obect my_coin using the Coin class in coin.py
+    # it uses the get_sideup() method in the Coin to dispaly the starting state
+    # it loops 10 times, tossing the coin with the toss() method
+    # and displaying the side again with the get_sideup() method
     
-    # getter methods for the Dog class   
-    def speak(self, sound):
-        return f"{self.name} says {sound}."
+    my_coin = coin.Coin()
+    print(f"This side is up {my_coin.get_sideup()}")
+    print("Tossing the coin ten times...\n")
     
-    def __str__(self):
-        return f"{self.name} is {self.age} years old."
-    
-    def breed(self, name, breed):
-        return f"{self.name} is a {self.breed}"
-    
+    for num in range(1,10 + 1):
+        my_coin.toss()
+        print(f"Toss {num}: {my_coin.get_sideup()}")
+        

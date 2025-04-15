@@ -1,30 +1,23 @@
-# the bank account class simulates a bank account
+# bank account class makes a bank account
 
 class BankAccount(): #10-7
-
-    # the __init__ method accepts an argument for the account's balance.
-    # it is assigned to the __ balance attribute
-
-    def __init__(self, bal):
-        self.__balance = bal
     
-    # the deposit method makes a deposit into the account
-
+    # init makes the balance
+    def __init__(self, balance):
+        self.__balance = balance
+    
+    # deposit lets them deposit
     def deposit(self, amount):
         self.__balance += amount
     
-    # the withdraw method makes a withdrawl from the account
-
+    # withdraw lets them witdhraw
     def withdraw(self, amount):
-        if self.__balance > amount:
+        if amount > self.__balance:
+            print("Error: Insufficent funds")
+        elif:
             self.__balance -= amount
-        else:
-            print("Error: Insufficenet funds")
     
-    # the get balance method returns the account balance
-
+    # the get_balance method returns the account balance
     def get_balance(self):
         return self.__balance
-
-    def __str__(self):
-        return f"The blaance is ${eslf.__balance:",.2f"}"
+    
