@@ -12,12 +12,15 @@ class BankAccount(): #10-7
     
     # withdraw lets them witdhraw
     def withdraw(self, amount):
-        if amount > self.__balance:
+        if float(amount) >= float(self.__balance):
             print("Error: Insufficent funds")
-        elif:
-            self.__balance -= amount
+        else:
+            self.__balance -= float(amount)
+            print("Withdrawl successful")
     
     # the get_balance method returns the account balance
     def get_balance(self):
         return self.__balance
     
+    def __str__(self):
+        return f"The balance is ${self.__balance:,.2f}"
