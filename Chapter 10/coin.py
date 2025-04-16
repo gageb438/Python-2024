@@ -16,3 +16,4 @@ class Coin():
     # get the side thats up + return it
     def get_sideup(self):
         return self.__sideup
+    
