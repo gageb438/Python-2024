@@ -1,6 +1,6 @@
 import game_classes
-
-player = game_classes.Hero(100, 100, "Axe")
+weapon = input("Enter a weapon: ")
+player = game_classes.Hero(100, 100, weapon)
 
 player.lose_hp(10)
 print(player.get_hp())
@@ -18,3 +18,4 @@ else:
 print(player.get_weapon())
 player.s_weapon("Sword")
 print(player.get_weapon())
+bump
