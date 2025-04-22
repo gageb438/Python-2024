@@ -1,0 +1,197 @@
+import pet
+import os
+
+
+def main():
+    # main recieves no arguments
+    # it drives the whole program
+    
+    # check if there is a old data file and load, if theres not create the dictionary
+    if os.path.exists("pet_data.dat"):
+        file = open("pet_data.dat", "rb")
+        pet_dict = pickle.load(file)
+        file.close()
+    else:
+        pet_dict = {}
+    
+    # get users choice
+    choice = menu()
+    
+    # validate the choice, call the associated function, write if they quit
+    while choice != 5:
+        if choice == 1:
+            pet_add(pet_dict)
+        elif choice == 2:
+            pet_modify(pet_dict)
+        elif choice == 3:
+            disp = pet_display(pet_dict)
+            print(disp)
+        elif choice == 4:
+            pet_display_a(pet_dict)
+        else:
+            file = open("pet_data.dat", "wb")
+            pickle.dump(pet_dict, file)
+            file.close()
+            
+        # recall menu
+        choice = menu()
+        
+def menu():
+    # menu recieves no arguments
+    # it prints a menu, and gets user choice
+    # returns the users choice
+    
+    # print the header
+    print("\nPet management")
+    print("\n1) Add a pet")
+    print("2) Modify a pet")
+    print("3) Display a pet")
+    print("4) Display all pets")
+    print("5) Quit")
+    
+    # set choices and choice
+    choices = [1,2,3,4,5]
+    choice = 6
+    
+    # get users choice
+    while choice not in choices:
+        try:
+            choice = int(input(":>"))
+        except:
+            choice = 6
+    
+    print()
+    # return choice
+    return choice
+def pet_add(pet_dict):
+    # pet_add recieves an argument for a dictionary of pets
+    # it asks the user for a pet and attributes
+    # it then adds it to the dictionary
+    
+    # initalize variables
+    bad = True
+    name = input("Enter your pets name: ")
+    pet_type = input("Enter the type of pet you have: ")
+    while bad == True:
+        try:
+          age = int(input("Enter the age of your pet: "))
+          bad = False
+        except:
+          bad = True
+    
+    # make a new pet object
+    new_pet = pet.Pets(name, pet_type, age)
+    
+    # add it to the dictionary
+    pet_dict[new_pet.get_name()] = new_pet
+    # return the dictionary
+    return pet_dict
+
+def pet_modify(pet_dict):
+    # pet_modify accepts an argument for a dictionary of pets
+    # it asks if the user wants to modify a pet
+    # and validates it is there then modifies it
+    # it returns the modified dictionary
+    
+    # ask for the pets name
+    wanted_pet = input("What is the name of the pet you want to modify: ")
+    
+    # if its not in the dictionary already
+    while wanted_pet not in pet_dict:
+        # print error
+        print("Pet not found")
+        print("Would you like to put another in or quit")
+        print("1) Input another")
+        print("2) Quit")
+        options = [1,2]
+        choice = 3
+        
+        # get input again or reset choice back to 3
+        while choice not in options:
+            try:
+                choice = int(input(":>"))
+            except:
+                choice = 3
+        
+        # return if they quit
+        if choice == 2:
+            return
+        
+        wanted_pet = input("What is the name of the pet you want to modify: ")
+    
+    # remove it
+    pet_dict.pop(wanted_pet)
+    
+    # get input for the age and name and type
+    bad = True
+    name = input("Enter your pets new name: ")
+    pet_type = input("Enter the new type of pet you have: ")
+    while bad == True:
+        try:
+          age = int(input("Enter the new age of your pet: "))
+          bad = False
+        except:
+          bad = True
+    
+    # create a new pet object
+    new_pet = pet.Pets(name, pet_type, age)
+
+    # replace the pet with another one
+    pet_dict[new_pet.get_name()] = new_pet
+    
+    # return the dictionary
+    return pet_dict
+
+def pet_display(pet_dict):
+    # pet display recieves an argument for a pet dictionay
+    # it asks the user what pet they would like to display
+    # and then displays all the information using the __str__ method
+    
+    # get name
+    pets_name = input("Enter the name of the pet you are looking for: ")
+    
+    # check if the name isnt in the dictionary
+    while pets_name not in pet_dict:
+        # print error
+        print("Pet not found in the list.")
+        print("Would you like to input another, or quit.")
+        print("1) Input Another")
+        print("2) Quit")
+        
+        # startup variables
+        choices = [1,2]
+        choice = 3
+        # get input and check if its allowed
+        while choice not in choices:
+            try:
+                choice = int(input(":>"))
+            except:
+                choice = 3
+        
+        # return if they chose to quit
+        if choice == 2:
+            return
+        # get input again
+        pets_name = input("Enter the name of the pet you are looking for: ")
+    
+    # get the object and get the output string
+    pet_object = pet_dict[pets_name]
+    pet_display = pet_object.__str__()
+    # return the output string
+    return pet_display
+
+def pet_display_a(pet_dict):
+    # pet display_a recieves an arugment for the pet dictionary
+    # it displays all pets in the dictionary
+    # if it is empty it prints there is no pets.
+    
+    # check if it is empty
+    if pet_dict == {}:
+        print("No pets in the list")
+        return
+    
+    for pet in pet_dict:
+        pet_obj = pet_dict[pet]
+        print(pet_obj.__str__())
+
+main()
