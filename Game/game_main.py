@@ -1,3 +1,4 @@
+import random
 import game_classes
 
 def intro():
@@ -9,4 +10,5 @@ def intro():
     # start off by creating the player
     first_name = input("Hello there, wanderer, what is your first name: ")
     last_name = input(f"Okay {first_name}, what is your last name: ")
+
     
