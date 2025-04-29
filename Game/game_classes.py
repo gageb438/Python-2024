@@ -1,3 +1,5 @@
+import random
+
 class Hero():
     def __init__(self, first_name, last_name, weapon):
         self.__first_name = first_name
@@ -70,7 +72,41 @@ class Hero():
     
     
 class Enemy():
-    pass
+    # enemy recieves no arguments
+    # it creates an enemy for the player
+
+    # create the enemy with all moves and weapon
+    def __init__(self, name, hp, max_hp, moves, weapon):
+        # MOVES MUST BE A DICTIONARY WITH THE TYPE OF MOVE AS THE KEY AND THE DAMAGE AS THE VALUE
+        self.__name = name
+        self.__hp = hp
+        self.__max_hp = max_hp
+        self.__moves = moves
+        self.__weapon = weapon
+
+    def gain_hp(self, gain):
+        # gain the hp to the enemy
+        if self.__hp + gain > self.__max_hp:
+            self.__hp = self.__max_hp
+        else:
+            self.__hp += gain
+
+    def lose_hp(self, loss):
+        # lose hp
+        if self.__hp - loss <= 0:
+            self.__hp = 0
+            return False
+        else:
+            self.__hp -= loss
+            return True
+
+    def make_a_move(self):
+        # make a move! makes the boss attack
+        move = random.choice(list(self.__moves.keys()))
+        move_damage = self.__moves[move]
+        print("{self.__name} {move} dealing {move_damaage} to you!")
+        return move_damage
+        
 
 class Neutral():
     pass
