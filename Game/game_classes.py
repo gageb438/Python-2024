@@ -1,12 +1,12 @@
 class Hero():
-    def __init__(self, first_name, last_name, weapon, xp, xp_max):
+    def __init__(self, first_name, last_name, weapon):
         self.__first_name = first_name
         self.__last_name = last_name
         self.__hp = 100
         self.__max_hp = 100
         self.__weapon = weapon
-        self.__xp = int(xp)
-        self.__max_xp = int(xp_level)
+        self.__xp = 0
+        self.__max_xp = 200
         self.__level = 0
 
     # getters
