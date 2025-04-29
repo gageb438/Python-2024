@@ -86,7 +86,10 @@ class Enemy():
         self.__max_hp = max_hp
         self.__moves = moves
         self.__weapon = weapon
-
+    def get_hp(self):
+        return self.__hp
+    def get_name(self):
+        return self.__name
     def gain_hp(self, gain):
         # gain the hp to the enemy
         if self.__hp + gain > self.__max_hp:
@@ -107,7 +110,7 @@ class Enemy():
         # make a move! makes the boss attack
         move = random.choice(list(self.__moves.keys()))
         move_damage = self.__moves[move]
-        print("{self.__name} {move} dealing {move_damaage} to you!")
+        print(f"{self.__name} {move} dealing {move_damage} to you!")
         return move_damage
         
     def get_name(self):
