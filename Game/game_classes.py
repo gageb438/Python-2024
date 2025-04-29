@@ -107,7 +107,8 @@ class Enemy():
         print("{self.__name} {move} dealing {move_damaage} to you!")
         return move_damage
         
-
+    def get_name(self):
+        return self.__name
 class Neutral():
     pass
 
