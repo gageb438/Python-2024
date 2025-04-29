@@ -57,4 +57,7 @@ def intro():
         # its a boss in the training area meant to kill the player.
         # basically a way to skip the tutorial.
 
-        
+        # create the boss
+        boss = game_classes.Enemy("Rick the door technician", 1000, 1000, {"swings":50, "pokes":25, "kicks":200}
+
+        print("You've stepped into a dangerous area, {boss.get_name()} has arrived, beware his leg is very strong.")
