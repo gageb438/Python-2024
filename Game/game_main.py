@@ -8,8 +8,10 @@ def intro():
     # and how to interact
 
     # start off by creating the player
-    print("You wake up and look around, theres a terminal, you decide to go to it and read.")
+    print("You wake up in a grimy, messy, and stuffy dark room. You look around, theres a paper, you decide to go to it and read.")
     
-    first_name = input("[Terminal] : Please enter your first name : ")
-    last_name = input(f"[Terminal] : Please enter your last name : ")
+    first_name = input("[Paper] : Please write your first name : ")
+    last_name = input(f"[Paper] : Please write your last name : ")
+
+    print("The moment you write your first and last name, text in red appears on the paper.")
     
