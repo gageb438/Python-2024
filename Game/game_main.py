@@ -1,129 +1,94 @@
 import random
 import game_classes
 
-def intro():
-    # intro recieves no arguments
-    # it teaches the user the options they have
-    # and creates the player
-    # and how to interact
-    def clearing():
-        # start off by creating the player
-        print("You wake up in a foggy clearing. You look around, theres a paper, you decide to go to it and read.")
+def tutorial():
+    # tutorial recieves no arguments
+    # it creates the player, and prompts for a tutorial of the game
+    # it also introduces the systems for people new to the game
     
-        # get players name
-        first_name = input("[Paper] : Please write your first name : ")
-        last_name = input(f"[Paper] : Please write your last name : ")
+    # describe the scene
+    print("You awake in a dark room, staring at the ceiling, not remembering anything.")
     
-        # get rid of paper
-        print("The paper is quickly whisked away by a gust of wind.")
+    # ask if they want to do the tutorial
+    print("Would you like to recover your memory? (TUTORIAL, yes/no)")
+    choice = input(":>")
     
-        # get their object
-        player = game_classes.Hero(first_name, last_name, "fists", 5)
-        weapon = player.get_weapon()
+    while choice.lower() != "yes" and choice.lower() != "no" and choice.lower() != "y" and choice.lower() != "n":
+        choice = input(":>")
+    
+    # return if they didnt choose to do the tutorial
+    if choice != "yes" and choice != "y":
+        return
+    
+    # delete variables for optimization
+    del choice
+
+    # print the tutorial scene
+    print("You are laying in bed, staring at a loudspeaker on the ceiling.")
+    print("You need to see whats near, but your visions clouded, you can only see so much at one time.")
+    print("[LOUDSPEAKER] Hints will appear throughout the game, recently someone has been messing with our systems, keep in mind, they are only real if they start with [HINT].")
+    print("[LOUDSPEAKER] In the event you find a hint, contact our team, they'll figure it out.")
+    print("[HINT] Type Look in the console to see your surroundings.")
+
+    # get console input
+    console = input(":>")
+    
+    if console.lower() == "look":
+        # print scene
+        print("You look around to see your surroundings.")
+        print("You see a table, with a computer.")
+        print("You see a loudspeaker on the ceiling.")
+        print("You see a bed.")
+        print("You see a metal door.")
+        print("[HINT] Type the name of an item to interact with it, some actions are not undo-able once you make it, be careful.")
         
-        # print the location
-        print("\nYou now have a few options, the area to your north is clear, seemingly empty.")
-        print("The area to your west is hard to see through, but you're still able to go there.")
-        print("The area to your south and your east are covered in vines, too hard to pass through.")
-        print("\nHint: Type the direction alone to move.")
-    
-        # prime movement loop
-        moving = False
-        while moving == False:
-            choices = ["north", "west", "south", "east", "hit", "dig", "fly", "jump"]
-            choice = input("What would you like to do?\n:>")
+        # get console input again
+        console = input(":>")
+
+        # set the valid inputs
+        valid_inputs = ["table", "computer", "loudspeaker", "speaker", "bed", "sleep", "door"]
+
+        # validate the choice
+        while console.lower() not in valid_inputs:
+            print(f"{console} is not recognized as a valid command.")
+            console = input(":>")
         
-            while choice.lower() not in choices:
-                print(f"{choice} not recognized as a command.")
-                choice = input("What would you like to do?\n:>")
-    
-            if choice == "hit":
-                print(f"You swing with your {weapon}, hitting nothing.")
-            elif choice == "dig":
-                print(f"You try to dig with your {weapon}, making it no-where.")
-            elif choice == "fly":
-                print("Your not a bird!")
-            elif choice == "jump":
-                print("You jump.")
-            elif choice == "north":
-                moving = True
-                slime_area()
-            elif choice == "west":
-                overly_strong_boss(player)
-                moving = True
-            elif choice == "south" or choice == "east":
-                print("You try to move through the vines, but find yourself back where you started.")
-            else:
-                print(f"Uh oh! We've encountered an error proccessing {choice} please restart the game!")   
-                
-    def overly_strong_boss(player):
-        # overly strong boss recieves an argument for the playter
-        # its a boss in the training area meant to kill the player.
-        # basically a way to skip the tutorial.
-  
-        # create the boss
-        user_moves = ["attack", "hit", "swing", "fight", "run", "hide"]
-        boss = game_classes.Enemy("Zummie, the Guardian of the Forest", 1000, 1000, {"swings":50, "pokes":25, "kicks":200}, "tree branch")
-  
-        print(f"You've stepped into a dangerous area, {boss.get_name()} has arrived, beware he is very strong.")
-        print("Hint: You have a few moves here, not every one of them is the right one.")
-        while True:
-            choice = input("What would you like to do?\n:>")
+        # get users choice and print action
+        if console.lower() == "table" or console.lower() == "computer":
+            print("You move to the computer.")
+
+            # since they chose the computer, print computers scene
+            print("You open the computer on the table.")
+            print("It appears to be a company computer.")
+            print("Theres a few programs.")
+            print("(HINT) Open the program called survey.exe")
+
+            # get input again and set the valid inputs
+            console = input(":>")
+            valid_inputs = ["virus.exe", "look", "shutdown", "close"]
             
-            # validate move
-            while choice.lower() not in user_moves:
-                print(f"{choice} not recognized as a command.")
-                choice = input("What would you like to do?\n:>")
+            # validate for the input
+            while console.lower() not in valid_inputs:
+                print(f"{console} not recognized as a valid command.")
+                console = input(":>")
             
-            # set the choice to lower
-            choice = choice.lower()
-            
-            # if they attacked
-            if choice == "attack" or choice == "swing" or choice == "hit" or choice == "fight":
-                # attempt to figth
-                print(f"You attempt to attack {boss.get_name()}...")
-      
-                # win/lose
-                if random.randint(1,2) == 1:
-                    # win condition, deal damage to boss
-                    boss.lose_hp(player.get_dmg())
-                    print(f"You land your hit on {boss.get_name()} dealing {player.get_dmg()}, leaving {boss.get_name()} at {boss.get_hp()}hp.")
-                else:
-                    # lose condition, nothing happens
-                    print("You attack, but miss.")
-            
-                # have rick my boy make a move
-                damage = boss.make_a_move()
+            console = console.lower()
+
+            if console == "virus.exe":
+                # this was the setup.
+                print("[LOUDSPEAKER] Well we detected you opened virus.exe, that was one of the decoy hints, watch out for those, they are more dangerous than a simple announcement.")
+                print("You close the program.")
+            elif console == "look":
+                print("You look at the programs on the computer.")
+                print("You see a program called survey.")
+                print("You see a program called contact.")
+                print("You see a program called shutdown.")
+                print("The virus.exe program deleted itself.")
                 
-                # make the player lose health
-                player.lose_hp(damage)
-                
-                # check if they died
-                if player.get_hp() == False:
-                    print(f"You have died to {boss.get_name()}.")
-                    # call dead function
-                    dead()
-                else:
-                    print(f"Your health is now at {player.get_hp()}")
-            
-            if choice == "hide":
-                print("You attempt to hide, but there is no cover near you.")
-                # have the boss make a move in return
-                damage = boss.make_a_move()
-                
-                # make the player lose health
-                player.lose_hp(damage)
-                
-                # check if they died
-                if player.get_hp() == False:
-                    print(f"You have died to {boss.get_name()}.")
-                    # call dead function
-                    dead()
-                else:
-                    print(f"Your health is now at {player.get_hp()}")
-            
-            if choice == "run":
-                print("You attempt to run, however the vines block your path, it appears {boss.get_name()} has blocked the way with some kind of magic.")
-                
-    clearing()
-intro()
+
+        elif console.lower() == "loudspeaker" or console.lower() == "speaker":
+            print("Its a loudspeaker. Used to send you messages from command.")
+        elif console.lower() == "bed" or console.lower() == "sleep":
+            print("Its a bed, no use going back to sleep.")
+        elif console.lower() == "door":
+            print("Its a locked door, no way for you to open it.")
