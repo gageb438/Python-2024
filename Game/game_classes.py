@@ -79,4 +79,11 @@ class Friendly():
     pass
 
 class Item():
-    pass
+    def __init__(item):
+        ITEMS = ["fists"]
+        
+        if item.lower() in ITEMS:
+            self.__item = item
+        else:
+            return False
+        
