@@ -1,12 +1,13 @@
 import random
 
 class Hero():
-    def __init__(self, first_name, last_name, weapon):
+    def __init__(self, first_name, last_name, weapon, dmg):
         self.__first_name = first_name
         self.__last_name = last_name
         self.__hp = 100
         self.__max_hp = 100
         self.__weapon = weapon
+        self.__weapon_dmg = dmg
         self.__xp = 0
         self.__max_xp = 200
         self.__level = 0
@@ -28,6 +29,8 @@ class Hero():
         return self.__xp_max
     def get_level(self):
         return self.__level
+    def get_dmg(self):
+        return self.__weapon_dmg
     
     # modifiers
     # health
