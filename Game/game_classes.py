@@ -7,7 +7,7 @@ class Hero():
         self.__hp = 100
         self.__max_hp = 100
         self.__weapon = weapon
-        self.__weapon_dmg = dmg
+        self.__weapon_dmg = int(dmg)
         self.__xp = 0
         self.__max_xp = 200
         self.__level = 0
