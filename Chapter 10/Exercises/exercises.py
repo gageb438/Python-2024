@@ -1,6 +1,8 @@
 import pet
+import car
 import pickle
 import os
+import question
 
 def pet_driver():
     # pet driver recieves noa rguments
@@ -144,4 +146,47 @@ def pet_driver():
     
     while choice != 5:
         choice = menu()
-pet_driver()
+
+def car_driver():
+    # car driver recieves no arguments
+    # it speeds the car up by 5
+    # and slows it by 5
+    # while printing the speed
+
+    # get the make and model
+    make = input("What is the make of the car?\n:> ")
+    model = input("What is the model of the car?\n:> ")
+
+    # make the object
+    myCar = car.Cars(model, make)
+
+    # make it accelerate 5 times
+    for num in range(5):
+        myCar.accelerate()
+        print("Accelerating.")
+
+        print(myCar)
+
+    # make it deccalerate 5 times
+    for num in range(5):
+        myCar.brake()
+        print("Braking")
+
+        print(myCar)
+
+def trivia_game():
+    # trivia game recieves no arguments
+    # it asks players between science, math, and history
+    # it outputs a qustion, with a set of possible answers
+    
+    science = [
+        q1 = question.Question("What does DNA stand for?", ["Deoxy-ribose nucleic acid", "Ribose nucleic acid", "Nucleic acid", "Deoxy-ribose acid"], "Deoxy-ribose nucleic acid")
+        q2 = question.Question("How many bones are in the human body?", ["201", "212", "206", "200"], "206")
+        q3 = question.Question("Who discovered gravity?", ["Albert Einstein" ,"Isaac Newton", "Galileo Galilei", "Nikola Tesla"], "Isaac Newton")
+        q4 = question.Question("What is the hardest natural substance on earth?", ["Carbon", "Iron", "Steel", "Diamond"], "Diamond")
+        q5 = question.Question("What is the main gas that takes up Earth's Atmosphere?", ["Nitrogen", "Oxygen", "Carbon-Dioxide", "Hydrogen"], "Nitrogen")
+        q6 = question.Question("Humans and chimpanzees share roughly how much DNA?", ["95 per cent", "98 per cent", "96 per cent", "93 per cent"], "98 per cent")
+        q7 = question.QUestion("Which famous British physicist wrote A Brief History of Time")
+    ]
+
+   

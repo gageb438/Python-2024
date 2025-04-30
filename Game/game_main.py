@@ -84,7 +84,7 @@ def new_save():
     # make the character
     player = game_classes.Hero(name, weapon)
     
-    # call game with player
+    # call save game with player
     save_game(player)
     
 

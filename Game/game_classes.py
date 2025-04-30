@@ -57,10 +57,9 @@ class Hero():
 
 class Enemy():
     pass
-class Neutral():
-    pass
-class Friendly():
-    pass
+class Location():
+    def __init__(self):
+        pass
 class Item():
     pass
-        
+
