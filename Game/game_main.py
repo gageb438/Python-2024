@@ -1,94 +1,158 @@
-import random
 import game_classes
+import os
+import random
+import pickle
 
-def tutorial():
-    # tutorial recieves no arguments
-    # it creates the player, and prompts for a tutorial of the game
-    # it also introduces the systems for people new to the game
+def main():
+    # main recieves no arguments
+    # it drives the adventure game
+    # it outputs all steps
+
+    # initialize varaibles
+    game_name = "i couldnt find one, silly"
+
+    print(f"Welcome to {game_name}.")
     
-    # describe the scene
-    print("You awake in a dark room, staring at the ceiling, not remembering anything.")
-    
-    # ask if they want to do the tutorial
-    print("Would you like to recover your memory? (TUTORIAL, yes/no)")
-    choice = input(":>")
-    
-    while choice.lower() != "yes" and choice.lower() != "no" and choice.lower() != "y" and choice.lower() != "n":
-        choice = input(":>")
-    
-    # return if they didnt choose to do the tutorial
-    if choice != "yes" and choice != "y":
-        return
-    
-    # delete variables for optimization
-    del choice
+    choice = main_menu()
 
-    # print the tutorial scene
-    print("You are laying in bed, staring at a loudspeaker on the ceiling.")
-    print("You need to see whats near, but your visions clouded, you can only see so much at one time.")
-    print("[LOUDSPEAKER] Hints will appear throughout the game, recently someone has been messing with our systems, keep in mind, they are only real if they start with [HINT].")
-    print("[LOUDSPEAKER] In the event you find a hint, contact our team, they'll figure it out.")
-    print("[HINT] Type Look in the console to see your surroundings.")
+    if choice == 1:
+        new_save()
+    elif choice == 2:
+        player = load_save()
+        if player == False:
+            main()
+            return
+    else:
+        print(f"Goodbye, thank you for playing {game_name}!")
 
-    # get console input
-    console = input(":>")
-    
-    if console.lower() == "look":
-        # print scene
-        print("You look around to see your surroundings.")
-        print("You see a table, with a computer.")
-        print("You see a loudspeaker on the ceiling.")
-        print("You see a bed.")
-        print("You see a metal door.")
-        print("[HINT] Type the name of an item to interact with it, some actions are not undo-able once you make it, be careful.")
-        
-        # get console input again
-        console = input(":>")
+def main_menu():
+    # main menu recieves no arguments
+    # it creates the main menu
+    # and returns a choice
 
-        # set the valid inputs
-        valid_inputs = ["table", "computer", "loudspeaker", "speaker", "bed", "sleep", "door"]
+    # initialize variables
+    choices = [1,2,3]
+    choice = -1
 
-        # validate the choice
-        while console.lower() not in valid_inputs:
-            print(f"{console} is not recognized as a valid command.")
-            console = input(":>")
-        
-        # get users choice and print action
-        if console.lower() == "table" or console.lower() == "computer":
-            print("You move to the computer.")
+    # create the menu
+    print("1: New Save")
+    print("2: Load Save")
+    print("3: Quit")
 
-            # since they chose the computer, print computers scene
-            print("You open the computer on the table.")
-            print("It appears to be a company computer.")
-            print("Theres a few programs.")
-            print("(HINT) Open the program called survey.exe")
-
-            # get input again and set the valid inputs
-            console = input(":>")
-            valid_inputs = ["virus.exe", "look", "shutdown", "close"]
+    while choice not in choices:
+        try:
+            # get choice
+            choice = int(input(":> "))
             
-            # validate for the input
-            while console.lower() not in valid_inputs:
-                print(f"{console} not recognized as a valid command.")
-                console = input(":>")
-            
-            console = console.lower()
+            # check to make sure theres gamesaves if they chose to load
+            if choice == 2:
+                if not os.path.exists("game_saves.dat"):
+                    choice = -1
+                    print("No game saves found, please create one first.")
+        except:
+            # on exception, pass, restarting the loop
+            pass
+    
+    # return the users choice.
+    return choice
 
-            if console == "virus.exe":
-                # this was the setup.
-                print("[LOUDSPEAKER] Well we detected you opened virus.exe, that was one of the decoy hints, watch out for those, they are more dangerous than a simple announcement.")
-                print("You close the program.")
-            elif console == "look":
-                print("You look at the programs on the computer.")
-                print("You see a program called survey.")
-                print("You see a program called contact.")
-                print("You see a program called shutdown.")
-                print("The virus.exe program deleted itself.")
-                
+def new_save():
+    # new save does not recieve any arguments
+    # it creates a new save for the player
+    
+    # initialize valid weapons + damage + miss chance
+    weapons = {"sword" : [15, 30], "battle axe" : [20, 55], "dagger" : [5, 0], "gauntlets" : [10, 20]}
+    weapon = ""
 
-        elif console.lower() == "loudspeaker" or console.lower() == "speaker":
-            print("Its a loudspeaker. Used to send you messages from command.")
-        elif console.lower() == "bed" or console.lower() == "sleep":
-            print("Its a bed, no use going back to sleep.")
-        elif console.lower() == "door":
-            print("Its a locked door, no way for you to open it.")
+    print("---Character Creator---")
+    # get the name
+    name = input("Please enter the name of your character (First and last if it has a last): ")
+    
+    # print valid weapons
+    for item in weapons:
+        item_data = weapons[item]
+        
+        print(f"\nWeapon : {item}")
+        print(f"Damage : {item_data[0]}")
+        print(f"Miss Chance : %{item_data[1]}")
+
+    # get users choice
+    while weapon not in weapons:
+        print("\nWhat weapon would you like (with spaces if it has them)?")
+        weapon = input(":> ")
+    
+    # make the character
+    player = game_classes.Hero(name, weapon)
+    
+    # call game with player
+    save_game(player)
+    
+
+def load_save():
+    # load save recieves no arguments
+    # it prints all saves
+    # and loads one of the user choice
+
+    # create save dictionary
+    save_dict = {}
+
+    print("Saves:")
+
+    file = open("game_saves.dat", "rb")
+    saves = pickle.load(file)   
+
+    for person in saves:
+        # print the name and add it to a dictionary
+        print(f"Name: {person.get_name()}")
+        print(f"Location: {person.get_location()}\n1")
+        # add it to the dictionary
+        save_dict[person.get_name()] = person
+    
+    choice = input("Enter the name of the person save exactly, if it has spaces, add spaces.\n:> ")
+
+    if choice in save_dict:
+        player = save_dict[choice]
+    else:
+        print("No player found.")
+        # return false if it doesnt exist
+        return False
+    
+    # return player if it exists
+    return player
+def save_game(player):
+    # save game recieves an argument for the character object
+    # it then adds it to a file
+    # and pickles it
+    
+    # get the data
+    if os.path.exists("game_saves.dat"):
+        try:
+            file = open("game_saves.dat", "rb")
+            data = pickle.load(file)
+            file.close()
+        except:
+            file = open("game_saves.dat", "wb")
+            data = []
+            file.close()
+    else:
+        # open and close the file if it DOESNT exist to create it
+        file = open("game_saves.dat", "wb")
+        data = []
+        file.close()
+
+    # check to see if the name of a save is the same as another and add it if it does
+    for item in data:
+        if item.get_name() == player.get_name():
+            data.remove(item)
+            data.append(player)
+        else:
+            data.append(player)
+
+    # write it to the file
+    file = open("game_saves.dat", "wb")
+    pickle.dump(data, file)
+    file.close()
+
+    print("Game successfully saved.")
+
+main()
