@@ -289,7 +289,7 @@ def tutorial(player):
                     return "ran"
                 else:
                     print("You've already started this fight, no turning back now.")
-
+            
             elif choice == "attack":
                 run_able = False
 
