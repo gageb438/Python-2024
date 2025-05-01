@@ -70,6 +70,9 @@ class Hero():
     
     def add_data(self, key, data):
         self.__data[key] = data
+    
+    def get_data(self):
+        return self.__data
         
 class Enemy():
     def __init__(self, name, weapon, health):
@@ -80,14 +83,14 @@ class Enemy():
         self.__damage = weapon[1]
         self.__miss = weapon[2]
         self.__max_hp = health
-        self.hp = health
+        self.__hp = health
 
     def swing(self):
         # get their dice roll
         chance = random.randint(1,100)
         
         # if their miss chance was greater than or equal to the roll return a miss
-        if miss >= chance:
+        if self.__miss >= chance:
             return "miss"
         else:
             # if it wasnt, return the damage
