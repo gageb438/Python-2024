@@ -13,6 +13,7 @@ class Question():
         else:
             print(f"Incorrect! {self.__answer} was the answer.")
             return False
+
     def question(self):
         print("---Science Question---")
         print("Options:")

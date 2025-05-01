@@ -180,13 +180,26 @@ def trivia_game():
     # it outputs a qustion, with a set of possible answers
     
     science = [
-        q1 = question.Question("What does DNA stand for?", ["Deoxy-ribose nucleic acid", "Ribose nucleic acid", "Nucleic acid", "Deoxy-ribose acid"], "Deoxy-ribose nucleic acid")
-        q2 = question.Question("How many bones are in the human body?", ["201", "212", "206", "200"], "206")
-        q3 = question.Question("Who discovered gravity?", ["Albert Einstein" ,"Isaac Newton", "Galileo Galilei", "Nikola Tesla"], "Isaac Newton")
-        q4 = question.Question("What is the hardest natural substance on earth?", ["Carbon", "Iron", "Steel", "Diamond"], "Diamond")
-        q5 = question.Question("What is the main gas that takes up Earth's Atmosphere?", ["Nitrogen", "Oxygen", "Carbon-Dioxide", "Hydrogen"], "Nitrogen")
-        q6 = question.Question("Humans and chimpanzees share roughly how much DNA?", ["95 per cent", "98 per cent", "96 per cent", "93 per cent"], "98 per cent")
-        q7 = question.QUestion("Which famous British physicist wrote A Brief History of Time")
+        question.Question("What does DNA stand for?", ["Deoxy-ribose nucleic acid", "Ribose nucleic acid", "Nucleic acid", "Deoxy-ribose acid"], "Deoxy-ribose nucleic acid"),
+        question.Question("How many bones are in the human body?", ["201", "212", "206", "200"], "206"),
+        question.Question("Who discovered gravity?", ["Albert Einstein" ,"Isaac Newton", "Galileo Galilei", "Nikola Tesla"], "Isaac Newton"),
+        question.Question("What is the hardest natural substance on earth?", ["Carbon", "Iron", "Steel", "Diamond"], "Diamond"),
+        question.Question("What is the main gas that takes up Earth's Atmosphere?", ["Nitrogen", "Oxygen", "Carbon-Dioxide", "Hydrogen"], "Nitrogen"),
+        question.Question("Humans and chimpanzees share roughly how much DNA?", ["95 per cent", "98 per cent", "96 per cent", "93 per cent"], "98 per cent"),
+        question.Question("At what temperature are Clesius and Fahrenheit equal?", ["0 degrees", "-40 degrees", "80 degrees", "-80 degrees"], "-40 degrees"),
+        question.Question("What is the only metal that is liquid at room teperature?", ["Steel", "Nickel", "Iron", "Mercury"], "Mercury"),
+        question.Question("What does a Geiger counter measure?", ["Radiation", "Temperature", "Distance", "Place"], "Radiation"),
+        question.Question("What is the largest desert on Earth?", ["Sahara", "Arabian", "Gobi", "Antarctic"], "Antarctic") 
     ]
 
-   
+    math = [
+        question.Question("What famous Greek mathmatician, who wrote The Elements, is known as the Father of Geometry", ["Isaac Newton", "Albert Einstein", "Galileo", "Oppenheimer"], "Isaac Newton"),
+        question.Question("What famous German mathmatician is best known for his contributions in the field of statistics and Gaussian distribution, which we know as today as the normal distributin curve?", ["Carl Gauss", "Jane Gauss", "David guass", "Max Gauss"], "Carl Gauss"),
+        question.Question("What famous mathmatician and philosopher developed the Cartesian coordinate system in the 17th-century", ["Robert Hook", "Margaret Avendish", "Rene Descartes", "Gottfried Leibniz"], "Rene Descartes"),
+        question.Question("What famous Greek mathmetician is known for having accurately calculated the circumference of the planet Earth using only shadows and simple geometry?", ["Eratosthenes", "Aristotle", "Socrates", "Alan"], "Eratosthenes"),
+        question.Question("True or false: 51 is a prime number", ["True", "False"], "False"),
+        question.Question("True or false: 64 is both a Perfect Square", ["True", "False"], "True"),
+        question.Question("What is the smallest positive integer that is divisible by both 6 and 8?", ["24", "21", "28", "32"], "24"),
+        question.Question("")
+        
+    ]   
