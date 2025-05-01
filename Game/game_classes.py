@@ -11,6 +11,7 @@ class Hero():
         self.__hp = 100
         self.__max_hp = 100
         self.__location = "Spectral Bridge"
+
     # getter methods
     def get_name(self):
         return self.__name
@@ -26,7 +27,7 @@ class Hero():
     
     def get_location(self):
         return self.__location
-    
+       
     # setter methods
     def set_name(self, name):
         self.__name = name

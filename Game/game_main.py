@@ -25,6 +25,7 @@ def main():
     else:
         print(f"Goodbye, thank you for playing {game_name}!")
 
+
 def main_menu():
     # main menu recieves no arguments
     # it creates the main menu
@@ -56,18 +57,46 @@ def main_menu():
     # return the users choice.
     return choice
 
+
 def new_save():
     # new save does not recieve any arguments
     # it creates a new save for the player
     
     # initialize valid weapons + damage + miss chance
-    weapons = {"sword" : [15, 30], "battle axe" : [20, 55], "dagger" : [5, 0], "gauntlets" : [10, 20]}
+    weapons = {"Sword" : [15, 30], "Battle Axe" : [20, 55], "Dagger" : [5, 0], "Gauntlets" : [10, 20]}
     weapon = ""
 
     print("---Character Creator---")
-    # get the name
-    name = input("Please enter the name of your character (First and last if it has a last): ")
-    
+
+    # initialize looping variable
+    good = False
+
+    # check if the name is being used in our save file
+    while good == False:
+        # get input for the name
+        name = input("Please enter the name of your character (First and last if it has a last): ")
+
+        # check if the file exists, and then load the data
+        if os.path.exists("game_saves.dat"):
+            file = open("game_saves.dat", "rb")
+            data = pickle.load(file)
+            # close the file
+            file.close()
+
+            # check if the name is being used
+            for item in data:
+                if item.get_name() == name:
+                    good = False
+                else:
+                    good = True
+        else:
+            # if name wasnt being used or file didnt exist, set good to true, stopping the loop from running
+            good = True
+
+        # if good was set to false at the end of this loop, print that the name was being used and needs to be changed
+        if good == False:
+            print("Name already being used, pick another or modify the current one.")
+
     # print valid weapons
     for item in weapons:
         item_data = weapons[item]
@@ -80,6 +109,9 @@ def new_save():
     while weapon not in weapons:
         print("\nWhat weapon would you like (with spaces if it has them)?")
         weapon = input(":> ")
+    
+    # lowercase the weapon for getting correct damage values with the class
+    weapon = weapon.lower()
     
     # make the character
     player = game_classes.Hero(name, weapon)
@@ -104,7 +136,7 @@ def load_save():
     for person in saves:
         # print the name and add it to a dictionary
         print(f"Name: {person.get_name()}")
-        print(f"Location: {person.get_location()}\n1")
+        print(f"Location: {person.get_location()}\n")
         # add it to the dictionary
         save_dict[person.get_name()] = person
     
@@ -119,6 +151,8 @@ def load_save():
     
     # return player if it exists
     return player
+
+
 def save_game(player):
     # save game recieves an argument for the character object
     # it then adds it to a file
@@ -130,29 +164,55 @@ def save_game(player):
             file = open("game_saves.dat", "rb")
             data = pickle.load(file)
             file.close()
-        except:
-            file = open("game_saves.dat", "wb")
+        except EOFError:
             data = []
-            file.close()
+        except Exception as error:
+            print(error)
+
     else:
         # open and close the file if it DOESNT exist to create it
         file = open("game_saves.dat", "wb")
         data = []
         file.close()
 
-    # check to see if the name of a save is the same as another and add it if it does
+    # check to see if there is an old file under the same name
     for item in data:
         if item.get_name() == player.get_name():
             data.remove(item)
-            data.append(player)
-        else:
-            data.append(player)
+    
+    # add it to the data
+    data.append(player)
 
-    # write it to the file
+    # write data to the file
     file = open("game_saves.dat", "wb")
     pickle.dump(data, file)
     file.close()
 
     print("Game successfully saved.")
 
+
+def main_game():
+    # main game recieves no arguments
+    # it controls the main game
+    # starting off on the spectral bridge (nowhere)
+    # moving to 
+    pass
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    ##########################
+    
 main()
