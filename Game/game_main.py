@@ -191,28 +191,71 @@ def save_game(player):
     print("Game successfully saved.")
 
 
-def main_game():
-    # main game recieves no arguments
-    # it controls the main game
-    # starting off on the spectral bridge (nowhere)
-    # moving to 
-    pass
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
-    ##########################
+def main_game(player):
+    # main game recieves the player argument
+    # main game loops and runs the game
+    # it calls the tutorial first
+
+    tutorial
+
+def tutorial(player):
+    # tutorial just shows the user how to interact
+    # it recieves an argument for the player object
+    # and returns the player
     
+    print(f"Welcone {player.get_name()}!")
+    print("[GUIDE] This is the tutorial to teach you how to interact.")
+    print("[GUIDE] If you would like to skip this, type SKIP in the terminal.")
+    print("[GUIDE] If you would like to continue, type LOOK.")
+    
+    choice = input(":>")
+
+    # validate choice
+    while choice.lower() != "skip" and choice.lower() != "look":
+        print(f"{choice} not recognized as a valid command.")
+        choice = input(":> ")
+
+    # if skip, return, if they dont, show guide
+    if choice.lower() == "skip":
+        return player
+    else:
+        # print the guide
+        print("You look around, you are on a bridge, surrounded by a black fog.")
+        print("The only thing that shines through the fog is a white light.")
+        print("You can hear a faint voice, too quiet to make out what its saying.")
+        print("You can go north and south on the bridge, the north path has the light, the south does not.")
+        print("[GUIDE] Type north or south into the terminal to pick where to go.")
+        
+        # initialize loop
+        moving = False
+
+        while moving == False:
+            choice = input(":> ")
+
+            # set the choices
+            choices = ["north", "south", "west", "east", "up", "down", "look"]
+            if choice.lower() == "west" or choice.lower() == "east":
+                print("You attempt to move that way, theres no where to go other than falling.")
+            elif choice.lower() == "up":
+                print("You reach up, theres nowhere to go.")
+            elif choice.lower() == "down":
+                print("You cant go down, without falling.")
+            elif choice.lower() == "north":
+                print("You move north.")
+                moving = True
+            elif choice.lower() == "south":
+                print("You move south.")
+                moving = True
+            else:
+                print("You look around, you are on a bridge, surrounded by a black fog.")
+                print("The only thing that shines through the fog is a white light.")
+                print("You can hear a faint voice, too quiet to make out what its saying.")
+                print("You can go north and south on the bridge, the north path has the light, the south does not.")
+                print("[GUIDE] Type north or south into the terminal to pick where to go.")
+
+        if choice.lower() == "south":
+            return "dark"
+        else:
+            return "light"
+
 main()
