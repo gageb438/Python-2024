@@ -203,22 +203,10 @@ def tutorial(player):
     # it recieves an argument for the player object
     # and returns the player
     
-    print(f"Welcone {player.get_name()}!")
-    print("[GUIDE] This is the tutorial to teach you how to interact.")
-    print("[GUIDE] If you would like to skip this, type SKIP in the terminal.")
-    print("[GUIDE] If you would like to continue, type LOOK.")
-    
-    choice = input(":>")
+    def bridge_start(player):
+        # bridge start recieves a player argument
+        # and teachs the player how to look around and move
 
-    # validate choice
-    while choice.lower() != "skip" and choice.lower() != "look":
-        print(f"{choice} not recognized as a valid command.")
-        choice = input(":> ")
-
-    # if skip, return, if they dont, show guide
-    if choice.lower() == "skip":
-        return player
-    else:
         # print the guide
         print("You look around, you are on a bridge, surrounded by a black fog.")
         print("The only thing that shines through the fog is a white light.")
@@ -257,5 +245,75 @@ def tutorial(player):
             return "dark"
         else:
             return "light"
+    
+    def dark_bridge(player):
+        # dark bridge recieves an argument for the player
+        # it teaches them how to fight
+        # and then lets them go back to the light bridge
+
+        # make an enemy
+        enemy = game_classes.Enemy("Skeleton", ["Sword", 10, 20], 50)
+
+        # print that they found an enemy
+        print(f"You walk along the bridge, you see a {enemy.get_name()}! He is holding a {enemy.get_weapon()}")
+        print("[GUIDE] You found an enemy, to fight it, you must attack, type ATTACK into the console to fight it.")
+        print("[GUIDE] Or if you don't want to, type RUN into the console.")
+        print("[GUIDE] However if you choose to fight, you won't be able to run after starting.")
+
+        # prime the loop
+        run_able = True
+        moving = False
+
+        # start the loop
+        while moving == False:
+            # get choice and set valid choices
+            choice = input(":> ")
+            choice = choice.lower()
+            choices = ["look", "north", "east", "south", "west", "up", "down", "attack", "run"]
+            
+            # get the users input if it wasnt valid
+            while choice not in choices:
+                print(f"{choice} not recognized as a valid command.")
+                choice = input(":> ")
+                choice = choice.lower()
+            
+            if choice == "look":
+                print(f"You look around to see you and a {enemy.get_name()} on a dark bridge surrounded by fog.")
+                print("Your north, east, and west seemed to be clear, but when you try to move to them, your body won't let you.")
+                print("Heading south returns you back to the other bridge.")
+            elif choice == "north" or choice == "west" or choice == "east":
+                print("You try to move, your body wont let you.")
+            elif choice == "run" or choice == "south":
+                if run_able == True:
+                    moving = True
+                    return "ran"
+                else:
+                    print("You've already started this fight, no turning back now.")
+
+            elif choice == "attack":
+                run_able = False
+
+
+    # print the welcome
+    print(f"Welcone {player.get_name()}!")
+    print("[GUIDE] This is the tutorial to teach you how to interact.")
+    print("[GUIDE] If you would like to skip this, type SKIP in the terminal.")
+    print("[GUIDE] If you would like to continue, type LOOK.")
+
+    while choice.lower() != "skip" and choice.lower() != "look":
+        print(f"{choice} not recognized as a valid command.")
+        choice = input(":> ")
+
+    # if skip, return, if they dont, show guide
+    if choice.lower() == "skip":
+        return player
+    else:
+        # get new player while walking through
+        choice = bridge_start(player)
+        if choice == "dark":
+            # call dark bridge scene
+            player = dark_bridge(player)
+    
+
 
 main()
