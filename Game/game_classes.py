@@ -1,125 +1,89 @@
 import random
 
 class Hero():
-    def __init__(self, name, weapon):
-        weapons = {"sword" : [15, 30], "battle axe" : [20, 55], "dagger" : [5, 0], "gauntlets" : [10, 20]}
-        # create the weapon save list
-        weapon_save = [weapon, weapons[weapon][0], weapons[weapon][1]]
-        # save all stats
-        self.__weapon = weapon_save
+    def __init__(self, name, weapon, health, max_health, location):
         self.__name = name
-        self.__hp = 100
-        self.__max_hp = 100
-        self.__location = "Spectral Bridge"
-        self.__data = {}
-
-    # getter methods
+        self.__weapon = weapon
+        self.__health = health
+        self.__max_health = max_health
+        self.__location = location
+    
+    # get items
     def get_name(self):
         return self.__name
     
-    def get_hp(self):
-        return self.__hp
+    def get_health(self):
+        return self.__health
     
-    def get_max_hp(self):
-        return self.__max_hp
+    def get_max_health(self):
+        return self.__max_health
     
-    def get_weapon_data(self):
+    def get_weapon(self):
         return self.__weapon
     
     def get_location(self):
         return self.__location
-       
-    # setter methods
-    def set_name(self, name):
-        self.__name = name
     
-    def set_hp(self, hp):
-        # THIS CAN GO OVER MAX HP, MUCH BETTER TO GAIN 100000 INSTEAD
-        self.__hp = hp
-
-    def set_max_hp(self, hp):
-        self.__max_hp = hp
+    # setters
+    def set_health(self, health):
+        self.__health = health
     
-    def set_location(self, place):
-        self.__location = place
+    def set_max_health(self, health):
+        self.__max_health = health
+    
+    def set_weapon(self, weapon):
+        self.__weapon = weapon
         
-    # modifier methods
-    def gain_hp(self, hp):
-        if self.__hp + hp > self.__max_hp:
-            self.__hp = self.__max_hp
-        else:
-            self.__hp += hp
-
-    def lose_hp(self, hp):
-        if self.__hp - hp <= 0:
-            self.__hp = 0
-            return False
-        else:
-            self.__hp -= hp
-
-    # use swing
-    def swing(self):
-        damage = self.__weapon[1]
-        miss_chance = self.__weapon[2]
-        
-        miss = random.randint(0, 100)
-        if miss <= miss_chance:
-            return "miss"
-        else:
-            return damage
+    def set_location(self, location):
+        self.__location = location
     
-    def add_data(self, key, data):
-        self.__data[key] = data
     
-    def get_data(self):
-        return self.__data
-        
-class Enemy():
-    def __init__(self, name, weapon, health):
-        # WEAPON MUST BE FORMATTED LIKE
-        # weapon = [weapon, damage, miss]
-        self.__name = name
-        self.__weapon = weapon[0]
-        self.__damage = weapon[1]
-        self.__miss = weapon[2]
-        self.__max_hp = health
-        self.__hp = health
-
-    def swing(self):
-        # get their dice roll
-        chance = random.randint(1,100)
-        
-        # if their miss chance was greater than or equal to the roll return a miss
-        if self.__miss >= chance:
-            return "miss"
+    # modifiers
+    def heal(self, heal):
+        # HEAL DOES NOT GO OVER HEALTH CAP
+        if self.__health + heal > self.__max_health:
+            self.__health = self.__max_health
         else:
-            # if it wasnt, return the damage
-            return self.__damage
+            self.__health += heal
     
-    def lose_hp(self, damage):
-        if self.__hp - damage <= 0:
-            return False
+    def damage(self, damage):
+        if self.__health - damage <= 0:
+            return "dead"
         else:
-            self.__hp -= damage
+            self.__health -= damage
     
-    def gain_hp(self, gain):
-        if self.__hp + gain > self.__max_hp:
-            self.__hp = self.__max_hp
-        else:
-            self.__hp += gain
-
+    
+class Weapon():
+    def __init__(self, name, damage):
+        self.__name
+        self.__damage = damage
+    
     def get_name(self):
         return self.__name
     
-    def get_hp(self):
-        return self.__hp
-    
-    def get_weapon(self):
-        return self.__weapon
+    def get_damage(self):
+        return self.__damage
 
 class Location():
-    def __init__(self):
-        pass
-class Item():
-    pass
-
+    def __init__(self, name, desc, choices):
+        self.__name = name
+        self.__desc = desc
+        self.__choices = choices
+    
+    def get_name(self):
+        return self.__name
+    
+    def get_choice(self):
+        choice = input(":> ")
+        
+        # validate choice
+        while choice.lower() not in choices:
+            print(f"{choice} not recognized as a command.")
+            choice = input(":> ")
+        
+        return choice
+    
+    
+    def __str__(self):
+        print(desc)
+    
