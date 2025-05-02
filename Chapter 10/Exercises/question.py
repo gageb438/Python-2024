@@ -2,12 +2,18 @@ class Question():
     def __init__(self, question:str, options:list, answer:str):
         # set the proper things
         self.__question = question
-        self.__answer = answer
-        self.__options = options
+        self.__answer = answer.lower()
+        # lower the whole list
+        new_options = []
+
+        for item in options:
+            new_options.append(item)
+        
+        self.__options = new_options
 
     def answer(self):
         ans = input(":> ")
-        if ans.lower() in self.__options:
+        if ans.lower() == self.__answer:
             print(f"Correct!")
             return True
         else:
@@ -15,7 +21,8 @@ class Question():
             return False
 
     def question(self):
-        print("---Science Question---")
+        print("---Question---")
+        print(self.__question)
         print("Options:")
         for item in self.__options:
             print(item)
