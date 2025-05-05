@@ -54,21 +54,29 @@ class Hero():
     
     
 class Weapon():
-    def __init__(self, name, damage):
-        self.__name
+    def __init__(self, name, damage, hits_per_round):
+        self.__name = name
         self.__damage = damage
+        self.__hits = hits_per_round
     
     def get_name(self):
         return self.__name
     
+    def get_hits(self):
+        return self.__hits
+
     def get_damage(self):
         return self.__damage
+    
+    def __str__(self):
+        return f"Name: {self.__name}\nDamage: {self.__damage}\nHits per turn:{self.__hits}"
 
 class Location():
-    def __init__(self, name, desc, choices):
+    def __init__(self, name, desc, choices, enemies:list):
         self.__name = name
         self.__desc = desc
         self.__choices = choices
+        self.__enemies = enemies
     
     def get_name(self):
         return self.__name
@@ -86,4 +94,75 @@ class Location():
     
     def __str__(self):
         print(desc)
+
+class Enemy():
+    def __init__(self, name, weapon, health, max_health):
+        self.__name = name
+        self.__weapon = weapon
+        self.__health = health
+        self.__max_health = max_health
+    
+    # GETTER METHODS
+    def get_name(self):
+        return self.__name
+    
+    def get_weapon(self):
+        return self.__weapon
+    
+    def get_health(self):
+        return self.__health
+    
+    def get_max_health(self):
+        return self.__max_health
+    
+    # MODIFIER METHODS
+    def gain_health(self, gain):
+        if self.__health + gain > self.__max_health:
+            self.__health = self.__max_health
+        else:
+            self.__health += gain
+    
+    def lose_health(self, loss):
+        if self.__health - loss <= 0:
+            return "dead"
+        else:
+            self.__health -= loss
+
+class Fight():
+    def __init__(self, player, enemy):
+        self.__player = player
+        self.__enemy = enemy
+        self.__p_weapon = player.get_weapon()
+        self.__e_weapon = enemy.get_weapon()
+
+    
+    def run_fight(self):
+        # run fight recieves no arguments
+        # it runs the fights starting with the player attacking
+
+        # initialize variables
+        enemy = self.__enemy
+        enemy_weapon = self.__e_weapon
+        enemy_rolls = enemy_weapon.get_hits()
+
+        player = self.__player
+        player_weapon = self.__p_weapon
+        player_rolls = player_weapon.get_hits()
+        fight = True
+
+        # start the fight
+        while fight == True:
+            for roll in player_rolls:
+                choice = input(":> ")
+
+                if choice.lower() == "run":
+                    if random.randin(1,2) == 1:
+                        return ran
+                    else:
+                        print("You attempt to run, but cannot make it away.")
+                    
+                
+
+        
+
     

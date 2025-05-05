@@ -3,6 +3,7 @@ import os
 import random
 import pickle
 
+
 def main():
     # main recieves no arguments
     # it drives the adventure game
@@ -58,13 +59,16 @@ def main_menu():
     return choice
 
 
+#-------------------------------------------------------
+# PLAYER SAVE FUNCTIONS
+
 def new_save():
     # new save does not recieve any arguments
     # it creates a new save for the player
     
-    # initialize valid weapons + damage + miss chance
-    weapons = {"Sword" : [15, 30], "Battle Axe" : [20, 55], "Dagger" : [5, 0], "Gauntlets" : [10, 20]}
-    weapon = ""
+    # initialize valid weapons
+    sword = game_classes.Weapon("Sword", 20, 1)
+    dagger = game_classes.Weapon("Dagger", 10, 2)
 
     print("---Character Creator---")
 
@@ -98,25 +102,29 @@ def new_save():
             print("Name already being used, pick another or modify the current one.")
 
     # print valid weapons
-    for item in weapons:
-        item_data = weapons[item]
-        
-        print(f"\nWeapon : {item}")
-        print(f"Damage : {item_data[0]}")
-        print(f"Miss Chance : %{item_data[1]}")
+    print(sword)
+    print(dagger)
 
     # get users choice
-    while weapon not in weapons:
-        print("\nWhat weapon would you like (with spaces if it has them)?")
-        weapon = input(":> ")
+    weapon = input("\nWhat weapon would you like to use?\n:>")
+
+    # validate choice
+    while weapon.lower() != "sword" and weapon.lower() != "dagger":
+        print(f"{weapon} does not exist.")
+        weapon = input(":>")
     
-    # lowercase the weapon for getting correct damage values with the class
-    weapon = weapon.lower()
-    
+    # set their weapon
+    if weapon.lower() == "sword":
+        weapon = sword
+    else:
+        weapon = dagger
+
     # make the character
-    player = game_classes.Hero(name, weapon)
+    player = game_classes.Hero(name, weapon, 100, 100, "tutorial")
     
     # call save game with player
+    # then call main game
+    save_game(player)
     main_game(player)
     
 
@@ -190,219 +198,66 @@ def save_game(player):
 
     print("Game successfully saved.")
 
-
-def dead(player):
-    # dead recieves the player argument
-    # it deletes the player from storage because they died
-    # and outputs nothing
-
-    file = open("game_saves.dat", "rb")
-    data = pickle.load(file)
-    file.close()
-    
-    for item in data:
-        if item.get_name() == player.get_name():
-            data.remove(item)
-    
-    file = open("game_saves.dat", "wb")
-    pickle.dump(data, file)
-    file.close()
-
-def main_game(player):
-    # main game recieves the player argument
-    # main game loops and runs the game
-    # it calls the tutorial first
-
-    # call the tutorial
-    tutorial(player)
-
+#-------------------------------------------------------
+# LOCATION FUNCTIONS
 def tutorial(player):
-    # tutorial just shows the user how to interact
-    # it recieves an argument for the player object
-    # and returns the player
+    # tutorial recieves the player argument
+    # since it is a special locaion
+    # it needs its own function
+
+    # initalize variables
+    choice = -1
+    choices = ["1","2"]
+    weapon = player.get_weapon()
+
+    # print the welcome screen
+    print("Welcome to the tutorial, if you would like to do it, press 1.\nIf you would like to skip it, press 2.")
     
-    def bridge_start(player):
-        # bridge start recieves a player argument
-        # and teachs the player how to look around and move
-
-        # print the guide
-        print("You look around, you are on a bridge, surrounded by a black fog.")
-        print("The only thing that shines through the fog is a white light.")
-        print("You can hear a faint voice, too quiet to make out what its saying.")
-        print("You can go north and south on the bridge, the north path has the light, the south does not.")
-        print("[GUIDE] Type north or south into the terminal to pick where to go.")
-        
-        player.set_location("spectral_bridge")
-        
-        # initialize loop
-        moving = False
-
-        while moving == False:
-            choice = input(":> ")
-
-            # set the choices
-            choices = ["north", "south", "west", "east", "up", "down", "look"]
-            
-            while choice not in choices:
-                print(f"{choice} not recognized as a command.")
-                choice = input(":> ")
-            
-            if choice.lower() == "west" or choice.lower() == "east":
-                print("You attempt to move that way, theres no where to go other than falling.")
-            elif choice.lower() == "up":
-                print("You reach up, theres nowhere to go.")
-            elif choice.lower() == "down":
-                print("You cant go down, without falling.")
-            elif choice.lower() == "north":
-                print("You move north.")
-                moving = True
-            elif choice.lower() == "south":
-                print("You move south.")
-                moving = True
-            else:
-                print("You look around, you are on a bridge, surrounded by a black fog.")
-                print("The only thing that shines through the fog is a white light.")
-                print("You can hear a faint voice, too quiet to make out what its saying.")
-                print("You can go north and south on the bridge, the north path has the light, the south does not.")
-                print("[GUIDE] Type north or south into the terminal to pick where to go.")
-
-        if choice.lower() == "south":
-            return "dark"
-        else:
-            return "light"
-    
-    def dark_bridge(player):
-        # dark bridge recieves an argument for the player
-        # it teaches them how to fight
-        # and then lets them go back to the light bridge
-        
-        # check if the player has killed the skeleton before
-        player_data = player.get_data()
-        player.set_location("dark_bridge")
-        if "dark_bridge_skeleton" in player_data:
-            if player_data["dark_bridge_skeleton"] == "dead":
-                print("You walk along the bridge.")
-                print("[GUIDE] You've already killed the enemy here.")
-                print("[GUIDE] The only way to go is south.")
-                
-                moving = False
-                
-                while moving == False:
-                    choices = ["look", "south", "north", "west", "east", "down", "up"]
-                    
-                    choice = input(":> ")
-                    choice = choice.lower()
-                    
-                    while choice not in choices:
-                        print(f"{choice} not recognized as a command.")
-                    
-                    if choice == "look":
-                        print("You look around.")
-                        print("There nothing to your north, east, or west.")
-                        print("The bridge leads back to the south.")
-                        print("You are alone.")
-                    elif choice == "north" or choice == "west" or choice == "east":
-                        print("You try to move there but your body stops you.")
-                    elif choice == "down":
-                        print("Theres no way down without falling.")
-                    elif choice == "up":
-                        print("You reach up, theres no way to go.")
-                    elif choice == "south":
-                        moving = True
-                        bridge_start(player)
-        else:
-            # make an enemy
-            enemy = game_classes.Enemy("Skeleton", ["Sword", 10, 20], 50)
-            
-            # print that they found an enemy
-            print(f"You walk along the bridge, you see a {enemy.get_name()}! He is holding a {enemy.get_weapon()}")
-            print("[GUIDE] You found an enemy, to fight it, you must attack, type ATTACK into the console to fight it.")
-            print("[GUIDE] Or if you don't want to, type RUN into the console.")
-            print("[GUIDE] However if you choose to fight, you won't be able to run after starting.")
-    
-            # prime the loop
-            run_able = True
-            living = True
-            moving = False
-    
-            # start the loop
-            while moving == False:
-                # get choice and set valid choices
-                choice = input(":> ")
-                choice = choice.lower()
-                choices = ["look", "north", "east", "south", "west", "up", "down", "attack", "run"]
-                
-                # get the users input if it wasnt valid
-                while choice not in choices:
-                    print(f"{choice} not recognized as a valid command.")
-                    choice = input(":> ")
-                    choice = choice.lower()
-                
-                if choice == "look":
-                    if enemy.get_hp() != 0:
-                        print(f"You look around to see you and a {enemy.get_name()} on a dark bridge surrounded by fog.")
-                    print("Your north, east, and west seemed to be clear, but when you try to move to them, your body won't let you.")
-                    print("Heading south returns you back to the other bridge.")
-                elif choice == "north" or choice == "west" or choice == "east":
-                    print("You try to move, your body wont let you.")
-                elif choice == "run" or choice == "south":
-                    if run_able == True or enemy.get_hp() == 0:
-                        moving = True
-                        return player, "south"
-                    else:
-                        print("You've already started this fight, no turning back now.")
-                elif choice == "attack":
-                    if enemy.get_hp() == 0:
-                        print("Nothing to swing at.")
-                    else:
-                        run_able = False
-                        dmg = player.swing()
-                        if dmg == "miss":
-                            print("You swung, and missed.")
-                        else:
-                            print(f"You swung, and hit! Dealing {dmg} to the {enemy.get_name()}.")
-                            living = enemy.lose_hp(dmg)
-                            if living == False:
-                                print(f"{enemy.get_name()} died.")
-                                # add that the skeleton died
-                                player.add_data("dark_bridge_skeleton", "dead")
-                        
-                        if living != False:
-                            # make the enemy swing in return if they are alive
-                            dmg = enemy.swing()
-                            if dmg == "miss":
-                                print(f"{enemy.get_name()} swung, and missed.")
-                            else:
-                                print(f"{enemy.get_name()} swung, and hit! Dealing {dmg} to you.")
-                                
-                                living = player.lose_hp(dmg)
-                                if living == False:
-                                    print("You died. Your character is now erased.")
-                                    dead(player)
-
-
-
-
-    # print the welcome
-    print(f"Welcome {player.get_name()}!")
-    print("[GUIDE] This is the tutorial to teach you how to interact.")
-    print("[GUIDE] If you would like to skip this, type SKIP in the terminal.")
-    print("[GUIDE] If you would like to continue, type LOOK.")
-
-    choice = input(":> ")
-    
-    while choice.lower() != "skip" and choice.lower() != "look":
-        print(f"{choice} not recognized as a valid command.")
+    # get choice
+    while choice not in choices:
         choice = input(":> ")
+    
+    if choice == "1":
+        print(f"You get up after falling down a large pit, your {weapon} has fallen next to you.")
+        print(f"HINT: Type grab {weapon} to pick up the weapon")
 
-    # if skip, return, if they dont, show guide
-    if choice.lower() == "skip":
-        return player
-    else:
-        # get new player while walking through
-        choice = bridge_start(player)
-        if choice == "dark":
-            # call dark bridge scene
-            player = dark_bridge(player)
+        # get the option
+        option = input(":> ")
+        
+        # lowercase it and split it into a list
+        option = option.lower()
+        options = option.split(" ")
+
+        if options[0] != "grab" and options[1] != weapon:
+            # validate choice
+            print(f"{option} not recognized as a command.")
+            option = input(":> ")
+        else:
+            print(f"You grab your {weapon}.")
+        
+        
+        # print the next area
+        print(f"You advance through the cave, armed with your {weapon} and see a skeleton!")
+        print("HINT: You are now faced with your first enemy and have a few options:")
+        print("You can attack it by tying attack skeleton.")
+        print("You can run from it by typing run")
+        print("You can try to avoid its attack by typing dodge")
+        
+        # create the skeleton enemy and its wepaon
+        s_weapon = game_classes.weapon("Sword", 10, 1)
+        skeleton = game_classes.Enemy("Skeleton", s_weapon, 50, 50)
+
+        # get the users rolls
+        player_weapon = player.get_weapon()
+        rolls = player_weapon.get_hits()
+        
+        # roll for each of the players moves
+        for roll in range(rolls):
+            choice = input(":> ").lower()
+
+            
+            
+
+
 
 main()
