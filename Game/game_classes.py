@@ -149,20 +149,64 @@ class Fight():
         player_weapon = self.__p_weapon
         player_rolls = player_weapon.get_hits()
         fight = True
-
+        dodges = 0
+        
         # start the fight
         while fight == True:
-            for roll in player_rolls:
+            for roll in range(player_rolls):
                 choice = input(":> ")
-
-                if choice.lower() == "run":
-                    if random.randin(1,2) == 1:
-                        return ran
+                choice = choice.lower()
+                
+                if choice[0] == "run":
+                    if random.randint(1,2) == 1:
+                        return "ran"
                     else:
                         print("You attempt to run, but cannot make it away.")
+                elif choice[0] == "dodge":
+                    if random.randint(1,5) != 1:
+                        print("Your dodge fails.")
+                    else:
+                        print("You are able to dodge 1 hit during the enemies attack phase.")
+                        dodges += 1
+                elif choice[0] == "attack" and choices[1] == enemy.get_name.lower():
+                    print(f"You attack dealing {player_weapon.get_damage} to the {enemy.get_name()}.")
                     
+                    damage = player_weapon.get_damage()
+                    dead = enemy.damage(damage)
+                    if dead == "dead":
+                        return "enemy_dead"
+                        except:
+                            print
+                    
+                    else:
+                        print(f"{choice} is not recognized as a command.")
+                        
+                        choice = input(":> ")
+                        choice.split()
+                        
+                        while choice[0] != "run" and choice[0] != "dodge" and choice[0] != "attack" and choice[1] != enemy.get_name():
+                            print(f"{choice} not recognized as a command.")
+                            choice = input(":> ")
+            
+            for roll in range(enemy_rolls):
+                damage = enemy_weapon.get_damage()
                 
-
-        
-
-    
+                if dodges > 0:
+                    print(f"{enemy.get_name()} attacks...")
+                    print("You dodge the hit!")
+                    dodges -= 1
+                    print(f"You now have {dodges} left.")
+                else:
+                    if random.randint(1, 10) != 1:
+                        print(f"{enemy.get_name()} attacks...")
+                        print("You get hit.")
+                        
+                        living = player.damage(damage)
+                        
+                        if living == "dead":
+                            return "player_dead"
+                        else:
+                            print(f"You are at {player.get_health()}")
+                    else:
+                        print(f"{enemy.get_name()} misses their attack.")
+                        

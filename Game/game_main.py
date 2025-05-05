@@ -125,7 +125,7 @@ def new_save():
     # call save game with player
     # then call main game
     save_game(player)
-    main_game(player)
+    tutorial(player)
     
 
 def load_save():
@@ -208,7 +208,7 @@ def tutorial(player):
     # initalize variables
     choice = -1
     choices = ["1","2"]
-    weapon = player.get_weapon()
+    weapon = player.get_weapon().get_name()
 
     # print the welcome screen
     print("Welcome to the tutorial, if you would like to do it, press 1.\nIf you would like to skip it, press 2.")
@@ -244,17 +244,11 @@ def tutorial(player):
         print("You can try to avoid its attack by typing dodge")
         
         # create the skeleton enemy and its wepaon
-        s_weapon = game_classes.weapon("Sword", 10, 1)
+        s_weapon = game_classes.Weapon("Sword", 10, 1)
         skeleton = game_classes.Enemy("Skeleton", s_weapon, 50, 50)
 
-        # get the users rolls
-        player_weapon = player.get_weapon()
-        rolls = player_weapon.get_hits()
-        
-        # roll for each of the players moves
-        for roll in range(rolls):
-            choice = input(":> ").lower()
-
+        fight = game_classes.Fight(player, skeleton)
+        fight.run_fight()
             
             
 
