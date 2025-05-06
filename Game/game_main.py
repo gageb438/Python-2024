@@ -83,16 +83,24 @@ def new_save():
         # check if the file exists, and then load the data
         if os.path.exists("game_saves.dat"):
             file = open("game_saves.dat", "rb")
-            data = pickle.load(file)
+            try:
+                data = pickle.load(file)
+            except:
+                data = []
+            
             # close the file
             file.close()
 
             # check if the name is being used
-            for item in data:
-                if item.get_name() == name:
-                    good = False
-                else:
+            if data != []:
+                for item in data:
+                    # preset good variable
                     good = True
+                    
+                    if item.get_name() == name:
+                        good = False
+            else:
+                good = True
         else:
             # if name wasnt being used or file didnt exist, set good to true, stopping the loop from running
             good = True
@@ -133,38 +141,53 @@ def load_save():
     # it prints all saves
     # and loads one of the user choice
 
-    # create save dictionary
-    save_dict = {}
-
-    print("Saves:")
-
-    file = open("game_saves.dat", "rb")
-    saves = pickle.load(file)   
-
-    for person in saves:
-        # print the name and add it to a dictionary
-        print(f"Name: {person.get_name()}")
-        print(f"Location: {person.get_location()}\n")
-        # add it to the dictionary
-        save_dict[person.get_name()] = person
-    
-    choice = input("Enter the name of the person save exactly, if it has spaces, add spaces.\n:> ")
-
-    if choice in save_dict:
-        player = save_dict[choice]
-    else:
-        print("No player found.")
-        # return false if it doesnt exist
-        return False
-    
-    # return player if it exists
-    main_game(player)
+    # check if the file exists
+    if os.path.exists("inventory.dat"):
+        file = open("inventory.dat", "rb")
+        
+        # load the file
+        try:
+            data = pickle.load(file)
+        except:
+            # print the error and return it
+            print("No saves found, create one first.")
+            return
+        
+        # read the data and print each objects info
+        for item in data:
+            name = item.get_name()
+            weapon = item.get_weapon()
+            weapon_name = weapon.get_name()
+            
+            print(f"\nName: {name}")
+            print(f"Weapon: {weapon}")
+        
+        # get the users choice
+        choice = input("What save would you like to load? (NAME ONLY, CASE SENSITIVE): ")
+        
+        # set the blank player variable
+        player = 1
+        
+        for item in data:
+            if item.get_name() == choice:
+                player = item
+          
+        if player == 1:
+            print("Player not found.")
+            return
+        
+        tutorial(player)
+        
+        
 
 
 def save_game(player):
     # save game recieves an argument for the character object
     # it then adds it to a file
     # and pickles it
+    
+    # preset data
+    data = []
     
     # get the data
     if os.path.exists("game_saves.dat"):
@@ -176,11 +199,12 @@ def save_game(player):
             data = []
         except Exception as error:
             print(error)
-
     else:
         # open and close the file if it DOESNT exist to create it
         file = open("game_saves.dat", "wb")
         data = []
+        pickle.dump(data, file)
+        
         file.close()
 
     # check to see if there is an old file under the same name
@@ -227,13 +251,22 @@ def tutorial(player):
         # lowercase it and split it into a list
         option = option.lower()
         options = option.split(" ")
-
-        if options[0] != "grab" and options[1] != weapon:
-            # validate choice
+        
+        # validate
+        option1 = options[0]
+        option2 = options[1]
+        
+        while option1 != "grab" and option2 != weapon:
+            # print error, get input again, and split it into a list
             print(f"{option} not recognized as a command.")
             option = input(":> ")
-        else:
-            print(f"You grab your {weapon}.")
+            option = option.lower()
+            options = option.split(" ")
+        
+        # print the grab statement
+        print(f"You grab your {weapon}.")
+            
+            
         
         
         # print the next area

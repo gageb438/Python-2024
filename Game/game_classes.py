@@ -48,7 +48,7 @@ class Hero():
     
     def damage(self, damage):
         if self.__health - damage <= 0:
-            return "dead"
+           return "dead"
         else:
             self.__health -= damage
     
@@ -175,8 +175,6 @@ class Fight():
                     dead = enemy.damage(damage)
                     if dead == "dead":
                         return "enemy_dead"
-                        except:
-                            print
                     
                     else:
                         print(f"{choice} is not recognized as a command.")
