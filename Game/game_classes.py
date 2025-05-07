@@ -143,68 +143,113 @@ class Fight():
         # initialize variables
         enemy = self.__enemy
         enemy_weapon = self.__e_weapon
-        enemy_rolls = enemy_weapon.get_hits()
 
         player = self.__player
         player_weapon = self.__p_weapon
-        player_rolls = player_weapon.get_hits()
         fight = True
         dodges = 0
         
         # start the fight
         while fight == True:
-            for roll in range(player_rolls):
+            # set the player rolls
+            player_rolls = player_weapon.get_hits()
+            
+            # do the players rolls
+            while player_rolls != 0:
+                # get users choice
+                print("PROMPTno0")
                 choice = input(":> ")
                 choice = choice.lower()
+                choices = choice.split(" ")
                 
-                if choice[0] == "run":
-                    if random.randint(1,2) == 1:
+                # if the user chose to run, get a 10% chance to make it out or not
+                if choices[0] == "run":
+                    if random.randint(1,10) == 1:
                         return "ran"
                     else:
                         print("You attempt to run, but cannot make it away.")
-                elif choice[0] == "dodge":
-                    if random.randint(1,5) != 1:
+                  
+                # add a 1/5 chance to miss your dodge
+                elif choices[0] == "dodge":
+                    if random.randint(1,5) == 1:
                         print("Your dodge fails.")
                     else:
-                        print("You are able to dodge 1 hit during the enemies attack phase.")
+                        print("You are able to dodge 1 extra hit.")
                         dodges += 1
-                elif choice[0] == "attack" and choices[1] == enemy.get_name.lower():
-                    print(f"You attack dealing {player_weapon.get_damage} to the {enemy.get_name()}.")
-                    
-                    damage = player_weapon.get_damage()
-                    dead = enemy.damage(damage)
-                    if dead == "dead":
-                        return "enemy_dead"
-                    
-                    else:
-                        print(f"{choice} is not recognized as a command.")
-                        
-                        choice = input(":> ")
-                        choice.split()
-                        
-                        while choice[0] != "run" and choice[0] != "dodge" and choice[0] != "attack" and choice[1] != enemy.get_name():
-                            print(f"{choice} not recognized as a command.")
-                            choice = input(":> ")
-            
-            for roll in range(enemy_rolls):
-                damage = enemy_weapon.get_damage()
+                        print(f"You now have {dodges} dodges.")
                 
+                # if the length was 2
+                elif len(choices) == 2:
+                    # then check if it was an attack
+                    if choices[0] == "attack" and choices[1] == enemy.get_name().lower():
+                        # and deal damage
+                        print(f"You attack dealing {player_weapon.get_damage()} damage to the {enemy.get_name()}.")
+                        
+                        # check if the enemy died
+                        living = enemy.lose_health(player_weapon.get_damage())
+                        
+                        # if so, then kill it.
+                        if living == "dead":
+                            print(f"{enemy.get_name()} has died.")
+                            
+                            # set player rolls to none and stop the fight
+                            # and enemy rolls
+                            player_rolls = 0
+                            enemy_rolls = 0
+                            fight = False
+                            return "enemy died"
+                        # if it didn't, print its current health.
+                        else:
+                            print(f"The {enemy.get_name()} has {enemy.get_health()} health left.")
+                    else:
+                        print("ERRORno1")
+                        # print error command
+                        print(f"{choice} is recognized as a valid command.")
+                        # add another roll because of error
+                        player_rolls += 1
+                else:
+                    # add another roll because of an error
+                    print(f"{choice} is not recognized as a valid command.")
+                    player_rolls += 1
+                
+                # remove a roll upon completion
+                player_rolls -= 1
+
+            # do each of the enemy rolls and get them
+            enemy_rolls = enemy_weapon.get_hits()
+            
+            while enemy_rolls != 0:
+                # if they had more than 0 dodges
                 if dodges > 0:
+                    # print they dodged it
                     print(f"{enemy.get_name()} attacks...")
                     print("You dodge the hit!")
+                    # and remove a dodge
                     dodges -= 1
                     print(f"You now have {dodges} left.")
+                    # remove the roll
+                    enemy_rolls -= 1
                 else:
+                    # theres a 1/10 chance that the enemy misses.
                     if random.randint(1, 10) != 1:
+                        # if they do not miss, make them attack ,dealing the certain amount of damage
                         print(f"{enemy.get_name()} attacks...")
                         print("You get hit.")
                         
-                        living = player.damage(damage)
+                        # remove the amount of damage that they lost
+                        living = player.damage(enemy_weapon.get_damage())
                         
+                        # remove the roll for this move
+                        enemy_rolls -= 1
+                        # if they died then return that they died, if they didn't print their health
                         if living == "dead":
                             return "player_dead"
                         else:
-                            print(f"You are at {player.get_health()}")
+                            # print their health
+                            print(f"You are at {player.get_health()} health.")
                     else:
+                        # print the miss chance
                         print(f"{enemy.get_name()} misses their attack.")
-                        
+                        # remove the roll
+                        enemy_rolls -= 1
+

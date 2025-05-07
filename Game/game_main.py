@@ -252,23 +252,31 @@ def tutorial(player):
         option = option.lower()
         options = option.split(" ")
         
-        # validate
-        option1 = options[0]
-        option2 = options[1]
+        # prime look
+        bad = True
         
-        while option1 != "grab" and option2 != weapon:
-            # print error, get input again, and split it into a list
-            print(f"{option} not recognized as a command.")
-            option = input(":> ")
-            option = option.lower()
-            options = option.split(" ")
-        
-        # print the grab statement
-        print(f"You grab your {weapon}.")
+        # validate users choice
+        while bad == True:
+            if len(options) == 2:
+                if options[0] == "grab" and options[1] == weapon.lower():
+                    print(f"You grab your {weapon}.")
+                    bad = False
+                else:
+                    print(f"{option} is not recognized as a valid command.")
+                    option = input(":> ")
+                    options = option.split(" ")
+            elif options[0] == "look":
+                print(f"You get up after falling down a large pit, your {weapon} has fallen next to you.")
+                print(f"HINT: Type grab {weapon} to pick up the weapon")
+                
+                option = input(":> ")
+                options = option.split(" ")
+            else:
+                print(f"{option} is not recognized as a valid command.")
+                option = input(":> ")
+                options = option.split(" ")
             
-            
-        
-        
+
         # print the next area
         print(f"You advance through the cave, armed with your {weapon} and see a skeleton!")
         print("HINT: You are now faced with your first enemy and have a few options:")
@@ -277,14 +285,19 @@ def tutorial(player):
         print("You can try to avoid its attack by typing dodge")
         
         # create the skeleton enemy and its wepaon
-        s_weapon = game_classes.Weapon("Sword", 10, 1)
+        s_weapon = game_classes.Weapon("Sword", 10, 5)
         skeleton = game_classes.Enemy("Skeleton", s_weapon, 50, 50)
 
         fight = game_classes.Fight(player, skeleton)
-        fight.run_fight()
-            
-            
-
-
-
+        choice = fight.run_fight()
+        
+        if choice == "ran":
+            print("Cowardly. Well then, lets move on to the real game.")
+            return "main_game"
+        elif choice == "player_dead":
+            print("Odd. You managed to die in the tutorial, either really bad luck, or your just horrible.")
+            return "death"
+        else:
+            print("Perplexing. You might be cut out for this, good work.")
+            return "main_game"
 main()
