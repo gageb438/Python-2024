@@ -126,14 +126,21 @@ def new_save():
         weapon = sword
     else:
         weapon = dagger
-
+    
+    # generate location data
+    data = generate_locations()
     # make the character
-    player = game_classes.Hero(name, weapon, 100, 100, "tutorial")
+    player = game_classes.Hero(name, weapon, 100, 100, "tutorial", data)
     
     # call save game with player
     # then call main game
     save_game(player)
-    tutorial(player)
+    main_game = tutorial(player)
+    
+    if main_game == "death":
+        death(player)
+    else:
+        clearing(player)
     
 
 def load_save():
@@ -225,9 +232,8 @@ def save_game(player):
 #-------------------------------------------------------
 # LOCATION FUNCTIONS
 def tutorial(player):
-    # tutorial recieves the player argument
-    # since it is a special locaion
-    # it needs its own function
+    # tutorial recieves the player argument\
+    # it creates the tutorial location
 
     # initalize variables
     choice = -1
@@ -275,7 +281,7 @@ def tutorial(player):
                 print(f"{option} is not recognized as a valid command.")
                 option = input(":> ")
                 options = option.split(" ")
-            
+
 
         # print the next area
         print(f"\nYou advance through the cave, armed with your {weapon} and see a skeleton!")
@@ -300,14 +306,76 @@ def tutorial(player):
         else:
             print("Perplexing. You might be cut out for this, good work.")
             return "main_game"
-  
+    else:
+        return "main_game"  
 def generate_locations():
     # generate locations recieves no arguments
     # it generates all default locations
-    # except for special, i.e tutorial + boss
-    # it returns a list of all locations
+    # returns them as a list
     
-    clearing = game_classes.Location("clearing", "You are in a empty clearing.\nThere is a path to the north, west, and east.\nThe south is blocked by a lot of trees.\nThe west and east are paths leading each to their own seemingly empty area.\nThe path to the north leads to a more forested area.", ["north", "west", "east", "look"], [])
+    clearing = game_classes.Location("clearing", "You are in a empty clearing.\nThere is a path to the north, west, and east.\nThe south is blocked by a lot of trees.\nThe east and west are paths leading each to their own seemingly empty clearing.\nThe path to the north leads to a more forested area.", ["north", "west", "east"], [], [])
+    forest = game_classes.Location("forest", "You are in a dark forest.\nThere is a path to the north, east, and south.\nThe north leads to a clearing.\nThe east is blocked by vines.\nThe south is a dark path, but you can make it through.", ["north", "east", "south", "cut vines"], [])
+    
+    return [clearing, forest]
+
+def location_checker(player, name):
+    # location checker recieves an argument for the player
+    # and the name of a location
+    # it then gets the users choice
+    # and loads data from the players location
+    # and returns the choice
+    # to prevent unessecary reuse of code
+    
+    # get the data
+    player_data = player.get_data()
+    
+    # get the location
+    for data in player_data:
+        if data.get_name() == name:
+            location = data
+    
+    # then print the location
+    print(location)
+    
+    # and get the users choice
+    choice = location.get_choice()
+    
+    # then return the choice
+    return choice
+    
+def clearing(player):
+    # clearing recieves no arguments
+    # it generates the clearing scene
+    # and gets all choices and such
+    
+    # get the users choice for the clearing location
+    choice = location_checker(player, "clearing")
+    
+    # find the choice
+    if choice == "north":
+        forest(player)
+    elif choice == "west":
+        pass
+    elif choice == "south":
+        pass
+    else:
+        choice = location.get_choice()
+
+def forest(player):
+    # forest recieves a player argument
+    # it generates the forest scene
+    # and it letas the user go to the next area
     
     
+    # get the users choice for the forest location
+    choice = location_checker(player, "forest")
+    
+    # find out what the choice translates to
+    if choice == "south":
+        clearing(player)
+    elif choice == "east" or choice == "west":
+        print("You look, and there appears to be no reason to go down there. Its empty.")
+        choice = location_checker(player, "forest")
+        
+
 main()

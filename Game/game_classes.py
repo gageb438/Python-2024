@@ -1,12 +1,13 @@
 import random
 
 class Hero():
-    def __init__(self, name, weapon, health, max_health, location):
+    def __init__(self, name, weapon, health, max_health, location, data):
         self.__name = name
         self.__weapon = weapon
         self.__health = health
         self.__max_health = max_health
         self.__location = location
+        self.__data = data
     
     # get items
     def get_name(self):
@@ -24,6 +25,9 @@ class Hero():
     def get_location(self):
         return self.__location
     
+    def get_data(self):
+        return self.__data
+    
     # setters
     def set_health(self, health):
         self.__health = health
@@ -36,7 +40,7 @@ class Hero():
         
     def set_location(self, location):
         self.__location = location
-    
+
     
     # modifiers
     def heal(self, heal):
@@ -84,6 +88,9 @@ class Location():
     
     def get_choice(self):
         choice = input(":> ")
+        
+        if choice == "look":
+            print(self.__desc)
         
         # validate choice
         while choice.lower() not in self.__choices:
@@ -252,8 +259,3 @@ class Fight():
                         print(f"{enemy.get_name()} misses their attack.")
                         # remove the roll
                         enemy_rolls -= 1
-
-clearing = Location("clearing", "You are in a empty clearing.\nThere is a path to the north, west, and east.\nThe south is blocked by a lot of trees.\nThe west and east are paths leading each to their own seemingly empty area.\nThe path to the north leads to a more forested area.", ["north", "west", "east", "look"], [], [])
-print(clearing)
-choice = clearing.get_choice()
-
