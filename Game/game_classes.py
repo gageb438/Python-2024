@@ -72,11 +72,12 @@ class Weapon():
         return f"Name: {self.__name}\nDamage: {self.__damage}\nHits per turn:{self.__hits}"
 
 class Location():
-    def __init__(self, name, desc, choices, enemies:list):
+    def __init__(self, name, desc, choices, enemies:list, items:list):
         self.__name = name
         self.__desc = desc
         self.__choices = choices
         self.__enemies = enemies
+        self.__items = items
     
     def get_name(self):
         return self.__name
@@ -85,15 +86,14 @@ class Location():
         choice = input(":> ")
         
         # validate choice
-        while choice.lower() not in choices:
+        while choice.lower() not in self.__choices:
             print(f"{choice} not recognized as a command.")
             choice = input(":> ")
         
         return choice
     
-    
     def __str__(self):
-        print(desc)
+        return self.__desc
 
 class Enemy():
     def __init__(self, name, weapon, health, max_health):
@@ -156,8 +156,8 @@ class Fight():
             
             # do the players rolls
             while player_rolls != 0:
+                print(f"\n{player.get_name()}'s roll.")
                 # get users choice
-                print("PROMPTno0")
                 choice = input(":> ")
                 choice = choice.lower()
                 choices = choice.split(" ")
@@ -183,7 +183,7 @@ class Fight():
                     # then check if it was an attack
                     if choices[0] == "attack" and choices[1] == enemy.get_name().lower():
                         # and deal damage
-                        print(f"You attack dealing {player_weapon.get_damage()} damage to the {enemy.get_name()}.")
+                        print(f"\nYou attack dealing {player_weapon.get_damage()} damage to the {enemy.get_name()}.")
                         
                         # check if the enemy died
                         living = enemy.lose_health(player_weapon.get_damage())
@@ -202,7 +202,6 @@ class Fight():
                         else:
                             print(f"The {enemy.get_name()} has {enemy.get_health()} health left.")
                     else:
-                        print("ERRORno1")
                         # print error command
                         print(f"{choice} is recognized as a valid command.")
                         # add another roll because of error
@@ -219,6 +218,7 @@ class Fight():
             enemy_rolls = enemy_weapon.get_hits()
             
             while enemy_rolls != 0:
+                print(f"\n{enemy.get_name()}'s roll.")
                 # if they had more than 0 dodges
                 if dodges > 0:
                     # print they dodged it
@@ -234,7 +234,7 @@ class Fight():
                     if random.randint(1, 10) != 1:
                         # if they do not miss, make them attack ,dealing the certain amount of damage
                         print(f"{enemy.get_name()} attacks...")
-                        print("You get hit.")
+                        print(f"You get hit, taking {player.get_health()}.")
                         
                         # remove the amount of damage that they lost
                         living = player.damage(enemy_weapon.get_damage())
@@ -252,4 +252,8 @@ class Fight():
                         print(f"{enemy.get_name()} misses their attack.")
                         # remove the roll
                         enemy_rolls -= 1
+
+clearing = Location("clearing", "You are in a empty clearing.\nThere is a path to the north, west, and east.\nThe south is blocked by a lot of trees.\nThe west and east are paths leading each to their own seemingly empty area.\nThe path to the north leads to a more forested area.", ["north", "west", "east", "look"], [], [])
+print(clearing)
+choice = clearing.get_choice()
 

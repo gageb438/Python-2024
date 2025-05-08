@@ -278,14 +278,14 @@ def tutorial(player):
             
 
         # print the next area
-        print(f"You advance through the cave, armed with your {weapon} and see a skeleton!")
-        print("HINT: You are now faced with your first enemy and have a few options:")
+        print(f"\nYou advance through the cave, armed with your {weapon} and see a skeleton!")
+        print("\nHINT: You are now faced with your first enemy and have a few options:")
         print("You can attack it by tying attack skeleton.")
         print("You can run from it by typing run")
         print("You can try to avoid its attack by typing dodge")
         
         # create the skeleton enemy and its wepaon
-        s_weapon = game_classes.Weapon("Sword", 10, 5)
+        s_weapon = game_classes.Weapon("Sword", 10, 1)
         skeleton = game_classes.Enemy("Skeleton", s_weapon, 50, 50)
 
         fight = game_classes.Fight(player, skeleton)
@@ -300,4 +300,14 @@ def tutorial(player):
         else:
             print("Perplexing. You might be cut out for this, good work.")
             return "main_game"
+  
+def generate_locations():
+    # generate locations recieves no arguments
+    # it generates all default locations
+    # except for special, i.e tutorial + boss
+    # it returns a list of all locations
+    
+    clearing = game_classes.Location("clearing", "You are in a empty clearing.\nThere is a path to the north, west, and east.\nThe south is blocked by a lot of trees.\nThe west and east are paths leading each to their own seemingly empty area.\nThe path to the north leads to a more forested area.", ["north", "west", "east", "look"], [])
+    
+    
 main()
