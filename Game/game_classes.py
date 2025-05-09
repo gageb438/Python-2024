@@ -1,13 +1,14 @@
 import random
 
 class Hero():
-    def __init__(self, name, weapon, health, max_health, location, data):
+    def __init__(self, name, weapon, health, max_health, location, data, items):
         self.__name = name
         self.__weapon = weapon
         self.__health = health
         self.__max_health = max_health
         self.__location = location
         self.__data = data
+        self.__items = items
     
     # get items
     def get_name(self):
@@ -27,6 +28,9 @@ class Hero():
     
     def get_data(self):
         return self.__data
+        
+    def get_items(self):
+        return self.__items
     
     # setters
     def set_health(self, health):
@@ -40,7 +44,9 @@ class Hero():
         
     def set_location(self, location):
         self.__location = location
-
+    
+    def set_items(self, items):
+        self.__items = items
     
     # modifiers
     def heal(self, heal):
@@ -55,6 +61,12 @@ class Hero():
            return "dead"
         else:
             self.__health -= damage
+    
+    def add_item(self, item):
+        self.__items.append(item)
+    
+    def remove_item(self, item):
+        self.__items.remove(item)
     
     
 class Weapon():
@@ -93,14 +105,18 @@ class Location():
             print(self.__desc)
         
         # validate choice
-        while choice.lower() not in self.__choices:
+        while choice.lower() not in self.__choices and choice.lower() != "look":
             print(f"{choice} not recognized as a command.")
             choice = input(":> ")
         
         return choice
     
     def __str__(self):
-        return self.__desc
+        desc = self.__desc
+        for item in self.__items:
+            desc += f"\nThere is a {item} nearby."
+        
+        return desc
 
 class Enemy():
     def __init__(self, name, weapon, health, max_health):

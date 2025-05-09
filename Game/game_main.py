@@ -130,7 +130,7 @@ def new_save():
     # generate location data
     data = generate_locations()
     # make the character
-    player = game_classes.Hero(name, weapon, 100, 100, "tutorial", data)
+    player = game_classes.Hero(name, weapon, 100, 100, "tutorial", data, [])
     
     # call save game with player
     # then call main game
@@ -313,10 +313,16 @@ def generate_locations():
     # it generates all default locations
     # returns them as a list
     
-    clearing = game_classes.Location("clearing", "You are in a empty clearing.\nThere is a path to the north, west, and east.\nThe south is blocked by a lot of trees.\nThe east and west are paths leading each to their own seemingly empty clearing.\nThe path to the north leads to a more forested area.", ["north", "west", "east"], [], [])
-    forest = game_classes.Location("forest", "You are in a dark forest.\nThere is a path to the north, east, and south.\nThe north leads to a clearing.\nThe east is blocked by vines.\nThe south is a dark path, but you can make it through.", ["north", "east", "south", "cut vines"], [])
+    # create enemies
+    dark_valley_east_enemy_weapon = game_classes.Weapon("Greatsword", 50, 1)
+    dark_valley_east_enemy = game_classes.Enemy("Zummie, the Great", dark_valley_east_enemy_weapon, 200, 200)
     
-    return [clearing, forest]
+    clearing = game_classes.Location("clearing", f"You are in a empty clearing.\nThere is a path to the north, west, and east.\nThe south is blocked by a lot of trees.\nThe east and west are paths leading each to their own seemingly empty clearing.\nThe path to the north leads to a more forested area.", ["north", "west", "east"], [], [])
+    forest = game_classes.Location("forest", f"You are in a dark forest.\nThere is a path to the north, east, and south.\nThe north leads to a clearing.\nThe east is blocked by vines.\nThe south is a dark path, but you can make it through.", ["north", "east", "south", "cut vines"], [], [])
+    dark_valley_west = game_classes.Location("dark_valley_west", f"You appear to be in the western valley, surrounded by mountains.\nThe north and west lead to mountain walls.\nThe east is a gap, makeable with a bridge or ladder. Maybe if you jump.\nThe south leads into the dense forest.\nThere is a coin on the floor.", ["north", "east", "south", "west", "jump", "climb", "use ladder", "grab coin"], [], ["coin"]
+    dark_valley_east = game_classes.Location("dark_valley_east", f"You are in the eastern valley, surrounded by mountains.\nThe north and south lead to mountain walls.\nThe west leads back to the western valley.\nThe east is a wall. )
+    
+    return [clearing, forest, dark_valley_west]
 
 def location_checker(player, name):
     # location checker recieves an argument for the player
@@ -376,6 +382,13 @@ def forest(player):
     elif choice == "east" or choice == "west":
         print("You look, and there appears to be no reason to go down there. Its empty.")
         choice = location_checker(player, "forest")
-        
+    elif choice == "south":
+        dark_valley(player)
+
+def dark_valley_west(player):
+    # dark valley west recieves no arguments
+    # it creates the dark valley scene
+    # and allows the user to go to different areas
+    pass
 
 main()
