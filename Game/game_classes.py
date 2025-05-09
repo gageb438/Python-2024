@@ -111,6 +111,9 @@ class Location():
         
         return choice
     
+    def clear_enemies(self):
+        self.__enemies = []
+    
     def __str__(self):
         desc = self.__desc
         for item in self.__items:
