@@ -308,99 +308,31 @@ def tutorial(player):
             return "main_game"
     else:
         return "main_game"  
-def generate_locations():
-    # generate locations recieves no arguments
-    # it generates all default locations
-    # returns them as a list
-    
-    # create enemies
-    dark_valley_east_enemy_weapon = game_classes.Weapon("Greatsword", 50, 1)
-    dark_valley_east_enemy = game_classes.Enemy("Zummie, the Great", dark_valley_east_enemy_weapon, 200, 200)
-    
-    clearing = game_classes.Location("clearing", f"You are in a empty clearing.\nThere is a path to the north, west, and east.\nThe south is blocked by a lot of trees.\nThe east and west are paths leading each to their own seemingly empty clearing.\nThe path to the north leads to a more forested area.", ["north", "west", "east"], [], [])
-    forest = game_classes.Location("forest", f"You are in a dark forest.\nThere is a path to the north, east, and south.\nThe north leads to a clearing.\nThe east is blocked by vines.\nThe south is a dark path, but you can make it through.", ["north", "east", "south", "cut vines"], [], [])
-    dark_valley_west = game_classes.Location("dark_valley_west", f"You appear to be in the western valley, surrounded by mountains.\nThe north and west lead to mountain walls.\nThe east is a gap, makeable with a bridge or ladder. Maybe if you jump.\nThe south leads into the dense forest.", ["north", "east", "south", "west", "jump", "climb", "use ladder", "grab coin"], [], ["coin"])
-    dark_valley_east = game_classes.Location("dark_valley_east", f"You are in the eastern valley, surrounded by mountains.\nThe north and south lead to mountain walls.\nThe west leads back to the western valley.\nThe east is a wall.", ["north", "south", "east", "west", "attack"], [dark_valley_east_enemy], [])
-    print(dark_valley_west)
-    return [clearing, forest, dark_valley_west, dark_valley_east]
 
-def location_checker(player, name):
-    # location checker recieves an argument for the player
-    # and the name of a location
-    # it then gets the users choice
-    # and loads data from the players location
-    # and returns the choice
-    # to prevent unessecary reuse of code
+def generate_loc():
+    clearing_loc = game_classes.Location("clearing", "You are in a empty clearing.\nTo the north, there is a empty pathway.\nTo the south, there is a cluttered forest.\nThe east and west are too dense of a forest to go through.", ["north", "east", "south", "west"], [], [])
+    center_path_loc = game_classes.Location("center_path", "You are in a the middle of a path.\nTo the north, there is a castle, it seems like you shouldn't be there until later.\nTo the east and west, there is more path.\nTo the south, there is a clearing.", ["north", "east", "south", "west"], [], [])
+    left_path_loc = game_classes.Location("left_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is more path.\nTo the west, there is a town, seemingly empty.", ["north", "east", "south", "west"], [], [])
+    right_path_loc = game_classes.Location("right_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is a ocean.\nTo the west, there is a path.", ["north", "east", "south", "west"], [], [])
+    ocean_loc = game_classes.Location("ocean", "You are on a beach of the ocean.\nThe ocean is calming to you. It heals you back to max hp, and gives you some extra health.\nThere is nowhere to go, other than west, leading back to a path.", ["north", "east", "south", "west", [], []])
+    ghost_town_loc = game_classes.Location("ghost_town", "You are in a town, it seems ancient and abandoned.\nTo the north, there is a cave.\nTo the east, there is a path.\nTo the west, there is a weapon forge.\nThe south is too dense of a forest to get through.", ["north", "east", "south", "west"], [], [])
+    forge_loc = game_classes.Location("forge", "You are in a forge, abandoned by society.\nTo the east, is a town, seemingly abandoned.\nThe north, west, and south are too dense of a forest to get through.", ["north", "west", "east", "south", "forge", "smith"], [], [])
+    cave_enemy_weapon = game_classes.Weapon("Sword", 10, 1)
+    cave_enemy = game_classes.Enemy("skeleton", cave_enemy_weapon, 50, 50)
+    cave_loc = game_classes.Location("cave", "You entered a dark cave.\nThe only way out is to the south.", ["north", "east", "south", "west"], [cave_enemy], [])
+    forest_loc = game_classes.Location("forest", "You are in a dense forest.\nTheres a path to the north, leading to a clearing.\nThe west leads to more forest.\nThe east leads to more forest, its more dark and ominous than the one on the west.\nThe south leads to a valley.", [], [])
+    slime_enemy_weapon = game_classes.Weapon("Goop", 5, 1)
+    slime_enemy = game_classes.Enemy("Slime", slime_enemy_weapon, 50, 50)
+    slime_forest_loc = game_classes.Location("slime_forest", "You are in a dense forest.\nTheres a more forest to the east.\nAll other directions are too dense to get to.", [slime_enemy], [])
     
-    # get the data
-    player_data = player.get_data()
     
-    # get the location
-    for data in player_data:
-        if data.get_name() == name:
-            location = data
     
-    # then print the location
-    print(location)
-    
-    # and get the users choice
-    choice = location.get_choice()
-    
-    # then return the choice
-    return choice
     
 def clearing(player):
-    # clearing recieves no arguments
-    # it generates the clearing scene
-    # and gets all choices and such
-    
-    # get the users choice for the clearing location
-    choice = location_checker(player, "clearing")
-    
-    # find the choice
-    if choice == "north":
-        forest(player)
-    elif choice == "west":
-        pass
-    elif choice == "south":
-        pass
-    else:
-        choice = location.get_choice()
+    # clearing recieves the player argument
+    # it is the main spawn of the game
+    # it 
+    pass
 
-def forest(player):
-    # forest recieves a player argument
-    # it generates the forest scene
-    # and it letas the user go to the next area
-    
-    
-    # get the users choice for the forest location
-    choice = location_checker(player, "forest")
-    
-    # find out what the choice translates to
-    if choice == "south":
-        clearing(player)
-    elif choice == "east" or choice == "west":
-        print("You look, and there appears to be no reason to go down there. Its empty.")
-        choice = location_checker(player, "forest")
-    elif choice == "south":
-        dark_valley(player)
-
-def dark_valley_west(player):
-    # dark valley west recieves no arguments
-    # it creates the dark valley scene
-    # and allows the user to go to different areas
-    
-    # get users choice for the dark vlaley west 
-    choice = location_checker(player, "dark_valley_west")
-    go = True
-    
-    # translate the choice
-    while go = True:
-        if choice == "north" or choice == "west":
-            print("Can't go there, its a wall.")
-            choice = location_checker(player, "dark_valley_west")
-            
-        elif choice == "east":
-            
 
 main()
