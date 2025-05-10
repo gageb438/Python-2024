@@ -1,14 +1,13 @@
 import random
 
 class Hero():
-    def __init__(self, name, weapon, health, max_health, location, data, items):
+    def __init__(self, name, weapon, health, max_health, location, data):
         self.__name = name
         self.__weapon = weapon
         self.__health = health
         self.__max_health = max_health
         self.__location = location
         self.__data = data
-        self.__items = items
     
     # get items
     def get_name(self):
@@ -88,12 +87,11 @@ class Weapon():
         return f"Name: {self.__name}\nDamage: {self.__damage}\nHits per turn:{self.__hits}"
 
 class Location():
-    def __init__(self, name, desc, choices, enemies:list, items:list):
+    def __init__(self, name, desc, choices, enemies:list):
         self.__name = name
         self.__desc = desc
         self.__choices = choices
         self.__enemies = enemies
-        self.__items = items
     
     def get_name(self):
         return self.__name
@@ -103,9 +101,11 @@ class Location():
         
         if choice == "look":
             print(self.__desc)
+        # set valid choices
+        valid_choices = ["north", "east", "south", "west"]
         
         # validate choice
-        while choice.lower() not in self.__choices and choice.lower() != "look":
+        while choice.lower() not in valid_choices and choice.lower() not in self.__choices:
             print(f"{choice} not recognized as a command.")
             choice = input(":> ")
         

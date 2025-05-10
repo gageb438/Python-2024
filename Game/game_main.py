@@ -10,7 +10,7 @@ def main():
     # it outputs all steps
 
     # initialize varaibles
-    game_name = "i couldnt find one, silly"
+    game_name = "The Grand Escape of Etheria"
 
     print(f"Welcome to {game_name}.")
     
@@ -130,7 +130,7 @@ def new_save():
     # generate location data
     data = generate_locations()
     # make the character
-    player = game_classes.Hero(name, weapon, 100, 100, "tutorial", data, [])
+    player = game_classes.Hero(name, weapon, 100, 100, "tutorial", data)
     
     # call save game with player
     # then call main game
@@ -310,29 +310,59 @@ def tutorial(player):
         return "main_game"  
 
 def generate_loc():
-    clearing_loc = game_classes.Location("clearing", "You are in a empty clearing.\nTo the north, there is a empty pathway.\nTo the south, there is a cluttered forest.\nThe east and west are too dense of a forest to go through.", ["north", "east", "south", "west"], [], [])
-    center_path_loc = game_classes.Location("center_path", "You are in a the middle of a path.\nTo the north, there is a castle, it seems like you shouldn't be there until later.\nTo the east and west, there is more path.\nTo the south, there is a clearing.", ["north", "east", "south", "west"], [], [])
-    left_path_loc = game_classes.Location("left_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is more path.\nTo the west, there is a town, seemingly empty.", ["north", "east", "south", "west"], [], [])
-    right_path_loc = game_classes.Location("right_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is a ocean.\nTo the west, there is a path.", ["north", "east", "south", "west"], [], [])
-    ocean_loc = game_classes.Location("ocean", "You are on a beach of the ocean.\nThe ocean is calming to you. It heals you back to max hp, and gives you some extra health.\nThere is nowhere to go, other than west, leading back to a path.", ["north", "east", "south", "west", [], []])
-    ghost_town_loc = game_classes.Location("ghost_town", "You are in a town, it seems ancient and abandoned.\nTo the north, there is a cave.\nTo the east, there is a path.\nTo the west, there is a weapon forge.\nThe south is too dense of a forest to get through.", ["north", "east", "south", "west"], [], [])
-    forge_loc = game_classes.Location("forge", "You are in a forge, abandoned by society.\nTo the east, is a town, seemingly abandoned.\nThe north, west, and south are too dense of a forest to get through.", ["north", "west", "east", "south", "forge", "smith"], [], [])
+    clearing_loc = game_classes.Location("clearing", "You are in a empty clearing.\nTo the north, there is a empty pathway.\nTo the south, there is a cluttered forest.\nThe east and west are too dense of a forest to go through.", [], [], [])
+    center_path_loc = game_classes.Location("center_path", "You are in a the middle of a path.\nTo the north, there is a castle, it seems like you shouldn't be there until later.\nTo the east and west, there is more path.\nTo the south, there is a clearing.", [], [], [])
+    left_path_loc = game_classes.Location("left_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is more path.\nTo the west, there is a town, seemingly empty.", [], [], [])
+    right_path_loc = game_classes.Location("right_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is a ocean.\nTo the west, there is a path.", [], [], [])
+    ocean_loc = game_classes.Location("ocean", "You are on a beach of the ocean.\nThe ocean is calming to you. It heals you back to max hp, and gives you some extra health.\nThere is nowhere to go, other than west, leading back to a path.", [], [], []])
+    ghost_town_loc = game_classes.Location("ghost_town", "You are in a town, it seems ancient and abandoned.\nTo the north, there is a cave.\nTo the east, there is a path.\nTo the west, there is a weapon forge.\nThe south is too dense of a forest to get through.", [], [], [])
+    forge_loc = game_classes.Location("forge", "You are in a forge, abandoned by society.\nTo the east, is a town, seemingly abandoned.\nThe north, west, and south are too dense of a forest to get through.", ["forge", "smith"], [], [])
     cave_enemy_weapon = game_classes.Weapon("Sword", 10, 1)
     cave_enemy = game_classes.Enemy("skeleton", cave_enemy_weapon, 50, 50)
-    cave_loc = game_classes.Location("cave", "You entered a dark cave.\nThe only way out is to the south.", ["north", "east", "south", "west"], [cave_enemy], [])
+    cave_loc = game_classes.Location("cave", "You entered a dark cave.\nThe only way out is to the south.", [], [cave_enemy], [])
     forest_loc = game_classes.Location("forest", "You are in a dense forest.\nTheres a path to the north, leading to a clearing.\nThe west leads to more forest.\nThe east leads to more forest, its more dark and ominous than the one on the west.\nThe south leads to a valley.", [], [])
-    slime_enemy_weapon = game_classes.Weapon("Goop", 5, 1)
+    slime_enemy_weapon = game_classes.Weapon("Goop", 5, 1)]
     slime_enemy = game_classes.Enemy("Slime", slime_enemy_weapon, 50, 50)
-    slime_forest_loc = game_classes.Location("slime_forest", "You are in a dense forest.\nTheres a more forest to the east.\nAll other directions are too dense to get to.", [slime_enemy], [])
+    slime_forest_loc = game_classes.Location("slime_forest", "You are in a dense forest.\nTheres a more forest to the east.\nAll other directions are too dense to get to.", ["north", "west", "east", "south"][slime_enemy], [])
+    slime_boss_weapon = game_classes.Weapon("Goop", 10, 2)
+    slime_boss = game_classes.Enemy("Slime King", slime_boss_weapon, 100, 100)
+    slime_boss_loc = game_classes.Location("slime_boss_forest", "You are in a dense forest.\nThere is more forest to the west.\nAll other directions are too dense to get to.", [slime_boss], [])
+    castle_boss_weapon = game_classes.Weapon("Greatsword", 50, 1)
+    castle_boss = game_classes.Enemy("Zumwalt, King of Etheria", castle_boss_weapon, 200, 200)
+    castle_loc = game_classes.Location("castle", "You are in a dark castle.\nThe north leads to Etrea.\nThe south leads to a path.\nThe west and east are blocked by castle walls.", [castle_boss], [])
     
     
+    # RETURN ALL LOCATIONS AS DATA
+    return [clearing_loc, center_path_loc, left_path_loc, right_path_loc, ocean_loc, ghost_town_loc, forge_loc, cave_loc, forest_loc, slime_forest_loc, slime_boss_loc, castle_loc]
+
+def get_location(player, find):
+    # get location recieves the player argument and a location to search for
+    # it grabs all location data from the player
+    # and checks the name of each, until it finds the right one
+    # then it returns the location object
+    
+    # get the data
+    data = player.get_data()
+    
+    # read the data, finding the right object
+    for i in data:
+        if i == find:
+            return i
     
     
 def clearing(player):
     # clearing recieves the player argument
     # it is the main spawn of the game
-    # it 
-    pass
+    
+    # get the clearing location from the player save
+    location = get_location(player, "clearing")
+    
+    # print the description
+    print(location)
+    
+    # get choice
+    choice = location.get_choice()
+    print(choice)
 
 
 main()
