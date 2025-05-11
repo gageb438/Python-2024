@@ -51,6 +51,8 @@ def main_menu():
                 if not os.path.exists("game_saves.dat"):
                     choice = -1
                     print("No game saves found, please create one first.")
+                else:
+                    load_save()
         except:
             # on exception, pass, restarting the loop
             pass
@@ -86,18 +88,15 @@ def new_save():
             try:
                 data = pickle.load(file)
             except:
-                data = []
+                data = {}
             
             # close the file
             file.close()
 
             # check if the name is being used
-            if data != []:
-                for item in data:
-                    # preset good variable
-                    good = True
-                    
-                    if item.get_name() == name:
+            if data != {}:
+                for key in data:
+                    if key == name:
                         good = False
             else:
                 good = True
@@ -128,7 +127,7 @@ def new_save():
         weapon = dagger
     
     # generate location data
-    data = generate_locations()
+    data = generate_loc()
     # make the character
     player = game_classes.Hero(name, weapon, 100, 100, "tutorial", data)
     
@@ -142,15 +141,41 @@ def new_save():
     else:
         clearing(player)
     
-
+def delete_save(player):
+    # delete save recieves the player argument
+    # it removes a save from the save file
+    # and returns back to the main menu.
+    
+    # get the file data
+    file = open("game_saves.dat", "rb")
+    data = pickle.load(file)
+    file.close()
+    
+    # reopen file to write
+    file = open("game_saves.dat", "wb")
+    
+    # get the players save file and remove it
+    for plr in data:
+        if plr == player.get_name():
+            sv = plr
+    
+    del data[sv]
+    
+    # then re-write it to the file
+    pickle.dump(data, file)
+    file.close()
+    
+    # return to the main menu
+    main_menu()
+    
 def load_save():
     # load save recieves no arguments
     # it prints all saves
     # and loads one of the user choice
 
     # check if the file exists
-    if os.path.exists("inventory.dat"):
-        file = open("inventory.dat", "rb")
+    if os.path.exists("game_saves.dat"):
+        file = open("game_saves.dat", "rb")
         
         # load the file
         try:
@@ -194,22 +219,26 @@ def save_game(player):
     # and pickles it
     
     # preset data
-    data = []
+    data = {}
     
     # get the data
     if os.path.exists("game_saves.dat"):
         try:
+            print("O")
             file = open("game_saves.dat", "rb")
+            print("O")
             data = pickle.load(file)
+            print("O")
             file.close()
+            print("O")
         except EOFError:
-            data = []
+            data = {}
         except Exception as error:
             print(error)
     else:
         # open and close the file if it DOESNT exist to create it
         file = open("game_saves.dat", "wb")
-        data = []
+        data = {}
         pickle.dump(data, file)
         
         file.close()
@@ -220,7 +249,7 @@ def save_game(player):
             data.remove(item)
     
     # add it to the data
-    data.append(player)
+    data[player.get_name()] = player
 
     # write data to the file
     file = open("game_saves.dat", "wb")
@@ -229,6 +258,27 @@ def save_game(player):
 
     print("Game successfully saved.")
 
+#-------------------------------------------------------
+# DEATH FUNCTION
+def death(player):
+    # death recieves the player argment
+    # it prints out that the player died
+    # and their stats
+    # and weapon
+    # then removes it from player save.
+    
+    name = player.get_name()
+    weapon = player.get_weapon()
+    damage = weapon.get_damage()
+    turns = weapon.get_hits()
+    death_location = player.get_location()
+    
+    print("You died, here is a view of your stats.")
+    print(f"Name : {name}\nWeapon : {weapon.get_name()}\nDamage : {damage}\nTurns : {turns}\nDeath location: {death_location}")
+    
+    delete_save(player)
+    print("Thank you for playing.")
+    
 #-------------------------------------------------------
 # LOCATION FUNCTIONS
 def tutorial(player):
@@ -310,26 +360,26 @@ def tutorial(player):
         return "main_game"  
 
 def generate_loc():
-    clearing_loc = game_classes.Location("clearing", "You are in a empty clearing.\nTo the north, there is a empty pathway.\nTo the south, there is a cluttered forest.\nThe east and west are too dense of a forest to go through.", [], [], [])
-    center_path_loc = game_classes.Location("center_path", "You are in a the middle of a path.\nTo the north, there is a castle, it seems like you shouldn't be there until later.\nTo the east and west, there is more path.\nTo the south, there is a clearing.", [], [], [])
-    left_path_loc = game_classes.Location("left_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is more path.\nTo the west, there is a town, seemingly empty.", [], [], [])
-    right_path_loc = game_classes.Location("right_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is a ocean.\nTo the west, there is a path.", [], [], [])
-    ocean_loc = game_classes.Location("ocean", "You are on a beach of the ocean.\nThe ocean is calming to you. It heals you back to max hp, and gives you some extra health.\nThere is nowhere to go, other than west, leading back to a path.", [], [], []])
-    ghost_town_loc = game_classes.Location("ghost_town", "You are in a town, it seems ancient and abandoned.\nTo the north, there is a cave.\nTo the east, there is a path.\nTo the west, there is a weapon forge.\nThe south is too dense of a forest to get through.", [], [], [])
-    forge_loc = game_classes.Location("forge", "You are in a forge, abandoned by society.\nTo the east, is a town, seemingly abandoned.\nThe north, west, and south are too dense of a forest to get through.", ["forge", "smith"], [], [])
+    clearing_loc = game_classes.Location("clearing", "You are in a empty clearing.\nTo the north, there is a empty pathway.\nTo the south, there is a cluttered forest.\nThe east and west are too dense of a forest to go through.", [], [])
+    center_path_loc = game_classes.Location("center_path", "You are in a the middle of a path.\nTo the north, there is a castle, it seems like you shouldn't be there until later.\nTo the east and west, there is more path.\nTo the south, there is a clearing.", [], [])
+    left_path_loc = game_classes.Location("left_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is more path.\nTo the west, there is a town, seemingly empty.", [], [])
+    right_path_loc = game_classes.Location("right_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is a ocean.\nTo the west, there is a path.", [], [])
+    ocean_loc = game_classes.Location("ocean", "You are on a beach of the ocean.\nThe ocean is calming to you. It heals you back to max hp, and gives you some extra health.\nThere is nowhere to go, other than west, leading back to a path.", [], [])
+    ghost_town_loc = game_classes.Location("ghost_town", "You are in a town, it seems ancient and abandoned.\nTo the north, there is a cave.\nTo the east, there is a path.\nTo the west, there is a weapon forge.\nThe south is too dense of a forest to get through.", [], [])
+    forge_loc = game_classes.Location("forge", "You are in a forge, abandoned by society.\nTo the east, is a town, seemingly abandoned.\nThe north, west, and south are too dense of a forest to get through.", ["forge", "smith"], [])
     cave_enemy_weapon = game_classes.Weapon("Sword", 10, 1)
     cave_enemy = game_classes.Enemy("skeleton", cave_enemy_weapon, 50, 50)
-    cave_loc = game_classes.Location("cave", "You entered a dark cave.\nThe only way out is to the south.", [], [cave_enemy], [])
+    cave_loc = game_classes.Location("cave", "You entered a dark cave.\nThe only way out is to the south.", [], [cave_enemy])
     forest_loc = game_classes.Location("forest", "You are in a dense forest.\nTheres a path to the north, leading to a clearing.\nThe west leads to more forest.\nThe east leads to more forest, its more dark and ominous than the one on the west.\nThe south leads to a valley.", [], [])
-    slime_enemy_weapon = game_classes.Weapon("Goop", 5, 1)]
+    slime_enemy_weapon = game_classes.Weapon("Goop", 5, 1)
     slime_enemy = game_classes.Enemy("Slime", slime_enemy_weapon, 50, 50)
-    slime_forest_loc = game_classes.Location("slime_forest", "You are in a dense forest.\nTheres a more forest to the east.\nAll other directions are too dense to get to.", ["north", "west", "east", "south"][slime_enemy], [])
+    slime_forest_loc = game_classes.Location("slime_forest", "You are in a dense forest.\nTheres a more forest to the east.\nAll other directions are too dense to get to.", [], [slime_enemy])
     slime_boss_weapon = game_classes.Weapon("Goop", 10, 2)
     slime_boss = game_classes.Enemy("Slime King", slime_boss_weapon, 100, 100)
-    slime_boss_loc = game_classes.Location("slime_boss_forest", "You are in a dense forest.\nThere is more forest to the west.\nAll other directions are too dense to get to.", [slime_boss], [])
+    slime_boss_loc = game_classes.Location("slime_boss_forest", "You are in a dense forest.\nThere is more forest to the west.\nAll other directions are too dense to get to.", [], [slime_boss])
     castle_boss_weapon = game_classes.Weapon("Greatsword", 50, 1)
     castle_boss = game_classes.Enemy("Zumwalt, King of Etheria", castle_boss_weapon, 200, 200)
-    castle_loc = game_classes.Location("castle", "You are in a dark castle.\nThe north leads to Etrea.\nThe south leads to a path.\nThe west and east are blocked by castle walls.", [castle_boss], [])
+    castle_loc = game_classes.Location("castle", "You are in a dark castle.\nThe north leads to Etrea.\nThe south leads to a path.\nThe west and east are blocked by castle walls.", [], [castle_boss])
     
     
     # RETURN ALL LOCATIONS AS DATA
@@ -346,8 +396,10 @@ def get_location(player, find):
     
     # read the data, finding the right object
     for i in data:
-        if i == find:
+        if i.get_name() == find:
+            # return the right object
             return i
+            
     
     
 def clearing(player):
@@ -362,7 +414,326 @@ def clearing(player):
     
     # get choice
     choice = location.get_choice()
-    print(choice)
+    while True:
+        if choice == "east" or choice == "west":
+            print("It's too dense for you to get through.")
+            choice = location.get_choice()
+        elif choice == "north":
+            center_path(player)
+            break
+        elif choice == "south":
+            pass
+            break
 
+def center_path(player):
+    # center path recieves the player argument
+    # it is above the main spawn
+    
+    # get the center path location from the player save
+    location = get_location(player, "center_path")
+    
+    # print the location
+    print(location)
+    
+    # get choice
+    choice = location.get_choice()
+    
+    if choice == "north":
+        castle(player)
+    elif choice == "south":
+        clearing(player)
+    elif choice == "east":
+        right_path(player)
+    elif choice == "west":
+        left_path(player)
 
+def left_path(player):
+    # left path recieves the player argument
+    # it is to the left of the center path
+    
+    # get the left path location from the player save
+    location = get_location(player, "left_path")
+    
+    # print the location
+    print(location)
+    
+    # get the choice
+    choice = location.get_choice()
+    
+    while True:
+        if choice == "north" or choice == "south":
+            print("The forest is too dense for your to pass through.")
+            choice = location.get_choice()
+        elif choice == "east":
+            center_path(player)
+            break
+        elif choice == "west":
+            ghost_town(player)
+            break
+
+def ghost_town(player):
+    # ghost town recieves the player argument
+    # it is to the left of the left path!!
+    
+    # get the location from player save
+    location = get_location(player, "ghost_town")
+    
+    # print the location
+    print(location)
+    
+    # get the choice
+    choice = location.get_choice()
+    
+    while True:
+        if choice == "north":
+            cave(player)
+            break
+        elif choice == "east":
+            left_path(player)
+            break
+        elif choice == "west":
+            forge(player)
+            break
+        elif choice == "south":
+            print("The forest is too dense for you to pass through.")
+            choice = location.get_choice()
+
+def forge(player):
+    # forge recieves the player argument
+    # it is to the left of the ghost town
+    
+    # get the location from the player save
+    location = get_location(player, "forge")
+    
+    # print the location
+    print(location)
+    print("HINT: Type smith or forge to use the forge.")
+    
+    # get the choice
+    choice = location.get_choice()
+    
+    
+    while True:
+        if choice == "north" or choice == "south" or choice == "west":
+            print("The forest is too dense for you to pass through.")
+            choice = location.get_choice()
+        elif choice == "east":
+            ghost_town(player)
+            break
+        elif choice == "forge" or choice == "smith":
+            # PRINT THE SPECIAL SMITHING GUI
+            print("Welcome to the forge.")
+            print("What would you like to make?\n")
+            
+            # make all the weapons
+            greatsword = game_classes.Weapon("Greatsword", 40, 1)
+            longsword = game_classes.Weapon("Longsword", 20, 2)
+            battle_axe = game_classes.Weapon("Battle Axe", 30, 1)
+            glaive = game_classes.Weapon("Glaive", 10, 4)
+            sticks_and_stones = game_classes.Weapon("Sticks and stones", 1, 1)
+            
+            weapons = [greatsword, longsword, battle_axe, glaive, sticks_and_stones]
+            
+            for weapon in weapons:
+                name = weapon.get_name()
+                damage = weapon.get_damage()
+                turns = weapon.get_hits()
+                
+                print(f"Name: {name}\nDamage: {damage}\nTurns: {turns}")
+            
+            # get the users choice
+            inpu = input("What would you like to smith (leave or quit to stop forging): ")
+            options = ["greatsword", "longsword", "battle axe", "glaive", "sticks and stones", "leave", "quit"]
+            
+            while inpu not in options:
+                print(f"{choice} not recognized as a command.")
+                inpu = input("What would you like to smith (leave or quit to stop forging): ")
+            
+            if inpu == "leave" or inpu == "quit":
+                choice = location.get_choice()
+            else:
+                print(f"Forging...")
+                
+                # find the proper weapon
+                if inpu.lower() == "greatsword":
+                    player.set_weapon(greatsword)
+                elif inpu.lower() == "longsword":
+                    player.set_weapon(longsword)
+                elif inpu.lower() == "battle axe":
+                    player.set_weapon(battle_axe)
+                elif inpu.lower() == "glaive":
+                    player.set_weapon(glaive)
+                elif inpu.lower() == "sticks and stones":
+                    player.set_weapon(sticks_and_stones)
+                
+                # print fixed weapon
+                print(f"Forged. Your weapon is now set to {player.get_weapon().get_name()}.")
+                
+                # get the users choice again
+                choice = location.get_choice()
+
+def cave(player):
+    # cave recieves the player argument
+    # it creates the cave scene
+    
+    # get the location
+    location = get_location(player, "cave")
+    
+    # print it
+    print(location)
+    
+    # due to this having an enemy, the moment you are thrown in, you get put in to a fight.
+    enemies = location.get_enemies()
+    
+    if enemies != []:
+        # start the fight if there were enemies
+        print("A skeleton approaches you, and engages you.")
+        fight = game_classes.Fight(player, enemies[0])
+        outcome = fight.run_fight()
+        
+        if outcome == "ran":
+            ghost_town(player)
+        elif outcome == "enemy died":
+            # since they won! get them to full hp and gain 20 extra
+            print("Killing an enemy restored you to max hp, you also gained a +20 hp increase.")
+            max_health = player.get_max_health()
+            max_health += 20
+            player.set_max_health(max_health)
+            player.heal(200000)
+            
+            print(f"Good job winning, your current health is at {player.get_health()} and your max health is at {player.get_max_health()}.")
+            location.clear_enemies()
+        else:
+            death(player)
+    
+    # get the choice
+    choice = location.get_choice()
+    
+    while True:
+        if choice == "north" or choice == "west" or choice == "east":
+            print("Too many rocks, no point in trying to break through.")
+        elif choice == "south":
+            ghost_town(player)
+            break
+
+def right_path(player):
+    # right path recieves the player argument
+    # it generates the right path scene
+    
+    # get the location
+    location = get_location(player, "right_path")
+    
+    # print the location
+    print(location)
+    
+    # get the choice
+    choice = location.get_choice()
+    
+    # translate the choice and move the player
+    while True:
+        if choice == "north" or choice == "south":
+            print("The forest is too dense for you to pass through.")
+        elif choice == "east":
+            ocean(player)
+            break
+        elif choice == "west":
+            center_path(player)
+            break
+
+def ocean(player):
+    # ocean recieves the player argument
+    # it generates the player scene
+    
+    # get thel ocation
+    location = get_location(player, "ocean")
+    
+    # print the location
+    print(location)
+    
+    # up max hp and heal to max
+    max_hp = player.get_max_health()
+    max_hp += 20
+    print("You gained +20 max health.")
+    
+    player.set_max_health(max_hp)
+    player.heal(20000000)
+    
+    # print the health
+    print(f"Your health is now at {player.get_health()} out of {player.get_max_health()}.")
+    
+    # get the choice
+    choice = location.get_choice()
+    
+    # translate the choice and move the player
+    while True:
+        if choice == "east":
+            print("That leads to an advance of ocean, no reason to go there.")
+            choice = location.get_choice()
+        elif choice == "south" or choice == "north":
+            print("That leads to a advance of beach, no reason to go there.")
+            choice = location.get_choice()
+        else:
+            right_path(player)
+            break
+        
+def castle(player):
+    # castle recieves the player argument
+    # it is the final locatino in the game
+    # and it has the final boss
+    # and after that, it leads you to the credits.
+    
+    # get location
+    location = get_location(player, "castle")
+    
+    # get the locations enemies
+    enemies = location.get_enemies()
+    
+    # make sure bro wasnt dead by the time we got there
+    if enemies != []:
+        # start the fight
+        print("A mysterious figure approaches you...")
+        fight = game_classes.Fight(player, enemies[0])
+        outcome = fight.run_fight()
+        
+        # validate outcomes
+        if outcome == "ran":
+            print("A voice bellows behind you:")
+            print("Zumwalt, King of Etheria: Cowardly!")
+            print("As he yells, the clouds darken.")
+            print("Lightning starts striking near you.")
+            print("Lightning hits you, killing you on the spot.")
+            death(player)
+        elif outcome == "enemy dead":
+            location.clear_enemies()
+            print("Zumwalt, King of Etheria: You've bested me in combat. I will allow you to pass.")
+            print("Lightning strikes Zumwalt and he dies, with a thud.")
+        else:
+            death(player)
+            
+    # get the choice
+    choice = location.get_choice()
+    
+    while True:
+        if choice == "east" or choice == "west":
+            print("The castle walls are too tall to climb or get around.")
+            choice = location.get_choice()
+        elif choice == "south":
+            center_path(player)
+            break
+        else:
+            print("Thank you for playing")
+            print("extra info:")
+            print("I went through the location system design 3 times.")
+            print("it probably doesnt work very well still, or could be optimized")
+            print("but I started to run out of time so i just settled on this one.")
+            print("sorry if it was a let down, I noticed I started to try to do too much")
+            print("which made me waste time")
+            print("i wanted to first make a level system, inventory, fighting, and npcs")
+            print("but that would take too long")
+            print("thanks again.")
+            main_menu()
+            break
+          
+            
+            
 main()
