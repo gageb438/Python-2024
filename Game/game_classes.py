@@ -114,12 +114,11 @@ class Location():
     def clear_enemies(self):
         self.__enemies = []
     
+    def get_enemies(self):
+        return self.__enemies
+    
     def __str__(self):
-        desc = self.__desc
-        for item in self.__items:
-            desc += f"\nThere is a {item} nearby."
-        
-        return desc
+        return self.__desc
 
 class Enemy():
     def __init__(self, name, weapon, health, max_health):

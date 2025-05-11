@@ -360,30 +360,34 @@ def tutorial(player):
         return "main_game"  
 
 def generate_loc():
-    clearing_loc = game_classes.Location("clearing", "You are in a empty clearing.\nTo the north, there is a empty pathway.\nTo the south, there is a cluttered forest.\nThe east and west are too dense of a forest to go through.", [], [])
-    center_path_loc = game_classes.Location("center_path", "You are in a the middle of a path.\nTo the north, there is a castle, it seems like you shouldn't be there until later.\nTo the east and west, there is more path.\nTo the south, there is a clearing.", [], [])
-    left_path_loc = game_classes.Location("left_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is more path.\nTo the west, there is a town, seemingly empty.", [], [])
-    right_path_loc = game_classes.Location("right_path", "You are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is a ocean.\nTo the west, there is a path.", [], [])
-    ocean_loc = game_classes.Location("ocean", "You are on a beach of the ocean.\nThe ocean is calming to you. It heals you back to max hp, and gives you some extra health.\nThere is nowhere to go, other than west, leading back to a path.", [], [])
-    ghost_town_loc = game_classes.Location("ghost_town", "You are in a town, it seems ancient and abandoned.\nTo the north, there is a cave.\nTo the east, there is a path.\nTo the west, there is a weapon forge.\nThe south is too dense of a forest to get through.", [], [])
-    forge_loc = game_classes.Location("forge", "You are in a forge, abandoned by society.\nTo the east, is a town, seemingly abandoned.\nThe north, west, and south are too dense of a forest to get through.", ["forge", "smith"], [])
+    clearing_loc = game_classes.Location("clearing", "\nYou are in a empty clearing.\nTo the north, there is a empty pathway.\nTo the south, there is a cluttered forest.\nThe east and west are too dense of a forest to go through.", [], [])
+    center_path_loc = game_classes.Location("center_path", "\nYou are in a the middle of a path.\nTo the north, there is a castle, it seems like you shouldn't be there until later.\nTo the east and west, there is more path.\nTo the south, there is a clearing.", [], [])
+    left_path_loc = game_classes.Location("left_path", "\nYou are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is more path.\nTo the west, there is a town, seemingly empty.", [], [])
+    right_path_loc = game_classes.Location("right_path", "\nYou are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is a ocean.\nTo the west, there is a path.", [], [])
+    ocean_loc = game_classes.Location("ocean", "\nYou are on a beach of the ocean.\nThe ocean is calming to you. It heals you back to max hp, and gives you some extra health.\nThere is nowhere to go, other than west, leading back to a path.", [], [])
+    ghost_town_loc = game_classes.Location("ghost_town", "\nYou are in a town, it seems ancient and abandoned.\nTo the north, there is a cave.\nTo the east, there is a path.\nTo the west, there is a weapon forge.\nThe south is too dense of a forest to get through.", [], [])
+    forge_loc = game_classes.Location("forge", "\nYou are in a forge, abandoned by society.\nTo the east, is a town, seemingly abandoned.\nThe north, west, and south are too dense of a forest to get through.", ["forge", "smith"], [])
     cave_enemy_weapon = game_classes.Weapon("Sword", 10, 1)
     cave_enemy = game_classes.Enemy("skeleton", cave_enemy_weapon, 50, 50)
-    cave_loc = game_classes.Location("cave", "You entered a dark cave.\nThe only way out is to the south.", [], [cave_enemy])
-    forest_loc = game_classes.Location("forest", "You are in a dense forest.\nTheres a path to the north, leading to a clearing.\nThe west leads to more forest.\nThe east leads to more forest, its more dark and ominous than the one on the west.\nThe south leads to a valley.", [], [])
+    cave_loc = game_classes.Location("cave", "\nYou entered a dark cave.\nThe only way out is to the south.", [], [cave_enemy])
+    forest_loc = game_classes.Location("forest", "\nYou are in a dense forest.\nTheres a path to the north, leading to a clearing.\nThe west leads to more forest.\nThe east leads to more forest, its more dark and ominous than the one on the west.\nThe south leads to a valley.", [], [])
     slime_enemy_weapon = game_classes.Weapon("Goop", 5, 1)
     slime_enemy = game_classes.Enemy("Slime", slime_enemy_weapon, 50, 50)
-    slime_forest_loc = game_classes.Location("slime_forest", "You are in a dense forest.\nTheres a more forest to the east.\nAll other directions are too dense to get to.", [], [slime_enemy])
+    slime_forest_loc = game_classes.Location("slime_forest", "\nYou are in a dense forest.\nTheres a more forest to the east.\nAll other directions are too dense to get to.", [], [slime_enemy])
     slime_boss_weapon = game_classes.Weapon("Goop", 10, 2)
-    slime_boss = game_classes.Enemy("Slime King", slime_boss_weapon, 100, 100)
-    slime_boss_loc = game_classes.Location("slime_boss_forest", "You are in a dense forest.\nThere is more forest to the west.\nAll other directions are too dense to get to.", [], [slime_boss])
+    slime_boss = game_classes.Enemy("Slime", slime_boss_weapon, 100, 100)
+    slime_boss_loc = game_classes.Location("slime_boss_forest", "\nYou are in a dense forest.\nThere is more forest to the west.\nAll other directions are too dense to get to.", [], [slime_boss])
     castle_boss_weapon = game_classes.Weapon("Greatsword", 50, 1)
-    castle_boss = game_classes.Enemy("Zumwalt, King of Etheria", castle_boss_weapon, 200, 200)
-    castle_loc = game_classes.Location("castle", "You are in a dark castle.\nThe north leads to Etrea.\nThe south leads to a path.\nThe west and east are blocked by castle walls.", [], [castle_boss])
-    
+    castle_boss = game_classes.Enemy("Zumwalt", castle_boss_weapon, 200, 200)
+    castle_loc = game_classes.Location("castle", "\nYou are in a dark castle.\nThe north leads to Etrea.\nThe south leads to a path.\nThe west and east are blocked by castle walls.", [], [castle_boss])
+    right_valley_loc = game_classes.Location("right_valley", "\nYou are in the eastern part of a valley.\nTo the north, theres a forest.\nTo the east and south, there is a mountain, too tall to climb.\nTo the west, there is more valley.", [], [])
+    left_valley_loc = game_classes.Location("left_valley", "\nYou are in the western part of a valley.\nTo the north, there is a forest, too dense to go through.\nTo the east there is more valley.\nTo the south, there is mountains.\nTo the west, theres a staircase, leading to a dark place.", [], [])
+    zummies_weapon = game_classes.Weapon("Dark Greatsword", 50, 1)
+    zummie = game_classes.Enemy("Zummie", zummies_weapon, 500, 500)
+    zummies_domain_loc = game_classes.Location("zummies_domain", "\nYou are in a dark, foggy area.\nTheres no escape from this one.", [], [zummie])
     
     # RETURN ALL LOCATIONS AS DATA
-    return [clearing_loc, center_path_loc, left_path_loc, right_path_loc, ocean_loc, ghost_town_loc, forge_loc, cave_loc, forest_loc, slime_forest_loc, slime_boss_loc, castle_loc]
+    return [clearing_loc, center_path_loc, left_path_loc, right_path_loc, ocean_loc, ghost_town_loc, forge_loc, cave_loc, forest_loc, slime_forest_loc, slime_boss_loc, castle_loc, right_valley_loc, left_valley_loc, zummies_domain_loc]
 
 def get_location(player, find):
     # get location recieves the player argument and a location to search for
@@ -401,7 +405,47 @@ def get_location(player, find):
             return i
             
     
+def zummies_domain(player):
+    # zummies domain recieves the player argument
+    # it is a very unbeatable boss.
+    # it isnt meant to be beat, so if your looking here to see if theres a way to, dont bother
+    # its litterally just to kill you quickly
+    # if you manage to beat it, good for you
     
+    # get the location
+    location = get_location(player, "zummies_domain")
+    
+    # print the location
+    print(location)
+    
+    # start fight
+    if location.get_enemies != []:
+        print("Zummie approaches you.")
+        fight = game_classes.Fight(player, location.get_enemies()[0])
+        outcome = fight.run_fight()
+        
+        if outcome == "ran":
+            print(f"Zummie, Bane of the Throne: How cowardly!")
+            left_valley(player)
+        elif outcome == "enemy died":
+            print("good work, honestly you shouldnt even see this but if you do, amazing for you i suppose.")
+            location.clear_enemies()
+            print("You've been healed back to max health, and gained 500 max hp.")
+            player.set_max_health(500)
+            player.set_health(500)
+        else:
+            death(player)
+    else:
+        choice = location.get_choice()
+        
+        while True:
+            if choice == "north" or choice == "west" or choice == "south":
+                print("An invisible barrier in the fog stops you from progressing.")
+                choice = location.get_choice()
+            else:
+                left_valley(player)
+                break
+        
 def clearing(player):
     # clearing recieves the player argument
     # it is the main spawn of the game
@@ -422,9 +466,117 @@ def clearing(player):
             center_path(player)
             break
         elif choice == "south":
-            pass
+            forest(player)
+            break
+def forest(player):
+    # forest recieves the player argument
+    # it generates the forest location
+    
+    # get the location
+    location = get_location(player, "forest")
+    
+    # print the location
+    print(location)
+    
+    # get the choice
+    choice = location.get_choice()
+    while True:
+        if choice == "east":
+            slime_boss(player)
+            break
+        elif choice == "west":
+            slime_forest(player)
+            break
+        elif choice == "north":
+            clearing(player)
+            break
+        elif choice == "south":
+            right_valley(player)
             break
 
+def slime_boss(player):
+    # slime boss recieves the player argument
+    # it is to the left of the forest
+    
+    # get the location from the player save
+    location = get_location(player, "slime_boss_forest")
+    
+    # print the location
+    print(location)
+    
+    # get the enemies
+    if location.get_enemies() != []:
+        enemy = location.get_enemies()
+        
+        fight = game_classes.Fight(player, enemy[0])
+        print("A slime approaches and engages you.")
+        outcome = fight.run_fight()
+        
+        # get the outcome and fix
+        if outcome == "ran":
+            forest(player)
+        elif outcome == "enemy died":
+            location.clear_enemies()
+            
+            print("Killing an enemy restored you to max hp, you also gained a +20 hp increase.")
+            max_health = player.get_max_health()
+            max_health += 20
+            player.set_max_health(max_health)
+            player.heal(200000)
+            
+            print(f"Good job winning, your current health is at {player.get_health()} and your max health is at {player.get_max_health()}.")
+        else:
+            death(player)
+    
+    # get choice
+    choice = location.get_choice()
+    while True:
+        if choice == "north" or choice == "west" or choice == "south":
+            print("The forests are too dense to pass through.")
+            choice = location.get_choice()
+        else:
+            forest(player)
+            break
+def slime_forest(player):
+    # slime enemy recieves the player argument
+    # it is to the left of the forest
+    
+    # get the location from the player save
+    location = get_location(player, "slime_forest")
+    
+    # print the location
+    print(location)
+    if location.get_enemies() != []:
+        enemy = location.get_enemies()
+        
+        fight = game_classes.Fight(player, enemy[0])
+        outcome = fight.run_fight()
+        
+        if outcome == "ran":
+            forest(player)
+        elif outcome == "enemy died":
+            location.clear_enemies()
+            
+            print("Killing an enemy restored you to max hp, you also gained a +20 hp increase.")
+            max_health = player.get_max_health()
+            max_health += 20
+            player.set_max_health(max_health)
+            player.heal(200000)
+            
+            print(f"Good job winning, your current health is at {player.get_health()} and your max health is at {player.get_max_health()}.")
+        else:
+            death(player)
+    
+    # get choice
+    choice = location.get_choice()
+    while True:
+        if choice == "north" or choice == "west" or choice == "south":
+            print("The forests are too dense to pass through.")
+            choice = location.get_choice()
+        else:
+            forest(player)
+            break
+          
 def center_path(player):
     # center path recieves the player argument
     # it is above the main spawn
@@ -640,6 +792,59 @@ def right_path(player):
             center_path(player)
             break
 
+def right_valley(player):
+    # right valley recieves the player argument
+    # it generates the right valley location
+    
+    # get the location
+    location = get_location(player, "right_valley")
+    
+    # print the location
+    print(location)
+    
+    # get the choice
+    choice = location.get_choice()
+    
+    # translate the choice and move the player
+    while True:
+        if choice == "north":
+            forest(player)
+            break
+        elif choice == "south" or choice == "east":
+            print("The mountain blocks your path.")
+            choice = location.get_choice()
+        elif choice == "west":
+            left_valley(player)
+            break
+
+def left_valley(player):
+    # left valley recieves the player argument
+    # it generates the left valley location
+    
+    # get the location
+    location = get_location(player, "left_valley")
+    
+    # print the location
+    print(location)
+    
+    # get the choice
+    choice = location.get_choice()
+    
+    # translate it and move the player
+    while True:
+        if choice == "north":
+            print("The forest is too dense to pass through.")
+            choice = location.get_choice()
+        elif choice == "south":
+            print("The mountain is blocking your path.")
+            choice = location.get_choice()
+        elif choice == "west":
+            zummies_domain(player)
+            break
+        elif choice == "east":
+            right_valley(player)
+            break
+    
 def ocean(player):
     # ocean recieves the player argument
     # it generates the player scene
@@ -691,7 +896,7 @@ def castle(player):
     # make sure bro wasnt dead by the time we got there
     if enemies != []:
         # start the fight
-        print("A mysterious figure approaches you...")
+        print("Zumwalt approaches you...")
         fight = game_classes.Fight(player, enemies[0])
         outcome = fight.run_fight()
         
