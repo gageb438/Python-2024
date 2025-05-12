@@ -927,15 +927,7 @@ def castle(player):
             break
         else:
             print("Thank you for playing")
-            print("extra info:")
-            print("I went through the location system design 3 times.")
-            print("it probably doesnt work very well still, or could be optimized")
-            print("but I started to run out of time so i just settled on this one.")
-            print("sorry if it was a let down, I noticed I started to try to do too much")
-            print("which made me waste time")
-            print("i wanted to first make a level system, inventory, fighting, and npcs")
-            print("but that would take too long")
-            print("thanks again.")
+            print("You win!")
             main_menu()
             break
           
