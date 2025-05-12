@@ -27,10 +27,9 @@ class Hero():
     
     def get_data(self):
         return self.__data
-        
-    def get_items(self):
-        return self.__items
     
+    def get_weapon(self):
+        return self.__weapon
     # setters
     def set_health(self, health):
         self.__health = health
@@ -43,9 +42,6 @@ class Hero():
         
     def set_location(self, location):
         self.__location = location
-    
-    def set_items(self, items):
-        self.__items = items
     
     # modifiers
     def heal(self, heal):
@@ -60,12 +56,6 @@ class Hero():
            return "dead"
         else:
             self.__health -= damage
-    
-    def add_item(self, item):
-        self.__items.append(item)
-    
-    def remove_item(self, item):
-        self.__items.remove(item)
     
     
 class Weapon():

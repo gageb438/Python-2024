@@ -37,6 +37,8 @@ def main_menu():
     choice = -1
 
     # create the menu
+    print("At any point to leave, click stop at the top, and re-run it.")
+    print("Each time you move to a new location it will save.")
     print("1: New Save")
     print("2: Load Save")
     print("3: Quit")
@@ -79,6 +81,8 @@ def new_save():
 
     # check if the name is being used in our save file
     while good == False:
+        # set good to TRUE to see if it changed
+        good = True
         # get input for the name
         name = input("Please enter the name of your character (First and last if it has a last): ")
 
@@ -97,13 +101,9 @@ def new_save():
             if data != {}:
                 for key in data:
                     if key == name:
+                        print("FALSE")
                         good = False
-            else:
-                good = True
-        else:
-            # if name wasnt being used or file didnt exist, set good to true, stopping the loop from running
-            good = True
-
+                        
         # if good was set to false at the end of this loop, print that the name was being used and needs to be changed
         if good == False:
             print("Name already being used, pick another or modify the current one.")
@@ -131,15 +131,8 @@ def new_save():
     # make the character
     player = game_classes.Hero(name, weapon, 100, 100, "tutorial", data)
     
-    # call save game with player
     # then call main game
-    save_game(player)
-    main_game = tutorial(player)
-    
-    if main_game == "death":
-        death(player)
-    else:
-        clearing(player)
+    tutorial(player)
     
 def delete_save(player):
     # delete save recieves the player argument
@@ -183,32 +176,77 @@ def load_save():
         except:
             # print the error and return it
             print("No saves found, create one first.")
-            return
+            main_menu()
         
-        # read the data and print each objects info
-        for item in data:
-            name = item.get_name()
-            weapon = item.get_weapon()
-            weapon_name = weapon.get_name()
+        if data != {}:
+            # read the data and print each objects info
+            for item in data:
+                char = data[item]
+                name = char.get_name()
+                weapon = char.get_weapon()
+                weapon_name = weapon.get_name()
+                location = char.get_location()
+                print(f"\nName: {name}")
+                print(f"Weapon: {weapon}")
+                print(f"Location: {location}")
             
-            print(f"\nName: {name}")
-            print(f"Weapon: {weapon}")
-        
-        # get the users choice
-        choice = input("What save would you like to load? (NAME ONLY, CASE SENSITIVE): ")
-        
-        # set the blank player variable
-        player = 1
-        
-        for item in data:
-            if item.get_name() == choice:
-                player = item
-          
-        if player == 1:
-            print("Player not found.")
-            return
-        
-        tutorial(player)
+            # get the users choice
+            choice = input("What save would you like to load? (NAME ONLY, CASE SENSITIVE): ")
+            
+            # set the blank player variable
+            player = 1
+            
+            # CHECK PLAYER
+            for item in data:
+                if item == choice:
+                    player = data[item]
+              
+            if player == 1:
+                print("Player not found.")
+                return
+            
+            # LOCATION INTERPERETER SECTION
+            # get the players
+            # location
+            location = player.get_location()
+            
+            # validate and call all correct functions
+            if location == "tutorial":
+                tutorial(player)
+            elif location == "clearing":
+                clearing(player)
+            elif location == "center_path":
+                center_path(player)
+            elif location == "left_path":
+                left_path(player)
+            elif location == "right_path":
+                right_path(player)
+            elif location == "ocean":
+                ocean(player)
+            elif location == "ghost_town":
+                ghost_town(player)
+            elif location == "forge":
+                forge(player)
+            elif location == "cave":
+                cave(player)
+            elif location == "slime_forest":
+                slime_forest(player)
+            elif location == "slime_boss_forest":
+                slime_boss_forest(player)
+            elif location == "castle":
+                castle(player)
+            elif location == "right_valley":
+                right_valley(player)
+            elif location == "left_valley":
+                left_valley(player)
+            elif location == "zummies_domain":
+                zummies_domain(player)
+            else:
+                print(f"{location} not found in saved locations.")
+                return
+    else:
+         print("No saves found, create one first.")
+         return
         
         
 
@@ -224,13 +262,9 @@ def save_game(player):
     # get the data
     if os.path.exists("game_saves.dat"):
         try:
-            print("O")
             file = open("game_saves.dat", "rb")
-            print("O")
             data = pickle.load(file)
-            print("O")
             file.close()
-            print("O")
         except EOFError:
             data = {}
         except Exception as error:
@@ -244,9 +278,13 @@ def save_game(player):
         file.close()
 
     # check to see if there is an old file under the same name
+    boolean1 = False
     for item in data:
-        if item.get_name() == player.get_name():
-            data.remove(item)
+        if item == player.get_name():
+            log1 = item
+            boolean1 = True
+    if boolean1 == True:
+        del data[log1]
     
     # add it to the data
     data[player.get_name()] = player
@@ -273,7 +311,7 @@ def death(player):
     turns = weapon.get_hits()
     death_location = player.get_location()
     
-    print("You died, here is a view of your stats.")
+    print("\nYou died, here is a view of your stats.")
     print(f"Name : {name}\nWeapon : {weapon.get_name()}\nDamage : {damage}\nTurns : {turns}\nDeath location: {death_location}")
     
     delete_save(player)
@@ -289,9 +327,13 @@ def tutorial(player):
     choice = -1
     choices = ["1","2"]
     weapon = player.get_weapon().get_name()
-
+    
+    # set location
+    player.set_location("tutorial")
+    save_game(player)
+    
     # print the welcome screen
-    print("Welcome to the tutorial, if you would like to do it, press 1.\nIf you would like to skip it, press 2.")
+    print("\nWelcome to the tutorial, if you would like to do it, press 1.\nIf you would like to skip it, press 2.")
     
     # get choice
     while choice not in choices:
@@ -349,15 +391,15 @@ def tutorial(player):
         
         if choice == "ran":
             print("Cowardly. Well then, lets move on to the real game.")
-            return "main_game"
+            clearing(player)
         elif choice == "player_dead":
             print("Odd. You managed to die in the tutorial, either really bad luck, or your just horrible.")
-            return "death"
+            death(player)
         else:
             print("Perplexing. You might be cut out for this, good work.")
-            return "main_game"
+            cleraing(player)
     else:
-        return "main_game"  
+        clearing(player)
 
 def generate_loc():
     clearing_loc = game_classes.Location("clearing", "\nYou are in a empty clearing.\nTo the north, there is a empty pathway.\nTo the south, there is a cluttered forest.\nThe east and west are too dense of a forest to go through.", [], [])
@@ -415,6 +457,10 @@ def zummies_domain(player):
     # get the location
     location = get_location(player, "zummies_domain")
     
+    # set location
+    player.set_location("zummies_domain")
+    save_game(player)
+    
     # print the location
     print(location)
     
@@ -453,6 +499,9 @@ def clearing(player):
     # get the clearing location from the player save
     location = get_location(player, "clearing")
     
+    player.set_location("clearing")
+    save_game(player)
+    
     # print the description
     print(location)
     
@@ -475,6 +524,9 @@ def forest(player):
     # get the location
     location = get_location(player, "forest")
     
+    player.set_location("forest")
+    save_game(player)
+    
     # print the location
     print(location)
     
@@ -494,12 +546,15 @@ def forest(player):
             right_valley(player)
             break
 
-def slime_boss(player):
+def slime_boss_forest(player):
     # slime boss recieves the player argument
     # it is to the left of the forest
     
     # get the location from the player save
     location = get_location(player, "slime_boss_forest")
+    
+    player.set_location("slime_boss_forest")
+    save_game(player)
     
     # print the location
     print(location)
@@ -543,6 +598,8 @@ def slime_forest(player):
     
     # get the location from the player save
     location = get_location(player, "slime_forest")
+    player.set_location("slime_forest")
+    save_game(player)
     
     # print the location
     print(location)
@@ -583,6 +640,8 @@ def center_path(player):
     
     # get the center path location from the player save
     location = get_location(player, "center_path")
+    player.set_location("center_path")
+    save_game(player)
     
     # print the location
     print(location)
@@ -605,6 +664,8 @@ def left_path(player):
     
     # get the left path location from the player save
     location = get_location(player, "left_path")
+    player.set_location("left_path")
+    save_game(player)
     
     # print the location
     print(location)
@@ -629,6 +690,8 @@ def ghost_town(player):
     
     # get the location from player save
     location = get_location(player, "ghost_town")
+    player.set_location("ghost_town")
+    save_game(player)
     
     # print the location
     print(location)
@@ -656,6 +719,8 @@ def forge(player):
     
     # get the location from the player save
     location = get_location(player, "forge")
+    player.set_location("forge")
+    save_game(player)
     
     # print the location
     print(location)
@@ -730,6 +795,8 @@ def cave(player):
     
     # get the location
     location = get_location(player, "cave")
+    player.set_location("cave")
+    save_game(player)
     
     # print it
     print(location)
@@ -774,6 +841,8 @@ def right_path(player):
     
     # get the location
     location = get_location(player, "right_path")
+    player.set_location("right_path")
+    save_game(player)
     
     # print the location
     print(location)
@@ -798,6 +867,8 @@ def right_valley(player):
     
     # get the location
     location = get_location(player, "right_valley")
+    player.set_location("right_valley")
+    save_game(player)
     
     # print the location
     print(location)
@@ -823,6 +894,8 @@ def left_valley(player):
     
     # get the location
     location = get_location(player, "left_valley")
+    player.set_location("left_valley")
+    save_game(player)
     
     # print the location
     print(location)
@@ -851,6 +924,8 @@ def ocean(player):
     
     # get thel ocation
     location = get_location(player, "ocean")
+    player.set_location("ocean")
+    save_game(player)
     
     # print the location
     print(location)
@@ -889,6 +964,8 @@ def castle(player):
     
     # get location
     location = get_location(player, "castle")
+    player.set_location("castle")
+    save_game(player)
     
     # get the locations enemies
     enemies = location.get_enemies()
@@ -928,9 +1005,8 @@ def castle(player):
         else:
             print("Thank you for playing")
             print("You win!")
+            death(player)
             main_menu()
             break
           
-            
-            
 main()
