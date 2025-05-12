@@ -12,7 +12,7 @@ def main():
     # initialize varaibles
     game_name = "The Grand Escape of Etheria"
 
-    print(f"Welcome to {game_name}.")
+    print(f"\nWelcome to {game_name}.")
     
     choice = main_menu()
 
@@ -244,10 +244,9 @@ def load_save():
             else:
                 print(f"{location} not found in saved locations.")
                 return
-    else:
-         print("No saves found, create one first.")
-         return
-        
+        else:
+            print("No saves found, create one first.")
+            main_menu()
         
 
 
