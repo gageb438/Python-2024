@@ -222,7 +222,7 @@ def load_save():
             # location
             location = player.get_location()
             
-            # validate and call all correct functions
+            # get the players saved location then call the correct function.
             if location == "tutorial":
                 tutorial(player)
             elif location == "clearing":
@@ -270,41 +270,57 @@ def save_game(player):
     # preset data
     data = {}
     
-    # get the data
+    # get the data if the file exists
     if os.path.exists("game_saves.dat"):
         try:
+            # load the data and close the file
             file = open("game_saves.dat", "rb")
             data = pickle.load(file)
             file.close()
         except EOFError:
+            # if there is an end of file error, set data to {}
             data = {}
         except Exception as error:
+            # if there is any other error, print it
             print(error)
     else:
         # open and close the file if it DOESNT exist to create it
         file = open("game_saves.dat", "wb")
         data = {}
         pickle.dump(data, file)
-        
+
+        # then close
         file.close()
 
     # check to see if there is an old file under the same name
+    # set a flag variable to false
     boolean1 = False
+
+    # read all data, and if the name of the player is the same as the object we're trying to save
+    # then it sets the data to be saved
+    # and sets the boolean to true
     for item in data:
         if item == player.get_name():
             log1 = item
             boolean1 = True
+
+    # if the boolean was true ten it deletes it
     if boolean1 == True:
         del data[log1]
+    else:
+        # print the error and return
+        print("An error saving has occurred.")
+        return
     
-    # add it to the data
+    # add it back to the data AFTER deleting the old one
     data[player.get_name()] = player
 
-    # write data to the file
+    # write data to the file and close it
     file = open("game_saves.dat", "wb")
     pickle.dump(data, file)
     file.close()
 
+    # print that the game saved successfully
     print("Game successfully saved.")
 
 #-------------------------------------------------------
@@ -315,21 +331,31 @@ def death(player):
     # and their stats
     # and weapon
     # then removes it from player save.
-    
+
+    # get the users data from their player
     name = player.get_name()
     weapon = player.get_weapon()
     damage = weapon.get_damage()
     turns = weapon.get_hits()
     death_location = player.get_location()
-    
+
+    # ad print their death information
     print("\nYou died, here is a view of your stats.")
     print(f"Name : {name}\nWeapon : {weapon.get_name()}\nDamage : {damage}\nTurns : {turns}\nDeath location: {death_location}")
-    
+
+    # delete the save, print thank you for playing and recall main
     delete_save(player)
     print("Thank you for playing.")
+    main()
     
 #-------------------------------------------------------
 # LOCATION FUNCTIONS
+# ALL LOCATION FUNCTIONS START OUT WITH UPDATING THE LOCATION, AND SAVING THE GAME
+# THEN IT RUNS.
+# i didnt wanna comment every single location.
+# MOST fighting locations
+# have it so when you kill an enemy, you gain extra max health
+# and then you heal them to max.
 def tutorial(player):
     # tutorial recieves the player argument\
     # it creates the tutorial location
@@ -349,7 +375,8 @@ def tutorial(player):
     # get choice
     while choice not in choices:
         choice = input(":> ")
-    
+
+    # print the tutorial scene, and see if they type grab weapon
     if choice == "1":
         print(f"You get up after falling down a large pit, your {weapon} has fallen next to you.")
         print(f"HINT: Type grab {weapon} to pick up the weapon")
@@ -364,23 +391,28 @@ def tutorial(player):
         # prime look
         bad = True
         
-        # validate users choice
+        # validate users choice, its a loop so it gets it forever
         while bad == True:
             if len(options) == 2:
+                # if the length was 2 and they grabbed the weapon, then print they grabbed it and set bad to false
                 if options[0] == "grab" and options[1] == weapon.lower():
                     print(f"You grab your {weapon}.")
                     bad = False
                 else:
+                    # print the command wasnt recognized, and get a new option.
                     print(f"{option} is not recognized as a valid command.")
                     option = input(":> ")
                     options = option.split(" ")
             elif options[0] == "look":
+                # if they chose to look, print desc again
                 print(f"You get up after falling down a large pit, your {weapon} has fallen next to you.")
                 print(f"HINT: Type grab {weapon} to pick up the weapon")
-                
+
+                # then get choice again.
                 option = input(":> ")
                 options = option.split(" ")
             else:
+                # if the command wasnt recognized, print that it wasnt and get the choice again.
                 print(f"{option} is not recognized as a valid command.")
                 option = input(":> ")
                 options = option.split(" ")
@@ -397,19 +429,24 @@ def tutorial(player):
         s_weapon = game_classes.Weapon("Sword", 10, 1)
         skeleton = game_classes.Enemy("Skeleton", s_weapon, 50, 50)
 
+        # create the fight object and run it.
         fight = game_classes.Fight(player, skeleton)
         choice = fight.run_fight()
-        
+
+        # if they chose to run, print a message and run the real game
         if choice == "ran":
-            print("Cowardly. Well then, lets move on to the real game.")
+            print("Cowardly. Well then, lets move past the tutorial.")
             clearing(player)
         elif choice == "player_dead":
+            # if they died (somehow, i dont even think its possible) print a message, and call death.
             print("Odd. You managed to die in the tutorial, either really bad luck, or your just horrible.")
             death(player)
         else:
+            # if they won then print a message and call the game
             print("Perplexing. You might be cut out for this, good work.")
             cleraing(player)
     else:
+        # if they chose to skip it, then call real game. skipping is TECHNICALLY better.
         clearing(player)
 
 def generate_loc():
@@ -480,39 +517,47 @@ def zummies_domain(player):
     
     # start fight
     if location.get_enemies != []:
+        # run the fight
         print("Zummie approaches you.")
         fight = game_classes.Fight(player, location.get_enemies()[0])
         outcome = fight.run_fight()
-        
+
+        # if they chose to run, then print a message and call the location
         if outcome == "ran":
             print(f"Zummie, Bane of the Throne: How cowardly!")
             left_valley(player)
         elif outcome == "enemy died":
-            print("good work, honestly you shouldnt even see this but if you do, amazing for you i suppose.")
+            # if they somehow killed zummie, then print a message, kill enemies, and give them 500 extra max hp as a reward.
+            print("Good work, honestly you shouldnt even see this but if you do, amazing for you I suppose.")
             location.clear_enemies()
             print("You've been healed back to max health, and gained 500 max hp.")
             player.set_max_health(500)
             player.set_health(500)
         else:
+            # if they died call a death.
             death(player)
     else:
+        # get the users choice if there was no enemies.
         choice = location.get_choice()
         
         while True:
+            # if they chose to go north, west, or south then print an invisible barrier, and get the choice.
             if choice == "north" or choice == "west" or choice == "south":
                 print("An invisible barrier in the fog stops you from progressing.")
                 choice = location.get_choice()
             else:
+                # if they chose to go south call the left valley
                 left_valley(player)
                 break
-        
+                
 def clearing(player):
     # clearing recieves the player argument
     # it is the main spawn of the game
     
     # get the clearing location from the player save
     location = get_location(player, "clearing")
-    
+
+    # set the location and save game
     player.set_location("clearing")
     save_game(player)
     
@@ -581,18 +626,21 @@ def slime_boss_forest(player):
         print("A slime approaches and engages you.")
         outcome = fight.run_fight()
         
-        # get the outcome and fix
+        # get the outcome and update
         if outcome == "ran":
             forest(player)
         elif outcome == "enemy died":
+            # if the enemy died, clear the enemies
             location.clear_enemies()
-            
+
+            # print the dead enemy, update their max health, and heal them since its meant to help progress to the final boss.
             print("Killing an enemy restored you to max hp, you also gained a +20 hp increase.")
             max_health = player.get_max_health()
             max_health += 20
             player.set_max_health(max_health)
             player.heal(200000)
-            
+
+            # primt their health.
             print(f"Good job winning, your current health is at {player.get_health()} and your max health is at {player.get_max_health()}.")
         else:
             death(player)
