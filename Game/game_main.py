@@ -457,7 +457,7 @@ def generate_loc():
     center_path_loc = game_classes.Location("center_path", "\nYou are in a the middle of a path.\nTo the north, there is a castle, it seems like you shouldn't be there until later.\nTo the east and west, there is more path.\nTo the south, there is a clearing.", [], [])
     left_path_loc = game_classes.Location("left_path", "\nYou are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is more path.\nTo the west, there is a town, seemingly empty.", [], [])
     right_path_loc = game_classes.Location("right_path", "\nYou are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is a ocean.\nTo the west, there is a path.", [], [])
-    ocean_loc = game_classes.Location("ocean", "\nYou are on a beach of the ocean.\nThe ocean is calming to you. It heals you back to max hp, and gives you some extra health.\nThere is nowhere to go, other than west, leading back to a path.", [], [])
+    ocean_loc = game_classes.Location("ocean", "\nYou are on a beach of the ocean.\nThe ocean is calming to you. It heals you back to max hp, and gives you some extra health.\nThere is nowhere to go, other than west, leading back to a path.", [], ["healing placeholder"])
     ghost_town_loc = game_classes.Location("ghost_town", "\nYou are in a town, it seems ancient and abandoned.\nTo the north, there is a cave.\nTo the east, there is a path.\nTo the west, there is a weapon forge.\nThe south is too dense of a forest to get through.", [], [])
     forge_loc = game_classes.Location("forge", "\nYou are in a forge, abandoned by society.\nTo the east, is a town, seemingly abandoned.\nThe north, west, and south are too dense of a forest to get through.", ["forge", "smith"], [])
     cave_enemy_weapon = game_classes.Weapon("Sword", 10, 1)
@@ -470,8 +470,8 @@ def generate_loc():
     slime_boss_weapon = game_classes.Weapon("Goop", 10, 2)
     slime_boss = game_classes.Enemy("Slime", slime_boss_weapon, 100, 100)
     slime_boss_loc = game_classes.Location("slime_boss_forest", "\nYou are in a dense forest.\nThere is more forest to the west.\nAll other directions are too dense to get to.", [], [slime_boss])
-    castle_boss_weapon = game_classes.Weapon("Greatsword", 50, 1)
-    castle_boss = game_classes.Enemy("Zumwalt", castle_boss_weapon, 200, 200)
+    castle_boss_weapon = game_classes.Weapon("Greatsword", 40, 1)
+    castle_boss = game_classes.Enemy("Zumwalt", castle_boss_weapon, 150, 150)
     castle_loc = game_classes.Location("castle", "\nYou are in a dark castle.\nThe north leads to Etrea.\nThe south leads to a path.\nThe west and east are blocked by castle walls.", [], [castle_boss])
     right_valley_loc = game_classes.Location("right_valley", "\nYou are in the eastern part of a valley.\nTo the north, theres a forest.\nTo the east and south, there is a mountain, too tall to climb.\nTo the west, there is more valley.", [], [])
     left_valley_loc = game_classes.Location("left_valley", "\nYou are in the western part of a valley.\nTo the north, there is a forest, too dense to go through.\nTo the east there is more valley.\nTo the south, there is mountains.\nTo the west, theres a staircase, leading to a dark place.", [], [])
@@ -593,7 +593,7 @@ def forest(player):
     choice = location.get_choice()
     while True:
         if choice == "east":
-            slime_boss(player)
+            slime_boss_forest(player)
             break
         elif choice == "west":
             slime_forest(player)
@@ -623,7 +623,7 @@ def slime_boss_forest(player):
         enemy = location.get_enemies()
         
         fight = game_classes.Fight(player, enemy[0])
-        print("A slime approaches and engages you.")
+        print("A slime boss approaches and engages you.(TYPE ATTACK SLIME TO DAMAGE IT)")
         outcome = fight.run_fight()
         
         # get the outcome and update
@@ -634,7 +634,7 @@ def slime_boss_forest(player):
             location.clear_enemies()
 
             # print the dead enemy, update their max health, and heal them since its meant to help progress to the final boss.
-            print("Killing an enemy restored you to max hp, you also gained a +20 hp increase.")
+            print("\nKilling an enemy restored you to max hp, you also gained a +20 hp increase.")
             max_health = player.get_max_health()
             max_health += 20
             player.set_max_health(max_health)
@@ -668,15 +668,16 @@ def slime_forest(player):
     if location.get_enemies() != []:
         enemy = location.get_enemies()
         
+        print("A slime approaches and engages you.")
         fight = game_classes.Fight(player, enemy[0])
         outcome = fight.run_fight()
-        
+
         if outcome == "ran":
             forest(player)
         elif outcome == "enemy died":
             location.clear_enemies()
             
-            print("Killing an enemy restored you to max hp, you also gained a +20 hp increase.")
+            print("\nKilling an enemy restored you to max hp, you also gained a +20 hp increase.")
             max_health = player.get_max_health()
             max_health += 20
             player.set_max_health(max_health)
@@ -993,15 +994,17 @@ def ocean(player):
     print(location)
     
     # up max hp and heal to max
-    max_hp = player.get_max_health()
-    max_hp += 20
-    print("You gained +20 max health.")
-    
-    player.set_max_health(max_hp)
-    player.heal(20000000)
-    
-    # print the health
-    print(f"Your health is now at {player.get_health()} out of {player.get_max_health()}.")
+    if location.get_enemies() != []:
+        max_hp = player.get_max_health()
+        max_hp += 20
+        print("You gained +20 max health.")
+        
+        player.set_max_health(max_hp)
+        player.heal(20000000)
+        
+        # print the health
+        print(f"Your health is now at {player.get_health()} out of {player.get_max_health()}.")
+        location.clear_enemies()
     
     # get the choice
     choice = location.get_choice()
