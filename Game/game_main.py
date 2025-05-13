@@ -1,9 +1,15 @@
+#----------------------------------------------------------------------------------------------------------------------------------
+# IMPORTS
+# IMPORT CLASSES, OS FOR FILE MANAGEMENT, RANDOM FOR RANDOM CHANCE IN FIGHTING INTERACTIONS AND PICKLE FOR STORING OBJECTS
 import game_classes
 import os
 import random
 import pickle
 
-
+#----------------------------------------------------------------------------------------------------------------------------------
+# MAIN FUNCTIONS
+# MAIN HANDLES RUNNING THE GAME
+# MAIN MENU GETS USERS CHOICE
 def main():
     # main recieves no arguments
     # it drives the adventure game
@@ -12,20 +18,19 @@ def main():
     # initialize varaibles
     game_name = "The Grand Escape of Etheria"
 
+    # print welcome
     print(f"\nWelcome to {game_name}.")
-    
+
+    # get user choice
     choice = main_menu()
 
+    # translate choice to a function
     if choice == 1:
         new_save()
     elif choice == 2:
         player = load_save()
-        if player == False:
-            main()
-            return
     else:
         print(f"Goodbye, thank you for playing {game_name}!")
-
 
 def main_menu():
     # main menu recieves no arguments
@@ -43,6 +48,7 @@ def main_menu():
     print("2: Load Save")
     print("3: Quit")
 
+    # each time theres a wrong choice or for the first running, get the choice
     while choice not in choices:
         try:
             # get choice
@@ -51,9 +57,11 @@ def main_menu():
             # check to make sure theres gamesaves if they chose to load
             if choice == 2:
                 if not os.path.exists("game_saves.dat"):
+                    # if the file doesnt exist, print no saves found and reset the choic
                     choice = -1
                     print("No game saves found, please create one first.")
                 else:
+                    # if it does then call load save
                     load_save()
         except:
             # on exception, pass, restarting the loop
@@ -62,10 +70,9 @@ def main_menu():
     # return the users choice.
     return choice
 
-
-#-------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------
 # PLAYER SAVE FUNCTIONS
-
+# NEW SAVE CREATING A NEW SAVE, DELETE SAVE DELETING ONE AFTER LOSING, LOAD SAVE LOADING ONE
 def new_save():
     # new save does not recieve any arguments
     # it creates a new save for the player
@@ -73,7 +80,8 @@ def new_save():
     # initialize valid weapons
     sword = game_classes.Weapon("Sword", 20, 1)
     dagger = game_classes.Weapon("Dagger", 10, 2)
-
+    
+    # print title
     print("---Character Creator---")
 
     # initialize looping variable
@@ -159,7 +167,7 @@ def delete_save(player):
     file.close()
     
     # return to the main menu
-    main_menu()
+    main()
     
 def load_save():
     # load save recieves no arguments
@@ -176,16 +184,20 @@ def load_save():
         except:
             # print the error and return it
             print("No saves found, create one first.")
-            main_menu()
-        
+            main()
+
+        # if the dictionary isnt empty then it loads all
         if data != {}:
             # read the data and print each objects info
             for item in data:
+                # get the character from the dictionary
                 char = data[item]
                 name = char.get_name()
                 weapon = char.get_weapon()
                 weapon_name = weapon.get_name()
                 location = char.get_location()
+
+                # print all of their stats
                 print(f"\nName: {name}")
                 print(f"Weapon: {weapon}")
                 print(f"Location: {location}")
@@ -193,10 +205,10 @@ def load_save():
             # get the users choice
             choice = input("What save would you like to load? (NAME ONLY, CASE SENSITIVE): ")
             
-            # set the blank player variable
+            # set the blank player variable, its an integer since players are stored as srings and not integers
             player = 1
             
-            # CHECK PLAYER
+            # check if the player requested is correct, and then set the player object
             for item in data:
                 if item == choice:
                     player = data[item]
@@ -246,7 +258,7 @@ def load_save():
                 return
         else:
             print("No saves found, create one first.")
-            main_menu()
+            main()
         
 
 
@@ -401,6 +413,9 @@ def tutorial(player):
         clearing(player)
 
 def generate_loc():
+    # generate locations recieves no argument
+    # it generates all of the locations
+    # and returns them as a list for the player data save
     clearing_loc = game_classes.Location("clearing", "\nYou are in a empty clearing.\nTo the north, there is a empty pathway.\nTo the south, there is a cluttered forest.\nThe east and west are too dense of a forest to go through.", [], [])
     center_path_loc = game_classes.Location("center_path", "\nYou are in a the middle of a path.\nTo the north, there is a castle, it seems like you shouldn't be there until later.\nTo the east and west, there is more path.\nTo the south, there is a clearing.", [], [])
     left_path_loc = game_classes.Location("left_path", "\nYou are in the middle of a path.\nThe north and south are blocked by dense forests.\nTo the east, there is more path.\nTo the west, there is a town, seemingly empty.", [], [])
@@ -1005,7 +1020,7 @@ def castle(player):
             print("Thank you for playing")
             print("You win!")
             death(player)
-            main_menu()
+            main()
             break
           
 main()
