@@ -89,16 +89,20 @@ class Location():
     def get_choice(self):
         choice = input(":> ")
         
-        if choice == "look":
-            print(self.__desc)
-        # set valid choices
-        valid_choices = ["north", "east", "south", "west"]
-        
-        # validate choice
-        while choice.lower() not in valid_choices and choice.lower() not in self.__choices:
-            print(f"{choice} not recognized as a command.")
-            choice = input(":> ")
-        
+        while True:
+            if choice == "look":
+                print(self.__desc)
+                choice = input(":> ")
+                
+            # set valid choices
+            valid_choices = ["north", "east", "south", "west"]
+            
+            # validate choice
+            while choice.lower() not in valid_choices and choice.lower() not in self.__choices and choice != "look":
+                print(f"{choice} not recognized as a command.")
+                choice = input(":> ")
+                
+            break
         return choice
     
     def clear_enemies(self):
@@ -249,7 +253,7 @@ class Fight():
                     if random.randint(1, 10) != 1:
                         # if they do not miss, make them attack ,dealing the certain amount of damage
                         print(f"{enemy.get_name()} attacks...")
-                        print(f"You get hit, taking {player.get_health()}.")
+                        print(f"You get hit, taking {enemy.get_weapon().get_damage()}.")
                         
                         # remove the amount of damage that they lost
                         living = player.damage(enemy_weapon.get_damage())
